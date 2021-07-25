@@ -148,7 +148,7 @@
           </div>
         </div>
         <div class="firstpage relative">
-          <div class="owl-carousel owl-reponsive">
+          <div class="owl-carousel owl-reponsive inheader">
             <div><img src="/assets/bir.jpg" alt="" /></div>
             <div><img src="/assets/iki.jpg" alt="" /></div>
             <div><img src="/assets/3.jpg" alt="" /></div>
@@ -215,6 +215,72 @@
           </div>
         </div>
       </section>
+      <section class="pagetwo">
+        <div class="img-absolute-top">
+          <img src="/assets/bg4.png" alt="" />
+        </div>
+        <div class="firstpage container">
+          <div class="heading">
+            <p class="recent">200+ categories</p>
+            <p class="boldtext">Categories</p>
+            <p style="font-size: 16px">
+              Here you can access properties by their category
+            </p>
+          </div>
+          <div
+            class="
+              owl-carousel owl-carousel-icons2 owl-loaded owl-drag
+              insecondpage
+            "
+          >
+            <div class="carditem mx-auto">
+              <a href="#"><img src="/assets/-1.jpg" alt="" /></a>
+              <div class="title">
+                <p style="margin-bottom: 0" class="available">
+                  <span>230</span> Rents available
+                </p>
+                <p class="boldtext">Hotels</p>
+              </div>
+            </div>
+            <div class="carditem mx-auto">
+              <a href="#"><img src="/assets/-2.jpg" alt="" /></a>
+              <div class="title">
+                <p style="margin-bottom: 0" class="available">
+                  <span>230</span> Rents available
+                </p>
+                <p class="boldtext">Hotels</p>
+              </div>
+            </div>
+            <div class="carditem mx-auto">
+              <a href="#"><img src="/assets/-3.jpg" alt="" /></a>
+              <div class="title">
+                <p style="margin-bottom: 0" class="available">
+                  <span>230</span> Rents available
+                </p>
+                <p class="boldtext">Hotels</p>
+              </div>
+            </div>
+            <div class="carditem mx-auto">
+              <a href="#"><img src="/assets/-4.jpg" alt="" /></a>
+              <div class="title">
+                <p style="margin-bottom: 0" class="available">
+                  <span>230</span> Rents available
+                </p>
+                <p class="boldtext">Hotels</p>
+              </div>
+            </div>
+            <div class="carditem mx-auto">
+              <a href="#"><img src="/assets/-5.jpg" alt="" /></a>
+              <div class="title">
+                <p style="margin-bottom: 0" class="available">
+                  <span>230</span> Rents available
+                </p>
+                <p class="boldtext">Hotels</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </header>
   </body>
   <script
@@ -249,15 +315,54 @@
 </html>
 <script>
   $(document).ready(function () {
-    $(".owl-carousel").owlCarousel({
-      items: 1,
-      autoplay: true,
-      autoplayTimeout: 10000,
-      lazyLoad: true,
-      mouseDrag: false,
-      rewind: true,
-    });
-
+    if ($(".owl-carousel.inheader").length) {
+      $(".owl-carousel.inheader").owlCarousel({
+        items: 1,
+        autoplay: true,
+        autoplayTimeout: 10000,
+        lazyLoad: true,
+        dots: false,
+        mouseDrag: false,
+        rewind: true,
+      });
+    }
+    if ($(".owl-carousel.insecondpage").length) {
+      $(".owl-carousel.insecondpage").owlCarousel({
+        items: 4,
+        autoplay: true,
+        nav: true,
+        autoplayTimeout: 5000,
+        lazyLoad: true,
+        loop: true,
+        mouseDrag: false,
+        rewind: true,
+        dots: false,
+        responsiveClass: true,
+        responsive: {
+          0: {
+            items: 1,
+          },
+          600: {
+            items: 1,
+          },
+          800: {
+            items: 2,
+          },
+          1024: {
+            items: 2,
+          },
+          1200: {
+            items: 2,
+          },
+          1600: {
+            items: 3,
+          },
+          2000: {
+            items: 4,
+          },
+        },
+      });
+    }
     $(".js-example-basic-single").select2();
   });
 </script>
