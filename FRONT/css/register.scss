@@ -1,0 +1,175 @@
+.boldtext {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+}
+* {
+  user-select: none;
+}
+.navbar {
+  height: 80px;
+  img {
+    cursor: pointer;
+  }
+  .imgresponsive {
+    display: none !important;
+  }
+  ul {
+    list-style: none;
+    li {
+      cursor: pointer;
+      user-select: none;
+      a {
+        text-decoration: none;
+        color: unset;
+        &:hover {
+          color: #556ee6;
+        }
+      }
+    }
+  }
+  .btn-group {
+    display: none;
+    i {
+      font-size: 40px;
+      color: black;
+      margin-bottom: 10px;
+    }
+    ul {
+      // display: flex;
+      flex-direction: column;
+      align-items: center !important;
+      li {
+        a {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    }
+  }
+}
+.pagetwo {
+  height: 187px !important;
+  background: rgba(85, 110, 230, 0.9) url("/assets/banner2.jpg");
+  .firstpage {
+    display: flex;
+    flex-direction: column;
+    padding-top: 50px;
+
+    * {
+      text-align: center;
+    }
+  }
+}
+.pagethree {
+  background-color: #ececf3;
+  height: 687px;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  .firstpage {
+    .formcard {
+      box-shadow: 0 10px 40px 0 rgba(62, 57, 107, 0.1),
+        0 2px 9px 0 rgba(62, 57, 107, 0.1);
+      border-radius: 8px;
+      padding: 30px;
+      .social-icon-style-circle-lg {
+        width: 2.3rem;
+        height: 2.3rem;
+        line-height: 2.5rem !important;
+        border-radius: 7px;
+        background: #ececf3;
+        background-color: rgb(236, 236, 243);
+        display: inline-block;
+        margin: 0 auto;
+        text-align: center;
+        font-size: 1rem;
+      }
+      .bg-primary-transparent {
+        background-color: rgba(85, 110, 230, 0.1);
+      }
+      .text-primary {
+        color: #556ee6 !important;
+      }
+    }
+  }
+}
+.pagenine {
+  background-color: #2a3042;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  .firstpage {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .social i {
+      list-style: none;
+      font-size: 15px !important;
+      width: 34px;
+      height: 34px;
+      margin: 1px;
+      border-radius: 8px;
+      border: 0px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.1);
+      line-height: 34px;
+      text-align: center;
+      &:hover {
+        background-color: #556ee6 !important;
+      }
+    }
+    .paymentsocial,
+    .payment,
+    .social,
+    .categories,
+    .resources,
+    .company,
+    .getintouch {
+      display: flex;
+      flex-direction: column;
+      align-items: baseline;
+      a {
+        &:hover {
+          color: #556ee6 !important;
+        }
+      }
+      i {
+        font-size: 23px;
+        color: darkgray;
+      }
+    }
+    .boldtext.header {
+      font-size: 20px !important;
+      color: white;
+      font-weight: 500;
+    }
+  }
+}
+@media only screen and (max-width: 2000px) {
+}
+@media only screen and (max-width: 1230px) {
+  .navbar {
+    height: 100px;
+  }
+}
+@media only screen and (max-width: 1200px) {
+  .navbar {
+    height: 80px;
+    .normalnav {
+      display: none !important;
+    }
+  }
+
+  .responsivenavbar {
+    display: inline-flex !important;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .navbar {
+    .img {
+      display: none !important;
+    }
+    .imgresponsive {
+      display: block !important;
+    }
+  }
+}
