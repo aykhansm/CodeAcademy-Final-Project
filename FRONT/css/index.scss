@@ -688,6 +688,87 @@
     }
   }
 }
+.pageeight {
+  background-color: #ececf3;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+
+  position: relative;
+  .firstpage {
+    img:hover {
+      opacity: 0.35 !important;
+    }
+    .heading {
+      .recent {
+        font-size: 14px;
+        text-transform: uppercase;
+        font-weight: 600;
+        margin-bottom: 0px;
+        font-family: "Poppins", sans-serif;
+        color: #556ee6 !important;
+      }
+      .boldtext {
+        font-size: 30px;
+        font-weight: 500;
+        opacity: 0.9;
+        margin-bottom: 0;
+        span {
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
+.pagenine {
+  background-color: #2a3042;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  .firstpage {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .social i {
+      list-style: none;
+      font-size: 15px !important;
+      width: 34px;
+      height: 34px;
+      margin: 1px;
+      border-radius: 8px;
+      border: 0px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.1);
+      line-height: 34px;
+      text-align: center;
+      &:hover {
+        background-color: #556ee6 !important;
+      }
+    }
+    .paymentsocial,
+    .payment,
+    .social,
+    .categories,
+    .resources,
+    .company,
+    .getintouch {
+      display: flex;
+      flex-direction: column;
+      align-items: baseline;
+      a {
+        &:hover {
+          color: #556ee6 !important;
+        }
+      }
+      i {
+        font-size: 23px;
+        color: darkgray;
+      }
+    }
+    .boldtext.header {
+      font-size: 20px !important;
+      color: white;
+      font-weight: 500;
+    }
+  }
+}
 @media only screen and (max-width: 2000px) {
   .pageone {
     .firstpage {

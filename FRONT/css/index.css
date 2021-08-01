@@ -892,6 +892,119 @@
   font-weight: 600;
 }
 
+.pageeight {
+  background-color: #ececf3;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+  position: relative;
+}
+
+.pageeight .firstpage img:hover {
+  opacity: 0.35 !important;
+}
+
+.pageeight .firstpage .heading .recent {
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 0px;
+  font-family: "Poppins", sans-serif;
+  color: #556ee6 !important;
+}
+
+.pageeight .firstpage .heading .boldtext {
+  font-size: 30px;
+  font-weight: 500;
+  opacity: 0.9;
+  margin-bottom: 0;
+}
+
+.pageeight .firstpage .heading .boldtext span {
+  font-weight: 600;
+}
+
+.pagenine {
+  background-color: #2a3042;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.pagenine .firstpage {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.pagenine .firstpage .social i {
+  list-style: none;
+  font-size: 15px !important;
+  width: 34px;
+  height: 34px;
+  margin: 1px;
+  border-radius: 8px;
+  border: 0px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  line-height: 34px;
+  text-align: center;
+}
+
+.pagenine .firstpage .social i:hover {
+  background-color: #556ee6 !important;
+}
+
+.pagenine .firstpage .paymentsocial,
+.pagenine .firstpage .payment,
+.pagenine .firstpage .social,
+.pagenine .firstpage .categories,
+.pagenine .firstpage .resources,
+.pagenine .firstpage .company,
+.pagenine .firstpage .getintouch {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+}
+
+.pagenine .firstpage .paymentsocial a:hover,
+.pagenine .firstpage .payment a:hover,
+.pagenine .firstpage .social a:hover,
+.pagenine .firstpage .categories a:hover,
+.pagenine .firstpage .resources a:hover,
+.pagenine .firstpage .company a:hover,
+.pagenine .firstpage .getintouch a:hover {
+  color: #556ee6 !important;
+}
+
+.pagenine .firstpage .paymentsocial i,
+.pagenine .firstpage .payment i,
+.pagenine .firstpage .social i,
+.pagenine .firstpage .categories i,
+.pagenine .firstpage .resources i,
+.pagenine .firstpage .company i,
+.pagenine .firstpage .getintouch i {
+  font-size: 23px;
+  color: darkgray;
+}
+
+.pagenine .firstpage .boldtext.header {
+  font-size: 20px !important;
+  color: white;
+  font-weight: 500;
+}
+
 @media only screen and (max-width: 2000px) {
   .pageone .firstpage .owl-carousel div img {
     width: 100% !important;
