@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+      integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+      integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+      integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link rel="stylesheet" href="./css/post.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://cdn.lineicons.com/2.0/LineIcons.css" rel="stylesheet" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <header>
+      <section class="pageone">
+        <div
+          class="
+            container
+            navbar
+            d-flex
+            flex-direction-row
+            justify-content-around
+            my-2
+            align-items-center
+          "
+        >
+          <img class="img" src="/assets/logo.png" alt="" />
+          <img class="imgresponsive" src="/assets/favicon.png" alt="" />
+          <ul
+            style="margin-bottom: 0 !important"
+            class="normalnav d-flex flex-direction-row align-items-center gap-4"
+          >
+            <li style="color: #556ee6 !important"><a href="">Home</a></li>
+            <li><a href="">About Us</a></li>
+            <li><a href="">Features</a></li>
+            <li><a href="">Pages</a></li>
+            <li><a href="">Contact Us</a></li>
+            <li class="mt-5 pb-0 mt-lg-0">
+              <span
+                ><a
+                  style="
+                    background-color: #556ee6 !important;
+                    border-radius: 7px !important;
+                  "
+                  href=""
+                  class="
+                    btn btn-primary
+                    ad-post
+                    waves-effect waves-light
+                    text-white
+                  "
+                  >Post Your Property</a
+                ></span
+              >
+            </li>
+            <li>
+              <a style="font-weight: 700" href="">Login</a> /<br /><a href=""
+                >Register</a
+              >
+            </li>
+            <li><a style="font-size: 30px" class="far fa-user"></a></li>
+          </ul>
+          <div class="btn-group responsivenavbar">
+            <i
+              type="button"
+              class="fas fa-align-right"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+            </i>
+
+            <ul style="left: -117px !important" class="dropdown-menu">
+              <li style="color: #556ee6 !important">
+                <a class="dropdown-item" href="">Home</a>
+              </li>
+              <li><a class="dropdown-item" href="">About Us</a></li>
+              <li><a class="dropdown-item" href="">Features</a></li>
+              <li><a class="dropdown-item" href="">Pages</a></li>
+              <li><a class="dropdown-item" href="">Contact Us</a></li>
+              <li class="dropdown-item pb-0 mt-lg-0">
+                <span
+                  ><a
+                    style="
+                      background-color: #556ee6 !important;
+                      border-radius: 7px !important;
+                    "
+                    href=""
+                    class="
+                      btn btn-primary
+                      ad-post
+                      waves-effect waves-light
+                      text-white
+                    "
+                    >Post Your Property</a
+                  ></span
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" style="font-weight: 700" href=""
+                  >Login</a
+                >
+                <a href="">Register</a>
+              </li>
+              <li>
+                <a
+                  style="font-size: 30px"
+                  class="dropdown-item far fa-user"
+                ></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </header>
+    <section class="pagetwo">
+      <div class="firstpage container">
+        <p style="color: white; font-size: 30px" class="boldtext">Post</p>
+        <p
+          style="
+            font-family: 'Roboto', sans-serif;
+            color: white;
+            font-size: 16px;
+          "
+        >
+          Here you can post your new property.
+        </p>
+      </div>
+    </section>
+
+    <section class="pagefour">
+      <div class="container firstpage">
+        <div class="row">
+          <div class="formcard col-lg-8 col-md-12 mx-auto">
+            <p
+              style="margin-bottom: 25px; font-size: 22px; color: #495057"
+              class="boldtext"
+            >
+              Add Property
+            </p>
+
+            <form action="">
+              <div class="title">
+                <label style="color: #495057; font-size: 14px"
+                  >Property Title</label
+                >
+                <input
+                  style="
+                    height: 30px;
+                    margin-top: 10px;
+                    padding: 5px 15px;
+                    background-color: white;
+                    border: solid 2px gainsboro;
+                    width: 90%;
+                    border-radius: 5px;
+                  "
+                  placeholder="Title"
+                  type="text"
+                  name="name"
+                />
+              </div>
+              <div class="div">
+                <div class="address">
+                  <label style="color: #495057; font-size: 14px">Address</label>
+                  <input
+                    style="
+                      height: 30px;
+                      margin-top: 10px;
+                      padding: 5px 15px;
+                      background-color: white;
+                      border: solid 2px gainsboro;
+                      width: 90%;
+                      border-radius: 5px;
+                    "
+                    placeholder="Address"
+                    type="text"
+                    name="address"
+                  />
+                </div>
+                <div class="number">
+                  <label style="color: #495057; font-size: 14px"
+                    >Contact Phone</label
+                  >
+                  <input
+                    style="
+                      height: 30px;
+                      margin-top: 10px;
+                      padding: 5px 15px;
+                      background-color: white;
+                      border: solid 2px gainsboro;
+                      width: 90%;
+                      border-radius: 5px;
+                    "
+                    placeholder="Number"
+                    type="text"
+                    name="address"
+                  />
+                </div>
+              </div>
+              <div style="display: flex; flex-direction: column" class="city">
+                <label style="color: #495057; font-size: 14px"
+                  >Located City</label
+                >
+                <select
+                  style="
+                    height: 30px !important;
+                    margin-top: 10px;
+                    padding: 5px 15px;
+                    background-color: white;
+                    border: solid 2px gainsboro !important;
+                    width: 100%;
+                    border-radius: 5px;
+                  "
+                  class="js-example-basic-single category"
+                  name="state"
+                >
+                  <option value="AL">Alabama</option>
+
+                  <option value="WY">Wyoming</option>
+                </select>
+              </div>
+              <div style="display: flex; flex-direction: column" class="email">
+                <label style="color: #495057; font-size: 14px">Category</label>
+                <select
+                  style="
+                    height: 30px !important;
+                    margin-top: 10px;
+                    padding: 5px 15px;
+                    background-color: white;
+                    border: solid 2px gainsboro !important;
+                    width: 100%;
+                    border-radius: 5px;
+                  "
+                  class="js-example-basic-single category"
+                  name="state"
+                >
+                  <option value="AL">Alabama</option>
+
+                  <option value="WY">Wyoming</option>
+                  <option value="WY">Wyoming</option>
+                  <option value="WY">Wyoming</option>
+                </select>
+              </div>
+              <div
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  align-items: baseline;
+                "
+                class="form-group my-2"
+              >
+                <label
+                  style="color: #495057; font-size: 14px"
+                  class="form-label text-dark mb-0"
+                  >Date type of the Property</label
+                >
+                <div class="d-md-flex ad-post-details">
+                  <label class="custom-control custom-radio mt-1 mx-2 mb-0">
+                    <input
+                      type="radio"
+                      class="custom-control-input"
+                      name="radios"
+                      value="option2"
+                      checked=""
+                    />
+                    <span class="custom-control-label">Daily</span>
+                  </label>
+                  <label class="custom-control custom-radio mb-0 mx-2 mt-1">
+                    <input
+                      type="radio"
+                      class="custom-control-input"
+                      name="radios"
+                      value="option3"
+                    />
+                    <span class="custom-control-label">Monthly</span>
+                  </label>
+                  <label class="custom-control custom-radio mb-0 mt-1">
+                    <input
+                      type="radio"
+                      class="custom-control-input"
+                      name="radios"
+                      value="option3"
+                    />
+                    <span class="custom-control-label">Both</span>
+                  </label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-4 col-md-6 col-xs-12">
+                  <label style="color: #495057; font-size: 14px"
+                    >Bedroom Count</label
+                  >
+
+                  <input
+                    style="
+                      height: 30px;
+                      margin-top: 10px;
+                      padding: 5px 15px;
+                      background-color: white;
+                      border: solid 2px gainsboro;
+                      width: 90%;
+                      border-radius: 5px;
+                    "
+                    type="number"
+                    name="number"
+                  />
+                </div>
+                <div class="col-lg-4 col-md-6 col-xs-12">
+                  <label style="color: #495057; font-size: 14px"
+                    >Bathroom Count</label
+                  >
+
+                  <input
+                    style="
+                      height: 30px;
+                      margin-top: 10px;
+                      padding: 5px 15px;
+                      background-color: white;
+                      border: solid 2px gainsboro;
+                      width: 90%;
+                      border-radius: 5px;
+                    "
+                    type="number"
+                    name="number"
+                  />
+                </div>
+                <div class="col-lg-4 col-md-6 col-xs-12">
+                  <label style="color: #495057; font-size: 14px"
+                    >Floor Count</label
+                  >
+
+                  <input
+                    style="
+                      height: 30px;
+                      margin-top: 10px;
+                      padding: 5px 15px;
+                      background-color: white;
+                      border: solid 2px gainsboro;
+                      width: 90%;
+                      border-radius: 5px;
+                    "
+                    type="number"
+                    name="number"
+                  />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-4 col-md-6 col-xs-12">
+                  <label style="color: #495057; font-size: 14px"
+                    >Builtup Area(in metre^2)</label
+                  >
+
+                  <input
+                    style="
+                      height: 30px;
+                      margin-top: 10px;
+                      padding: 5px 15px;
+                      background-color: white;
+                      border: solid 2px gainsboro;
+                      width: 90%;
+                      border-radius: 5px;
+                    "
+                    type="number"
+                    name="number"
+                  />
+                </div>
+                <div class="col-lg-4 col-md-6 col-xs-12">
+                  <label style="color: #495057; font-size: 14px"
+                    >Monthly Rent</label
+                  >
+
+                  <input
+                    style="
+                      height: 30px;
+                      margin-top: 10px;
+                      padding: 5px 15px;
+                      background-color: white;
+                      border: solid 2px gainsboro;
+                      width: 90%;
+                      border-radius: 5px;
+                    "
+                    type="number"
+                    name="number"
+                  />
+                </div>
+                <div class="col-lg-4 col-md-6 col-xs-12">
+                  <label style="color: #495057; font-size: 14px"
+                    >Daily Rent</label
+                  >
+
+                  <input
+                    style="
+                      height: 30px;
+                      margin-top: 10px;
+                      padding: 5px 15px;
+                      background-color: white;
+                      border: solid 2px gainsboro;
+                      width: 90%;
+                      border-radius: 5px;
+                    "
+                    type="number"
+                    name="number"
+                  />
+                </div>
+              </div>
+              <div style="display: flex; flex-direction: column" class="tag">
+                <label style="color: #495057; font-size: 14px">Tags</label>
+                <select multiple="multiple" class="js-example-basic-multiple">
+                  <option value="1">Hovuzlu</option>
+                  <option value="2">Balkonlu</option>
+                  <option value="2">5 otaqli</option>
+                </select>
+              </div>
+              <div class="message">
+                <label style="color: #495057; font-size: 14px"
+                  >Description</label
+                >
+                <textarea
+                  style="
+                    height: 150px;
+                    margin-top: 10px;
+                    padding: 5px 15px;
+                    background-color: white;
+                    border: solid 2px gainsboro;
+                    width: 100%;
+                    border-radius: 5px;
+                  "
+                  type="text"
+                  placeholder="text here..."
+                  name="description"
+                ></textarea>
+              </div>
+              <div style="display: flex; flex-direction: column" class="upload">
+                <label
+                  style="color: #495057; font-size: 16px; font-weight: 600"
+                  for="files"
+                  >Upload Images</label
+                >
+                <input
+                  style="
+                    border: none !important;
+                    height: 30px;
+                    margin-top: 10px;
+                    padding: 5px 15px;
+                    background-color: white;
+
+                    width: 90%;
+                    border-radius: 5px;
+                  "
+                  class="custom-file-label"
+                  type="file"
+                  id="files"
+                  name="files"
+                  multiple
+                />
+              </div>
+              <div class="submit">
+                <a
+                  class="btn btn-primary btn-block waves-effect waves-light"
+                  href="#"
+                  style="
+                    background-color: #18cf7a;
+                    border-radius: 6px;
+                    width: 35%;
+                    margin-top: 10px;
+                  "
+                >
+                  Submit Now</a
+                >
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <section class="pagenine">
+        <div class="firstpage container">
+          <div class="row">
+            <div
+              style="width: 300px; height: 196px; gap: 30px"
+              class="col-xl-3 col-lg-6 col-md-12 paymentsocial"
+            >
+              <div class="payment">
+                <p class="boldtext header">Payment Icons</p>
+                <ul style="list-style: none; display: flex; gap: 15px">
+                  <i class="fab fa-cc-visa"></i>
+                  <i class="fab fa-cc-mastercard"></i>
+                  <i class="fab fa-cc-paypal"></i>
+                  <i class="fab fa-cc-apple-pay"></i>
+                </ul>
+              </div>
+              <div class="social">
+                <p class="boldtext header">Social Icons</p>
+                <ul style="list-style: none; display: flex; gap: 15px">
+                  <i class="fab fa-facebook-f"></i>
+                  <i class="fab fa-instagram"></i>
+                  <i class="fab fa-youtube"></i>
+                  <i class="fab fa-linkedin-in"></i>
+                </ul>
+              </div>
+            </div>
+            <div
+              style="width: 200px; height: 196px"
+              class="col-xl-2 col-lg-6 col-md-12 categories"
+            >
+              <p class="boldtext header">Categories</p>
+              <ul
+                style="list-style: none; display: flex; flex-direction: column"
+              >
+                <li style="position: relative; margin-bottom: 10px">
+                  <i
+                    style="font-size: 11px"
+                    class="fas fa-chevron-right mr-2 text-white-50"
+                  ></i>
+                  <a style="color: rgba(255, 255, 255, 0.6)" href="#"
+                    >Residential</a
+                  >
+                </li>
+                <li style="position: relative; margin-bottom: 10px">
+                  <i
+                    style="font-size: 11px"
+                    class="fas fa-chevron-right mr-2 text-white-50"
+                  ></i>
+                  <a style="color: rgba(255, 255, 255, 0.6)" href="#"
+                    >Commercial</a
+                  >
+                </li>
+                <li style="position: relative; margin-bottom: 10px">
+                  <i
+                    style="font-size: 11px"
+                    class="fas fa-chevron-right mr-2 text-white-50"
+                  ></i>
+                  <a style="color: rgba(255, 255, 255, 0.6)" href="#"
+                    >Penthouse</a
+                  >
+                </li>
+                <li style="position: relative; margin-bottom: 10px">
+                  <i
+                    style="font-size: 11px"
+                    class="fas fa-chevron-right mr-2 text-white-50"
+                  ></i>
+                  <a style="color: rgba(255, 255, 255, 0.6)" href="#"
+                    >Garden house</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div
+              style="width: 200px; height: 196px"
+              class="col-xl-2 col-lg-6 col-md-12 resources"
+            >
+              <p class="boldtext header">Resources</p>
+              <ul
+                style="list-style: none; display: flex; flex-direction: column"
+              >
+                <li style="position: relative; margin-bottom: 10px">
+                  <i
+                    style="font-size: 11px"
+                    class="fas fa-chevron-right mr-2 text-white-50"
+                  ></i>
+                  <a style="color: rgba(255, 255, 255, 0.6)" href="#"
+                    >Help Center</a
+                  >
+                </li>
+                <li style="position: relative; margin-bottom: 10px">
+                  <i
+                    style="font-size: 11px"
+                    class="fas fa-chevron-right mr-2 text-white-50"
+                  ></i>
+                  <a style="color: rgba(255, 255, 255, 0.6)" href="#"
+                    >Terms & Conditions</a
+                  >
+                </li>
+                <li style="position: relative; margin-bottom: 10px">
+                  <i
+                    style="font-size: 11px"
+                    class="fas fa-chevron-right mr-2 text-white-50"
+                  ></i>
+                  <a style="color: rgba(255, 255, 255, 0.6)" href="#"
+                    >Privacy Policy</a
+                  >
+                </li>
+                <li style="position: relative; margin-bottom: 10px">
+                  <i
+                    style="font-size: 11px"
+                    class="fas fa-chevron-right mr-2 text-white-50"
+                  ></i>
+                  <a style="color: rgba(255, 255, 255, 0.6)" href="#"
+                    >Support</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div
+              style="width: 200px; height: 196px"
+              class="col-xl-2 col-lg-6 col-md-12 company"
+            >
+              <p class="boldtext header">Company</p>
+              <ul
+                style="list-style: none; display: flex; flex-direction: column"
+              >
+                <li style="position: relative; margin-bottom: 10px">
+                  <i
+                    style="font-size: 11px"
+                    class="fas fa-chevron-right mr-2 text-white-50"
+                  ></i>
+                  <a style="color: rgba(255, 255, 255, 0.6)" href="#"
+                    >Our Team</a
+                  >
+                </li>
+                <li style="position: relative; margin-bottom: 10px">
+                  <i
+                    style="font-size: 11px"
+                    class="fas fa-chevron-right mr-2 text-white-50"
+                  ></i>
+                  <a style="color: rgba(255, 255, 255, 0.6)" href="#"
+                    >Contact Us</a
+                  >
+                </li>
+                <li style="position: relative; margin-bottom: 10px">
+                  <i
+                    style="font-size: 11px"
+                    class="fas fa-chevron-right mr-2 text-white-50"
+                  ></i>
+                  <a style="color: rgba(255, 255, 255, 0.6)" href="#"
+                    >About Us</a
+                  >
+                </li>
+                <li style="position: relative; margin-bottom: 10px">
+                  <i
+                    style="font-size: 11px"
+                    class="fas fa-chevron-right mr-2 text-white-50"
+                  ></i>
+                  <a style="color: rgba(255, 255, 255, 0.6)" href="#">Why Us</a>
+                </li>
+              </ul>
+            </div>
+            <div
+              style="width: 300px; height: 196px"
+              class="col-xl-3 col-lg-6 col-md-12 company"
+            >
+              <p class="boldtext header">Get In Touch</p>
+              <ul
+                style="list-style: none; display: flex; flex-direction: column"
+              >
+                <li style="position: relative; margin-bottom: 10px">
+                  <i
+                    style="
+                      font-size: 11px;
+                      width: 25px;
+                      height: 25px;
+                      display: inline-block;
+                      text-align: center;
+                      background: rgba(255, 255, 255, 0.1);
+                      line-height: 25px;
+                      border-radius: 8px;
+                      margin-bottom: 6px;
+                    "
+                    class="fas fa-home mr-2 text-white-50"
+                  ></i>
+                  <a style="color: rgba(255, 255, 255, 0.6)" href="#"
+                    >Baku,Nizami St.56</a
+                  >
+                </li>
+                <li style="position: relative; margin-bottom: 10px">
+                  <i
+                    style="
+                      font-size: 11px;
+                      width: 25px;
+                      height: 25px;
+                      display: inline-block;
+                      text-align: center;
+                      background: rgba(255, 255, 255, 0.1);
+                      line-height: 25px;
+                      border-radius: 8px;
+                      margin-bottom: 6px;
+                    "
+                    class="far fa-envelope mr-2 text-white-50"
+                  ></i>
+                  <a style="color: rgba(255, 255, 255, 0.6)" href="#"
+                    >ayxan689@gmail.com</a
+                  >
+                </li>
+                <li style="position: relative; margin-bottom: 10px">
+                  <i
+                    style="
+                      font-size: 11px;
+                      width: 25px;
+                      height: 25px;
+                      display: inline-block;
+                      text-align: center;
+                      background: rgba(255, 255, 255, 0.1);
+                      line-height: 25px;
+                      border-radius: 8px;
+                      margin-bottom: 6px;
+                    "
+                    class="fas fa-phone mr-2 text-white-50"
+                  ></i>
+                  <a style="color: rgba(255, 255, 255, 0.6)" href="#"
+                    >+994 55 294 01 65</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </footer>
+  </body>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+    crossorigin="anonymous"
+  ></script>
+
+  <!-- -----------------------------Jquery------------------ -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!-- -------------------------------Toastr------------ -->
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+    integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+    integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"
+    integrity="sha512-gY25nC63ddE0LcLPhxUJGFxa2GoIyA5FLym4UJqHDEMHjp8RET6Zn/SHo1sltt3WuVtqfyxECP38/daUc/WVEA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-countto/1.1.0/jquery.countTo.min.js"
+    integrity="sha512-ZbM86dAmjIe3nPA2k8j3G//NO/zBYNnZ8wi+yUKh8VH24CHr0aDhDHoEM4IvGl+Sz6ga7ONnGBDxS+BTVJ+K2g=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+  <script>
+    $(document).ready(function () {
+      if ($(".owl-carousel.inheader").length) {
+        $(".owl-carousel.inheader").owlCarousel({
+          items: 1,
+          autoplay: true,
+          autoplayTimeout: 10000,
+          lazyLoad: true,
+          dots: false,
+          mouseDrag: false,
+          rewind: true,
+        });
+      }
+      if ($(".owl-carousel.insecondpage").length) {
+        $(".owl-carousel.insecondpage").owlCarousel({
+          items: 4,
+          autoplay: true,
+          nav: true,
+          autoplayTimeout: 5000,
+          lazyLoad: true,
+          loop: true,
+          mouseDrag: false,
+          rewind: true,
+          dots: false,
+          responsiveClass: true,
+          responsive: {
+            0: {
+              items: 1,
+            },
+            600: {
+              items: 1,
+            },
+            800: {
+              items: 2,
+            },
+            1024: {
+              items: 2,
+            },
+            1200: {
+              items: 2,
+            },
+            1600: {
+              items: 3,
+            },
+            2000: {
+              items: 4,
+            },
+          },
+        });
+      }
+      if ($(".owl-carousel.inthirdpage").length) {
+        $(".owl-carousel.inthirdpage").owlCarousel({
+          items: 2,
+          autoplay: true,
+          nav: true,
+          autoplayTimeout: 5000,
+          lazyLoad: true,
+          loop: true,
+          mouseDrag: false,
+          rewind: true,
+          dots: false,
+          responsiveClass: true,
+          responsive: {
+            0: {
+              items: 1,
+            },
+            600: {
+              items: 1,
+            },
+            800: {
+              items: 1,
+            },
+            1024: {
+              items: 1,
+            },
+            1800: {
+              items: 2,
+            },
+            2000: {
+              items: 2,
+            },
+          },
+        });
+      }
+      if ($(".owl-carousel.infourthpage").length) {
+        $(".owl-carousel.infourthpage").owlCarousel({
+          items: 4,
+          autoplay: true,
+          nav: true,
+          autoplayTimeout: 5000,
+          lazyLoad: true,
+          loop: true,
+          mouseDrag: false,
+          rewind: true,
+          dots: false,
+          responsiveClass: true,
+          responsive: {
+            0: {
+              items: 1,
+            },
+            600: {
+              items: 1,
+            },
+            800: {
+              items: 2,
+            },
+            1400: {
+              items: 3,
+            },
+            1800: {
+              items: 4,
+            },
+            2000: {
+              items: 4,
+            },
+          },
+        });
+      }
+
+      $(".category").select2({});
+      $(".js-example-basic-multiple").select2();
+    });
+  </script>
+</html>

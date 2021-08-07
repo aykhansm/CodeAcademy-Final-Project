@@ -69,6 +69,10 @@
   padding-bottom: 3rem;
   .firstpage {
     .formcard {
+      input,
+      textarea {
+        border: solid 1px gainsboro !important;
+      }
       box-shadow: 0 10px 40px 0 rgba(62, 57, 107, 0.1),
         0 2px 9px 0 rgba(62, 57, 107, 0.1);
       border-radius: 8px;

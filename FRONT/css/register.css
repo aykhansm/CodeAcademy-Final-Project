@@ -113,6 +113,11 @@
   padding: 30px;
 }
 
+.pagethree .firstpage .formcard input,
+.pagethree .firstpage .formcard textarea {
+  border: solid 1px gainsboro !important;
+}
+
 .pagethree .firstpage .formcard .social-icon-style-circle-lg {
   width: 2.3rem;
   height: 2.3rem;

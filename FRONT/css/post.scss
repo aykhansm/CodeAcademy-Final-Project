@@ -72,10 +72,52 @@
 }
 .pagefour {
   background-color: #fff !important;
-  height: 650px;
+  height: 1500px;
   padding-top: 3rem;
   padding-bottom: 3rem;
+
   .firstpage {
+    .select2-container--default {
+      width: 90% !important;
+      .select2-search--inline {
+        display: none;
+      }
+    }
+    .select2-selection--single {
+      height: 45px !important;
+      margin-top: 10px !important;
+      padding: 5px 15px !important;
+      background-color: white !important;
+      border: solid 1px gainsboro !important;
+      width: 100% !important;
+      border-radius: 5px !important;
+    }
+    .select2-selection--multiple {
+      height: 45px !important;
+      margin-top: 10px !important;
+      padding: 5px 15px !important;
+      background-color: white !important;
+      border: solid 1px gainsboro !important;
+      width: 100% !important;
+      border-radius: 5px !important;
+      .select2-selection__rendered {
+        top: 5px !important;
+        .select2-selection__choice {
+          background-color: unset;
+        }
+      }
+    }
+    .select2-selection__rendered {
+      position: absolute;
+      top: 18px;
+      left: 5px;
+    }
+    .select2-selection__arrow {
+      top: 21px !important;
+    }
+    .select2-search--dropdown {
+      display: none !important;
+    }
     .formcard {
       input,
       textarea {
@@ -129,6 +171,7 @@
         background-color: #556ee6 !important;
       }
     }
+
     .paymentsocial,
     .payment,
     .social,

@@ -1,3 +1,7 @@
+.text-primary {
+  color: #556ee6 !important;
+}
+
 .boldtext {
   font-family: "Poppins", sans-serif;
   font-weight: 600;
@@ -100,25 +104,81 @@
 }
 
 .pagethree {
-  background-color: #ececf3;
-  height: 687px;
+  background-color: #ececf3 !important;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.pagefour {
+  background-color: #fff !important;
+  height: 1500px;
   padding-top: 3rem;
   padding-bottom: 3rem;
 }
 
-.pagethree .firstpage .formcard {
+.pagefour .firstpage .select2-container--default {
+  width: 90% !important;
+}
+
+.pagefour .firstpage .select2-container--default .select2-search--inline {
+  display: none;
+}
+
+.pagefour .firstpage .select2-selection--single {
+  height: 45px !important;
+  margin-top: 10px !important;
+  padding: 5px 15px !important;
+  background-color: white !important;
+  border: solid 1px gainsboro !important;
+  width: 100% !important;
+  border-radius: 5px !important;
+}
+
+.pagefour .firstpage .select2-selection--multiple {
+  height: 45px !important;
+  margin-top: 10px !important;
+  padding: 5px 15px !important;
+  background-color: white !important;
+  border: solid 1px gainsboro !important;
+  width: 100% !important;
+  border-radius: 5px !important;
+}
+
+.pagefour .firstpage .select2-selection--multiple .select2-selection__rendered {
+  top: 5px !important;
+}
+
+.pagefour .firstpage .select2-selection--multiple .select2-selection__rendered .select2-selection__choice {
+  background-color: unset;
+}
+
+.pagefour .firstpage .select2-selection__rendered {
+  position: absolute;
+  top: 18px;
+  left: 5px;
+}
+
+.pagefour .firstpage .select2-selection__arrow {
+  top: 21px !important;
+}
+
+.pagefour .firstpage .select2-search--dropdown {
+  display: none !important;
+}
+
+.pagefour .firstpage .formcard {
   -webkit-box-shadow: 0 10px 40px 0 rgba(62, 57, 107, 0.1), 0 2px 9px 0 rgba(62, 57, 107, 0.1);
           box-shadow: 0 10px 40px 0 rgba(62, 57, 107, 0.1), 0 2px 9px 0 rgba(62, 57, 107, 0.1);
   border-radius: 8px;
   padding: 30px;
 }
 
-.pagethree .firstpage .formcard input,
-.pagethree .firstpage .formcard textarea {
+.pagefour .firstpage .formcard input,
+.pagefour .firstpage .formcard textarea {
   border: solid 1px gainsboro !important;
 }
 
-.pagethree .firstpage .formcard .social-icon-style-circle-lg {
+.pagefour .firstpage .formcard .social-icon-style-circle-lg {
   width: 2.3rem;
   height: 2.3rem;
   line-height: 2.5rem !important;
@@ -131,11 +191,11 @@
   font-size: 1rem;
 }
 
-.pagethree .firstpage .formcard .bg-primary-transparent {
+.pagefour .firstpage .formcard .bg-primary-transparent {
   background-color: rgba(85, 110, 230, 0.1);
 }
 
-.pagethree .firstpage .formcard .text-primary {
+.pagefour .firstpage .formcard .text-primary {
   color: #556ee6 !important;
 }
 
@@ -249,4 +309,4 @@
     display: block !important;
   }
 }
-/*# sourceMappingURL=login.css.map */
+/*# sourceMappingURL=post.css.map */
