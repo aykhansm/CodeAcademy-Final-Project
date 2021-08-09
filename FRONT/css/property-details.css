@@ -228,6 +228,57 @@
   padding-bottom: 3rem;
 }
 
+.pagefour .firstpage .qiymet {
+  font-style: 20px !important;
+}
+
+.pagefour .firstpage .owl-carousel.inthirdpage .owl-nav {
+  position: relative;
+}
+
+.pagefour .firstpage .owl-carousel.inthirdpage .owl-nav .owl-prev {
+  position: absolute;
+  left: 10px;
+  top: -220px;
+}
+
+.pagefour .firstpage .owl-carousel.inthirdpage .owl-nav .owl-prev span {
+  opacity: 1;
+  position: absolute;
+  top: -7px;
+  right: 13px;
+}
+
+.pagefour .firstpage .owl-carousel.inthirdpage .owl-nav .owl-next {
+  position: absolute;
+  right: 10px;
+  top: -220px;
+}
+
+.pagefour .firstpage .owl-carousel.inthirdpage .owl-nav .owl-next span {
+  opacity: 1;
+  position: absolute;
+  top: -7px;
+  right: 13px;
+}
+
+.pagefour .firstpage .owl-carousel.inthirdpage .owl-nav button {
+  position: relative;
+  font-size: 4rem;
+  width: 3rem;
+  height: 3rem;
+  color: white;
+  background: #000;
+  line-height: 3rem;
+  border-radius: 8px;
+  opacity: 0.8;
+}
+
+.pagefour .firstpage .owl-carousel.inthirdpage img {
+  max-height: 400px !important;
+  border-radius: 10px !important;
+}
+
 .pagefour .firstpage .active p {
   background-color: white !important;
 }
@@ -384,6 +435,7 @@
 
 .pagefour .formcard {
   background-color: white !important;
+  height: unset !important;
   -webkit-box-shadow: 0 10px 40px 0 rgba(62, 57, 107, 0.1), 0 2px 9px 0 rgba(62, 57, 107, 0.1);
           box-shadow: 0 10px 40px 0 rgba(62, 57, 107, 0.1), 0 2px 9px 0 rgba(62, 57, 107, 0.1);
   border-radius: 8px;

@@ -145,6 +145,53 @@
   padding-bottom: 3rem;
 
   .firstpage {
+    .qiymet {
+      font-style: 20px !important;
+    }
+
+    .owl-carousel.inthirdpage {
+      .owl-nav {
+        position: relative;
+        .owl-prev {
+          position: absolute;
+          left: 10px;
+          top: -220px;
+          span {
+            opacity: 1;
+            position: absolute;
+            top: -7px;
+            right: 13px;
+          }
+        }
+        .owl-next {
+          position: absolute;
+          right: 10px;
+          top: -220px;
+          span {
+            opacity: 1;
+            position: absolute;
+            top: -7px;
+            right: 13px;
+          }
+        }
+        button {
+          position: relative;
+          font-size: 4rem;
+          width: 3rem;
+          height: 3rem;
+          color: white;
+          background: #000;
+          line-height: 3rem;
+          border-radius: 8px;
+          opacity: 0.8;
+        }
+      }
+    }
+    .owl-carousel.inthirdpage img {
+      max-height: 400px !important;
+      border-radius: 10px !important;
+    }
+
     .active {
       & p {
         background-color: white !important;
@@ -284,6 +331,7 @@
   }
   .formcard {
     background-color: white !important;
+    height: unset !important;
     input,
     textarea {
       border: solid 1px gainsboro !important;
