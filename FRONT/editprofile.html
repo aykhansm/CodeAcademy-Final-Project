@@ -38,7 +38,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
-    <link rel="stylesheet" href="./css/register.css" />
+    <link rel="stylesheet" href="./css/editprofile.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
@@ -137,7 +137,7 @@
                 <a class="dropdown-item" style="font-weight: 700" href=""
                   >Login</a
                 >
-                <a href="">Register</a>
+                <a href="">Login</a>
               </li>
               <li>
                 <a
@@ -152,7 +152,9 @@
     </header>
     <section class="pagetwo">
       <div class="firstpage container">
-        <p style="color: white; font-size: 30px" class="boldtext">Register</p>
+        <p style="color: white; font-size: 30px" class="boldtext">
+          My Properties
+        </p>
         <p
           style="
             font-family: 'Roboto', sans-serif;
@@ -160,166 +162,228 @@
             font-size: 16px;
           "
         >
-          Here you can register your account in order to rent a place
+          Here you can edit your account
         </p>
       </div>
     </section>
     <section class="pagethree">
       <div class="container firstpage">
         <div class="row">
-          <div class="formcard col-lg-5 col-xl-4 col-md-6 mx-auto">
-            <p
-              style="margin-bottom: 25px; font-size: 22px; color: #495057"
-              class="boldtext"
-            >
-              Register
-            </p>
-            <form action="">
-              <div class="name">
-                <label style="color: #495057; font-size: 14px">Full Name</label>
-                <input
-                  style="
-                    height: 30px;
-                    margin-top: 10px;
-                    padding: 5px 15px;
+          <div class="mydashboard col-xl-3 col-lg-12 col-md-12">
+            <div class="dashboardcard card overflow-hidden">
+              <h3 class="card-title boldtext">My Dashboard</h3>
 
-                    border: solid 2px gainsboro;
-                    width: 90%;
-                    border-radius: 5px;
-                  "
-                  type="text"
-                  name="name"
-                />
+              <div class="card-body item-user p-5">
+                <div class="img-absolute-top2 img-absolute-top3">
+                  <img class="background" src="/assets/bg6.png" alt="img" />
+                </div>
+                <div class="profile-pic text-center reative">
+                  <div class="profile-pic-img text-center">
+                    <span
+                      class="bg-success dots"
+                      data-toggle="tooltip"
+                      data-placement="top"
+                      title=""
+                      data-original-title="online"
+                    ></span>
+                    <img
+                      style="border-radius: 7px; max-width: 165px"
+                      src="/assets/+2.jpg"
+                      class="br-7 w-100"
+                      alt="user"
+                    />
+                  </div>
+                  <a href="userprofile.html" class="text-dark"
+                    ><h4
+                      style="font-size: 15px; font-weight: 600"
+                      class="mt-4 mb-0 font-weight-semibold2 fs-16"
+                    >
+                      Robert McLean
+                      <span
+                        class=""
+                        data-toggle="tooltip"
+                        data-placement="top"
+                        title=""
+                        data-original-title="Verified Owner"
+                        ><i class="fe fe-check-circle text-success fs-13"></i
+                      ></span></h4
+                  ></a>
+                  <p style="font-size: 13px" class="mb-0 mt-1 text-muted">
+                    Property Owner
+                  </p>
+                </div>
               </div>
-              <div class="email">
-                <label style="color: #495057; font-size: 14px">Email</label>
-                <input
-                  style="
-                    height: 30px;
-                    margin-top: 10px;
-                    padding: 5px 15px;
-
-                    border: solid 2px gainsboro;
-                    width: 90%;
-                    border-radius: 5px;
-                  "
-                  type="email"
-                  name="mail"
-                />
-              </div>
-              <div class="address">
-                <label style="color: #495057; font-size: 14px">Address</label>
-                <input
-                  style="
-                    height: 30px;
-                    margin-top: 10px;
-                    padding: 5px 15px;
-
-                    border: solid 2px gainsboro;
-                    width: 90%;
-                    border-radius: 5px;
-                  "
-                  type="text"
-                  name="address"
-                />
-              </div>
-              <div class="password">
-                <label style="color: #495057; font-size: 14px">Password</label>
-                <input
-                  style="
-                    height: 30px;
-                    margin-top: 10px;
-                    padding: 5px 15px;
-
-                    border: solid 2px gainsboro;
-                    width: 90%;
-                    border-radius: 5px;
-                  "
-                  type="password"
-                  name="password"
-                />
-              </div>
-              <div class="submit">
-                <a
-                  class="btn btn-primary btn-block waves-effect waves-light"
-                  href="#"
-                  style="
-                    background-color: #428680;
-                    border-radius: 6px;
-                    width: 100%;
-                    margin-top: 10px;
-                  "
-                  >Register</a
-                >
-              </div>
-              <p style="margin-top: 15px" class="text-dark mb-0">
-                Already have an account?
-                <a class="text-primary" href="">Sign in</a>
-              </p>
-              <hr style="width: 100%; margin-top: 30px" />
-            </form>
-            <div
-              style="
-                display: flex;
-                flex-direction: column;
-                align-items: baseline;
-                margin-top: 30px;
-              "
-              class="socialmedia"
-            >
-              <p
-                style="margin-bottom: 10px; font-size: 18px; color: #495057"
-                class="boldtext"
+              <aside class="app-sidebar doc-sidebar my-dash">
+                <div class="app-sidebar__user clearfix is-expanded">
+                  <ul class="side-menu open">
+                    <li class="first">
+                      <a class="side-menu__item" href="mydash.html"
+                        ><i class="side-menu__icon far fa-user"></i
+                        ><span class="side-menu__label">Edit Profile</span></a
+                      >
+                    </li>
+                    <li>
+                      <a class="side-menu__item active" href="mydash.html"
+                        ><i class="side-menu__icon fas fa-list"></i
+                        ><span class="side-menu__label">My Properties</span></a
+                      >
+                    </li>
+                    <li>
+                      <a class="side-menu__item" href="mydash.html"
+                        ><i class="side-menu__icon far fa-heart"></i
+                        ><span class="side-menu__label">My Favourites</span></a
+                      >
+                    </li>
+                    <li>
+                      <a class="side-menu__item" href="mydash.html"
+                        ><i class="side-menu__icon fas fa-shopping-cart"></i
+                        ><span class="side-menu__label">My Bookings</span></a
+                      >
+                    </li>
+                    <li>
+                      <a class="side-menu__item" href="mydash.html"
+                        ><i class="side-menu__icon fas fa-power-off"></i
+                        ><span class="side-menu__label">Log out</span></a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </aside>
+            </div>
+          </div>
+          <div class="col-xl-9 col-lg-12 col-md-12">
+            <div class="dashboardcard card">
+              <div
+                style="
+                  padding: 25px;
+                  border-bottom: solid 1px gainsboro;
+                  margin-top: 0;
+                  font-size: 18px;
+                  font-weight: 600;
+                "
+                class="card-title boldtext"
               >
-                Social media
-              </p>
-              <ul style="list-style: none; display: flex; gap: 5px">
-                <a
-                  href="#"
-                  class="
-                    social-icon-style-circle-lg
-                    text-primary
-                    bg-primary-transparent
-                  "
-                  ><i class="fab fa-facebook-f"></i
-                ></a>
-                <a
-                  href="#"
-                  class="
-                    social-icon-style-circle-lg
-                    text-primary
-                    bg-primary-transparent
-                  "
-                  ><i class="fab fa-google"></i
-                ></a>
-                <a
-                  href="#"
-                  class="
-                    social-icon-style-circle-lg
-                    text-primary
-                    bg-primary-transparent
-                  "
-                  ><i class="fab fa-twitter"></i
-                ></a>
-                <a
-                  href="#"
-                  class="
-                    social-icon-style-circle-lg
-                    text-primary
-                    bg-primary-transparent
-                  "
-                  ><i class="fab fa-linkedin"></i
-                ></a>
-                <a
-                  href="#"
-                  class="
-                    social-icon-style-circle-lg
-                    text-primary
-                    bg-primary-transparent
-                  "
-                  ><i class="fab fa-github"></i
-                ></a>
-              </ul>
+                Edit Profile
+              </div>
+              <div class="card-body">
+                <form class="row">
+                  <div class="col-sm-6 col-md-6">
+                    <div class="form-group">
+                      <label class="form-label fs-12">Full Name</label>
+                      <input
+                        type="text"
+                        class="form-control edit"
+                        placeholder="Full Name"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-6">
+                    <div class="form-group">
+                      <label class="form-label fs-12">Email address</label>
+                      <input
+                        type="email"
+                        class="form-control edit"
+                        placeholder="Email"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-6">
+                    <div class="form-group">
+                      <label class="form-label fs-12">Phone Number</label>
+                      <input
+                        class="form-control edit"
+                        placeholder="Number"
+                        type="text"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-6">
+                    <div class="form-group">
+                      <label class="form-label fs-12">Website</label>
+                      <input
+                        type="text"
+                        class="form-control edit"
+                        placeholder="www.demo.com"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label class="form-label fs-12">Address</label>
+                      <input
+                        type="text"
+                        class="form-control edit"
+                        style="width: 300px; height: 40px"
+                        placeholder="Home Address"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-5">
+                    <div
+                      style="display: flex; flex-direction: column"
+                      class="form-group select2-radius-single"
+                    >
+                      <label class="form-label fs-12">City</label>
+                      <select
+                        style="height: 60px !important; width: 285px !important"
+                        class="cityselect"
+                        name="state"
+                      >
+                        <option value="AL">Alabama</option>
+
+                        <option value="WY">Wyoming</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label class="form-label fs-12">Description</label>
+                      <textarea
+                        rows="5"
+                        class="form-control"
+                        placeholder="Enter About your description"
+                        style="height: 75px"
+                      ></textarea>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group mb-0">
+                      <label class="form-label">Upload Image</label>
+                      <div class="input-group mb-0">
+                        <input
+                          placeholder="Choose"
+                          readonly=""
+                          class="form-control"
+                          type="file"
+                        />
+                        <label class="input-group-btn">
+                          <span class="btn btn-primary br-tl-0 br-bl-0">
+                            Browse
+                            <input
+                              type="file"
+                              style="display: none"
+                              multiple=""
+                            />
+                          </span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <button
+                    style="
+                      background-color: #556ee6 !important;
+                      border-radius: 7px !important;
+                      width: 150px;
+                      margin-top: 50px;
+                    "
+                    type="submit"
+                    class="btn btn-primary waves-effect waves-light"
+                  >
+                    Update Profile
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
         </div>
@@ -669,4 +733,7 @@
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
   ></script>
+  <script>
+    $(".cityselect").select2({});
+  </script>
 </html>

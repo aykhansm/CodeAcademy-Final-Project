@@ -139,6 +139,23 @@
   color: #556ee6 !important;
 }
 
+.pagesubscribe {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.pagesubscribe .sub-newsletter i {
+  width: 3.5rem;
+  height: 3.5rem;
+  line-height: 3.5rem;
+  border-radius: 8px;
+  display: inline-block;
+  text-align: center;
+  font-size: 20px;
+  background-color: rgba(85, 110, 230, 0.1);
+  color: #556ee6 !important;
+}
+
 .pagenine {
   background-color: #2a3042;
   padding-top: 4rem;

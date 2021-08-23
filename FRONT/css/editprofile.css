@@ -1,3 +1,90 @@
+input.form-control.edit {
+  border: 1px solid #ced4da !important;
+  border-bottom: unset;
+  border-radius: 6px !important;
+  padding: 5px !important;
+}
+
+.badge-primary {
+  color: #fff;
+  background-color: #007bff !important;
+}
+
+.badge-secondary {
+  color: #fff;
+  background-color: #6c757d !important;
+}
+
+.badge-success {
+  color: #fff;
+  background-color: #28a745 !important;
+}
+
+.badge-danger {
+  color: #fff;
+  background-color: #dc3545 !important;
+}
+
+.badge-warning {
+  color: #fff;
+  background-color: #ffc107 !important;
+}
+
+.badge-info {
+  color: #fff;
+  background-color: #17a2b8 !important;
+}
+
+.badge-dark {
+  background-color: #343a40 !important;
+}
+
+.badge-light {
+  color: #212529;
+  background-color: #f8f9fa;
+}
+
+.table-bordered td,
+.table-bordered th {
+  border: 1px solid #e8ebf3;
+  border-bottom-width: 0px;
+  border-left-width: 1px;
+}
+
+table.table-bordered.dataTable {
+  border-right-width: 0;
+}
+
+table.dataTable.no-footer {
+  border: 1px solid #e8ebf3 !important;
+}
+
+table.dataTable,
+table.dataTable th,
+table.dataTable td {
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+}
+
+table.dataTable {
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  clear: both;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+table.dataTable {
+  clear: both;
+  margin-top: 6px !important;
+  margin-bottom: 6px !important;
+  max-width: none !important;
+  border-collapse: separate !important;
+  border-spacing: 0;
+}
+
 .boldtext {
   font-family: "Poppins", sans-serif;
   font-weight: 600;
@@ -101,42 +188,65 @@
 
 .pagethree {
   background-color: #ececf3;
-  height: 687px;
   padding-top: 3rem;
   padding-bottom: 3rem;
 }
 
-.pagethree .firstpage .formcard {
-  -webkit-box-shadow: 0 10px 40px 0 rgba(62, 57, 107, 0.1), 0 2px 9px 0 rgba(62, 57, 107, 0.1);
-          box-shadow: 0 10px 40px 0 rgba(62, 57, 107, 0.1), 0 2px 9px 0 rgba(62, 57, 107, 0.1);
+.pagethree .firstpage .dashboardcard {
+  background-color: white !important;
   border-radius: 8px;
-  padding: 30px;
+  -webkit-box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03) !important;
+          box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03) !important;
+  border: 1px solid #eff2f7 !important;
 }
 
-.pagethree .firstpage .formcard input,
-.pagethree .firstpage .formcard textarea {
-  border: solid 1px gainsboro !important;
+.pagethree .firstpage .mydashboard .dashboardcard {
+  background-color: white !important;
+  border-radius: 8px;
+  -webkit-box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03) !important;
+          box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03) !important;
+  border: 1px solid #eff2f7 !important;
 }
 
-.pagethree .firstpage .formcard .social-icon-style-circle-lg {
-  width: 2.3rem;
-  height: 2.3rem;
-  line-height: 2.5rem !important;
-  border-radius: 7px;
-  background: #ececf3;
-  background-color: #ececf3;
-  display: inline-block;
-  margin: 0 auto;
-  text-align: center;
-  font-size: 1rem;
+.pagethree .firstpage .mydashboard .dashboardcard .card-body {
+  position: relative;
 }
 
-.pagethree .firstpage .formcard .bg-primary-transparent {
-  background-color: rgba(85, 110, 230, 0.1);
+.pagethree .firstpage .mydashboard .dashboardcard ul .first {
+  border-top: 1px solid #e8ebf3;
+  border-bottom: 1px solid #e8ebf3;
 }
 
-.pagethree .firstpage .formcard .text-primary {
-  color: #556ee6 !important;
+.pagethree .firstpage .mydashboard .dashboardcard ul li {
+  border-bottom: 1px solid #e8ebf3;
+  padding: 17px;
+}
+
+.pagethree .firstpage .mydashboard .dashboardcard ul li i {
+  margin-right: 10px;
+  color: #605e7e;
+  margin-bottom: 0;
+}
+
+.pagethree .firstpage .mydashboard .dashboardcard ul li span {
+  color: #605e7e;
+}
+
+.pagethree .firstpage .mydashboard .dashboardcard .background {
+  position: absolute;
+  width: 300px;
+  top: -10px;
+  z-index: 1;
+  left: -157px;
+  opacity: 0.7;
+}
+
+.pagethree .firstpage .mydashboard .dashboardcard .card-title {
+  padding: 25px;
+  border-bottom: solid 1px gainsboro;
+  margin-top: 0;
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .pagesubscribe {
@@ -266,4 +376,4 @@
     display: block !important;
   }
 }
-/*# sourceMappingURL=login.css.map */
+/*# sourceMappingURL=editprofile.css.map */
