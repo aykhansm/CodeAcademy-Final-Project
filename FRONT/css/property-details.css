@@ -85,7 +85,7 @@
 
 .pagetwo {
   padding-bottom: 50px;
-  background: rgba(85, 110, 230, 0.9) url("/assets/banner2.jpg");
+  background: rgba(85, 110, 230, 0.9) url("../assets/banner2.jpg");
 }
 
 .pagetwo .firstpage {
