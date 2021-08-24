@@ -29,5 +29,15 @@ namespace shitfo.Models
 
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Setting> Settings { get; set; }
+
+        public DbSet<City> Cities { get; set; }
+        public DbSet<Property> Properties { get; set; }
+        public DbSet<Review> Reviews { get; set; }
+        public DbSet<Booking> Bookings { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<PropertyImage> PropertyImages { get; set; }
+        public DbSet<PropertyTag> PropertyTags { get; set; }
+        public DbSet<Tag> Tags { get; set; }
+        public DbSet<UserFavorite> UserFavorites { get; set; }
     }
 }

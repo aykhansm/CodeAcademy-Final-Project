@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using shitfo.Models;
 
 namespace shitfo.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210824183249_TagsAndUserFavouritesCreated")]
+    partial class TagsAndUserFavouritesCreated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -250,43 +252,6 @@ namespace shitfo.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("shitfo.Models.Booking", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("AppUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("BookingEnd")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("BookingStart")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("PropertyId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AppUserId");
-
-                    b.HasIndex("PropertyId");
-
-                    b.ToTable("Bookings");
-                });
-
             modelBuilder.Entity("shitfo.Models.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -309,7 +274,7 @@ namespace shitfo.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Category");
                 });
 
             modelBuilder.Entity("shitfo.Models.City", b =>
@@ -455,7 +420,7 @@ namespace shitfo.Migrations
 
                     b.HasIndex("PropertyId");
 
-                    b.ToTable("PropertyImages");
+                    b.ToTable("PropertyImage");
                 });
 
             modelBuilder.Entity("shitfo.Models.PropertyTag", b =>
@@ -480,7 +445,7 @@ namespace shitfo.Migrations
 
                     b.HasIndex("TagId");
 
-                    b.ToTable("PropertyTags");
+                    b.ToTable("PropertyTag");
                 });
 
             modelBuilder.Entity("shitfo.Models.Review", b =>
@@ -588,7 +553,7 @@ namespace shitfo.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tags");
+                    b.ToTable("Tag");
                 });
 
             modelBuilder.Entity("shitfo.Models.UserFavorite", b =>
@@ -613,7 +578,7 @@ namespace shitfo.Migrations
 
                     b.HasIndex("PropertyId");
 
-                    b.ToTable("UserFavorites");
+                    b.ToTable("UserFavorite");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -672,19 +637,6 @@ namespace shitfo.Migrations
                     b.HasOne("shitfo.Models.City", "City")
                         .WithMany("AppUsers")
                         .HasForeignKey("CityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("shitfo.Models.Booking", b =>
-                {
-                    b.HasOne("shitfo.Models.AppUser", "AppUser")
-                        .WithMany("Bookings")
-                        .HasForeignKey("AppUserId");
-
-                    b.HasOne("shitfo.Models.Property", "Property")
-                        .WithMany("Bookings")
-                        .HasForeignKey("PropertyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

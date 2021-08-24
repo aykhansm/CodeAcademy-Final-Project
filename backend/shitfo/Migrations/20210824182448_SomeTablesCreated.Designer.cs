@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using shitfo.Models;
 
 namespace shitfo.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210824182448_SomeTablesCreated")]
+    partial class SomeTablesCreated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -250,43 +252,6 @@ namespace shitfo.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("shitfo.Models.Booking", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("AppUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("BookingEnd")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("BookingStart")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("PropertyId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AppUserId");
-
-                    b.HasIndex("PropertyId");
-
-                    b.ToTable("Bookings");
-                });
-
             modelBuilder.Entity("shitfo.Models.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -309,7 +274,7 @@ namespace shitfo.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Category");
                 });
 
             modelBuilder.Entity("shitfo.Models.City", b =>
@@ -455,32 +420,7 @@ namespace shitfo.Migrations
 
                     b.HasIndex("PropertyId");
 
-                    b.ToTable("PropertyImages");
-                });
-
-            modelBuilder.Entity("shitfo.Models.PropertyTag", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("PropertyId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TagId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PropertyId");
-
-                    b.HasIndex("TagId");
-
-                    b.ToTable("PropertyTags");
+                    b.ToTable("PropertyImage");
                 });
 
             modelBuilder.Entity("shitfo.Models.Review", b =>
@@ -571,51 +511,6 @@ namespace shitfo.Migrations
                     b.ToTable("Subscriptions");
                 });
 
-            modelBuilder.Entity("shitfo.Models.Tag", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Tags");
-                });
-
-            modelBuilder.Entity("shitfo.Models.UserFavorite", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("AppUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("PropertyId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AppUserId");
-
-                    b.HasIndex("PropertyId");
-
-                    b.ToTable("UserFavorites");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -676,19 +571,6 @@ namespace shitfo.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("shitfo.Models.Booking", b =>
-                {
-                    b.HasOne("shitfo.Models.AppUser", "AppUser")
-                        .WithMany("Bookings")
-                        .HasForeignKey("AppUserId");
-
-                    b.HasOne("shitfo.Models.Property", "Property")
-                        .WithMany("Bookings")
-                        .HasForeignKey("PropertyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("shitfo.Models.Property", b =>
                 {
                     b.HasOne("shitfo.Models.AppUser", "AppUser")
@@ -717,21 +599,6 @@ namespace shitfo.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("shitfo.Models.PropertyTag", b =>
-                {
-                    b.HasOne("shitfo.Models.Property", "Property")
-                        .WithMany("PropertyTags")
-                        .HasForeignKey("PropertyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("shitfo.Models.Tag", "Tag")
-                        .WithMany("PropertyTags")
-                        .HasForeignKey("TagId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("shitfo.Models.Review", b =>
                 {
                     b.HasOne("shitfo.Models.AppUser", "AppUser")
@@ -740,19 +607,6 @@ namespace shitfo.Migrations
 
                     b.HasOne("shitfo.Models.Property", "Property")
                         .WithMany("Reviews")
-                        .HasForeignKey("PropertyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("shitfo.Models.UserFavorite", b =>
-                {
-                    b.HasOne("shitfo.Models.AppUser", "AppUser")
-                        .WithMany("UserFavorites")
-                        .HasForeignKey("AppUserId");
-
-                    b.HasOne("shitfo.Models.Property", "Property")
-                        .WithMany("UserFavorites")
                         .HasForeignKey("PropertyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
