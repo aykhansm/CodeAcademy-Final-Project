@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+      integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+      integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+      integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link rel="stylesheet" href="./css/editprofile.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://cdn.lineicons.com/2.0/LineIcons.css" rel="stylesheet" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <header>
+      <section class="pageone">
+        <div
+          class="
+            container
+            navbar
+            d-flex
+            flex-direction-row
+            justify-content-around
+            my-2
+            align-items-center
+          "
+        >
+          <img class="img" src="./assets/logo.png" alt="" />
+          <img class="imgresponsive" src="./assets/favicon.png" alt="" />
+          <ul
+            style="margin-bottom: 0 !important"
+            class="normalnav d-flex flex-direction-row align-items-center gap-4"
+          >
+            <li style="color: #556ee6 !important"><a href="">Home</a></li>
+            <li><a href="">About Us</a></li>
+            <li><a href="">Features</a></li>
+            <li><a href="">Pages</a></li>
+            <li><a href="">Contact Us</a></li>
+            <li class="mt-5 pb-0 mt-lg-0">
+              <span
+                ><a
+                  style="
+                    background-color: #556ee6 !important;
+                    border-radius: 7px !important;
+                  "
+                  href=""
+                  class="
+                    btn btn-primary
+                    ad-post
+                    waves-effect waves-light
+                    text-white
+                  "
+                  >Post Your Property</a
+                ></span
+              >
+            </li>
+            <li>
+              <a style="font-weight: 700" href="">Login</a> /<br /><a href=""
+                >Register</a
+              >
+            </li>
+            <li><a style="font-size: 30px" class="far fa-user"></a></li>
+          </ul>
+          <div class="btn-group responsivenavbar">
+            <i
+              type="button"
+              class="fas fa-align-right"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+            </i>
+
+            <ul style="left: -117px !important" class="dropdown-menu">
+              <li style="color: #556ee6 !important">
+                <a class="dropdown-item" href="">Home</a>
+              </li>
+              <li><a class="dropdown-item" href="">About Us</a></li>
+              <li><a class="dropdown-item" href="">Features</a></li>
+              <li><a class="dropdown-item" href="">Pages</a></li>
+              <li><a class="dropdown-item" href="">Contact Us</a></li>
+              <li class="dropdown-item pb-0 mt-lg-0">
+                <span
+                  ><a
+                    style="
+                      background-color: #556ee6 !important;
+                      border-radius: 7px !important;
+                    "
+                    href=""
+                    class="
+                      btn btn-primary
+                      ad-post
+                      waves-effect waves-light
+                      text-white
+                    "
+                    >Post Your Property</a
+                  ></span
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" style="font-weight: 700" href=""
+                  >Login</a
+                >
+                <a href="">Login</a>
+              </li>
+              <li>
+                <a
+                  style="font-size: 30px"
+                  class="dropdown-item far fa-user"
+                ></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </header>
+    <section class="pagetwo">
+      <div class="firstpage container">
+        <p style="color: white; font-size: 30px" class="boldtext">
+          My Properties
+        </p>
+        <p
+          style="
+            font-family: 'Roboto', sans-serif;
+            color: white;
+            font-size: 16px;
+          "
+        >
+          Here you can edit your account
+        </p>
+      </div>
+    </section>
+    <section class="pagethree">
+      <div class="container firstpage">
+        <div class="row">
+          <div class="mydashboard col-xl-3 col-lg-12 col-md-12">
+            <div class="dashboardcard card overflow-hidden">
+              <h3 class="card-title boldtext">My Dashboard</h3>
+
+              <div class="card-body item-user p-5">
+                <div class="img-absolute-top2 img-absolute-top3">
+                  <img class="background" src="./assets/bg6.png" alt="img" />
+                </div>
+                <div class="profile-pic text-center reative">
+                  <div class="profile-pic-img text-center">
+                    <span
+                      class="bg-success dots"
+                      data-toggle="tooltip"
+                      data-placement="top"
+                      title=""
+                      data-original-title="online"
+                    ></span>
+                    <img
+                      style="border-radius: 7px; max-width: 165px"
+                      src="./assets/+2.jpg"
+                      class="br-7 w-100"
+                      alt="user"
+                    />
+                  </div>
+                  <a href="userprofile.html" class="text-dark"
+                    ><h4
+                      style="font-size: 15px; font-weight: 600"
+                      class="mt-4 mb-0 font-weight-semibold2 fs-16"
+                    >
+                      Robert McLean
+                      <span
+                        class=""
+                        data-toggle="tooltip"
+                        data-placement="top"
+                        title=""
+                        data-original-title="Verified Owner"
+                        ><i class="fe fe-check-circle text-success fs-13"></i
+                      ></span></h4
+                  ></a>
+                  <p style="font-size: 13px" class="mb-0 mt-1 text-muted">
+                    Property Owner
+                  </p>
+                </div>
+              </div>
+              <aside class="app-sidebar doc-sidebar my-dash">
+                <div class="app-sidebar__user clearfix is-expanded">
+                  <ul class="side-menu open">
+                    <li class="first">
+                      <a class="side-menu__item" href="mydash.html"
+                        ><i class="side-menu__icon far fa-user"></i
+                        ><span class="side-menu__label">Edit Profile</span></a
+                      >
+                    </li>
+                    <li>
+                      <a class="side-menu__item active" href="mydash.html"
+                        ><i class="side-menu__icon fas fa-list"></i
+                        ><span class="side-menu__label">My Properties</span></a
+                      >
+                    </li>
+                    <li>
+                      <a class="side-menu__item" href="mydash.html"
+                        ><i class="side-menu__icon far fa-heart"></i
+                        ><span class="side-menu__label">My Favourites</span></a
+                      >
+                    </li>
+                    <li>
+                      <a class="side-menu__item" href="mydash.html"
+                        ><i class="side-menu__icon fas fa-shopping-cart"></i
+                        ><span class="side-menu__label">My Bookings</span></a
+                      >
+                    </li>
+                    <li>
+                      <a class="side-menu__item" href="mydash.html"
+                        ><i class="side-menu__icon fas fa-power-off"></i
+                        ><span class="side-menu__label">Log out</span></a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </aside>
+            </div>
+          </div>
+          <div class="col-xl-9 col-lg-12 col-md-12">
+            <div class="dashboardcard card">
+              <div
+                style="
+                  padding: 25px;
+                  border-bottom: solid 1px gainsboro;
+                  margin-top: 0;
+                  font-size: 18px;
+                  font-weight: 600;
+                "
+                class="card-title boldtext"
+              >
+                Edit Profile
+              </div>
+              <div class="card-body">
+                <form class="row">
+                  <div class="col-sm-6 col-md-6">
+                    <div class="form-group">
+                      <label class="form-label fs-12">Full Name</label>
+                      <input
+                        type="text"
+                        class="form-control edit"
+                        placeholder="Full Name"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-6">
+                    <div class="form-group">
+                      <label class="form-label fs-12">Email address</label>
+                      <input
+                        type="email"
+                        class="form-control edit"
+                        placeholder="Email"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-6">
+                    <div class="form-group">
+                      <label class="form-label fs-12">Phone Number</label>
+                      <input
+                        class="form-control edit"
+                        placeholder="Number"
+                        type="text"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-6">
+                    <div class="form-group">
+                      <label class="form-label fs-12">Website</label>
+                      <input
+                        type="text"
+                        class="form-control edit"
+                        placeholder="www.demo.com"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label class="form-label fs-12">Address</label>
+                      <input
+                        type="text"
+                        class="form-control edit"
+                        style="width: 300px; height: 40px"
+                        placeholder="Home Address"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-5">
+                    <div
+                      style="display: flex; flex-direction: column"
+                      class="form-group select2-radius-single"
+                    >
+                      <label class="form-label fs-12">City</label>
+                      <select
+                        style="height: 60px !important; width: 285px !important"
+                        class="cityselect"
+                        name="state"
+                      >
+                        <option value="AL">Alabama</option>
+
+                        <option value="WY">Wyoming</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label class="form-label fs-12">Description</label>
+                      <textarea
+                        rows="5"
+                        class="form-control"
+                        placeholder="Enter About your description"
+                        style="height: 75px"
+                      ></textarea>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group mb-0">
+                      <label class="form-label">Upload Image</label>
+                      <div class="input-group mb-0">
+                        <input
+                          placeholder="Choose"
+                          readonly=""
+                          class="form-control"
+                          type="file"
+                        />
+                        <label class="input-group-btn">
+                          <span class="btn btn-primary br-tl-0 br-bl-0">
+                            Browse
+                            <input
+                              type="file"
+                              style="display: none"
+                              multiple=""
+                            />
+                          </span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <button
+                    style="
+                      background-color: #556ee6 !important;
+                      border-radius: 7px !important;
+                      width: 150px;
+                      margin-top: 50px;
+                    "
+                    type="submit"
+                    class="btn btn-primary waves-effect waves-light"
+                  >
+                    Update Profile
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="pagesubscribe">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-7 col-xl-7 col-md-12">
+            <div class="sub-newsletter d-sm-flex">
+              <i
+                class="far fa-envelope mr-2 text-primary bg-primary-transparent"
+              ></i>
+              <div style="margin-left: 20px" class="ml-sm-4 mt-5 mt-sm-0">
+                <h3
+                  style="
+                    margin: 0;
+                    margin-bottom: 0px;
+                    font-size: 32px;
+                    font-weight: 600;
+                  "
+                  class="mb-2 font-weight-semibold2"
+                >
+                  Subscribe To Our Newsletter
+                </h3>
+                <p class="mb-0">
+                  Here you can subscribe to our site in order to be notified by
+                  any news.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-5 col-xl-5 col-md-12">
+            <form style="flex-wrap: nowrap" class="input-group sub-input mt-1">
+              <input
+                style="
+                  display: block;
+                  width: 100%;
+                  opacity: 1;
+                  padding: 0.375rem 0.75rem;
+                  font-size: 0.9375rem;
+                  line-height: 1.6;
+                  color: #495057;
+                  height: 39px;
+                  background-color: #fff;
+                  background-clip: padding-box;
+                  border: 1px solid #e8ebf3;
+                  border-radius: 8px;
+                  border-top-right-radius: 8px;
+                  border-bottom-right-radius: 8px;
+                  transition: border-color 0.15s ease-in-out,
+                    box-shadow 0.15s ease-in-out;
+
+                  height: 40px !important;
+                "
+                required
+                type="text"
+                class="form-control input-lg bg-light"
+                placeholder="Enter your Email"
+              />
+              <div class="input-group-append">
+                <button
+                  type="submit"
+                  class="btn btn-lg br-tr-3 br-br-3 waves-effect waves-light"
+                  style="
+                    background-color: #556ee6 !important;
+                    border-radius: 7px !important;
+                    height: 50px;
+                    width: 125px;
+                  "
+                >
+                  Subscribe
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <section class="pagenine">
+        <div class="firstpage container">
+          <div class="row">
+            <div
+              style="width: 300px; height: 196px; gap: 30px"
+              class="col-xl-3 col-lg-6 col-md-12 paymentsocial"
+            >
+              <div class="payment">
+                <p class="boldtext header">Payment Icons</p>
+                <ul style="list-style: none; display: flex; gap: 15px">
+                  <i class="fab fa-cc-visa"></i>
+                  <i class="fab fa-cc-mastercard"></i>
+                  <i class="fab fa-cc-paypal"></i>
+                  <i class="fab fa-cc-apple-pay"></i>
+                </ul>
+              </div>
+              <div class="social">
+                <p class="boldtext header">Social Icons</p>
+                <ul style="list-style: none; display: flex; gap: 15px">
+                  <i class="fab fa-facebook-f"></i>
+                  <i class="fab fa-instagram"></i>
+                  <i class="fab fa-youtube"></i>
+                  <i class="fab fa-linkedin-in"></i>
+                </ul>
+              </div>
+            </div>
+            <div
+              style="width: 200px; height: 196px"
+              class="col-xl-2 col-lg-6 col-md-12 categories"
+            >
+              <p class="boldtext header">Categories</p>
+              <ul
+                style="list-style: none; display: flex; flex-direction: column"
+              >
+                <li style="position: relative; margin-bottom: 10px">
+                  <i
+                    style="font-size: 11px"
+                    class="fas fa-chevron-right mr-2 text-white-50"
+                  ></i>
+                  <a style="color: rgba(255, 255, 255, 0.6)" href="#"
+                    >Residential</a
+                  >
+                </li>
+                <li style="position: relative; margin-bottom: 10px">
+                  <i
+                    style="font-size: 11px"
+                    class="fas fa-chevron-right mr-2 text-white-50"
+                  ></i>
+                  <a style="color: rgba(255, 255, 255, 0.6)" href="#"
+                    >Commercial</a
+                  >
+                </li>
+                <li style="position: relative; margin-bottom: 10px">
+                  <i
+                    style="font-size: 11px"
+                    class="fas fa-chevron-right mr-2 text-white-50"
+                  ></i>
+                  <a style="color: rgba(255, 255, 255, 0.6)" href="#"
+                    >Penthouse</a
+                  >
+                </li>
+                <li style="position: relative; margin-bottom: 10px">
+                  <i
+                    style="font-size: 11px"
+                    class="fas fa-chevron-right mr-2 text-white-50"
+                  ></i>
+                  <a style="color: rgba(255, 255, 255, 0.6)" href="#"
+                    >Garden house</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div
+              style="width: 200px; height: 196px"
+              class="col-xl-2 col-lg-6 col-md-12 resources"
+            >
+              <p class="boldtext header">Resources</p>
+              <ul
+                style="list-style: none; display: flex; flex-direction: column"
+              >
+                <li style="position: relative; margin-bottom: 10px">
+                  <i
+                    style="font-size: 11px"
+                    class="fas fa-chevron-right mr-2 text-white-50"
+                  ></i>
+                  <a style="color: rgba(255, 255, 255, 0.6)" href="#"
+                    >Help Center</a
+                  >
+                </li>
+                <li style="position: relative; margin-bottom: 10px">
+                  <i
+                    style="font-size: 11px"
+                    class="fas fa-chevron-right mr-2 text-white-50"
+                  ></i>
+                  <a style="color: rgba(255, 255, 255, 0.6)" href="#"
+                    >Terms & Conditions</a
+                  >
+                </li>
+                <li style="position: relative; margin-bottom: 10px">
+                  <i
+                    style="font-size: 11px"
+                    class="fas fa-chevron-right mr-2 text-white-50"
+                  ></i>
+                  <a style="color: rgba(255, 255, 255, 0.6)" href="#"
+                    >Privacy Policy</a
+                  >
+                </li>
+                <li style="position: relative; margin-bottom: 10px">
+                  <i
+                    style="font-size: 11px"
+                    class="fas fa-chevron-right mr-2 text-white-50"
+                  ></i>
+                  <a style="color: rgba(255, 255, 255, 0.6)" href="#"
+                    >Support</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div
+              style="width: 200px; height: 196px"
+              class="col-xl-2 col-lg-6 col-md-12 company"
+            >
+              <p class="boldtext header">Company</p>
+              <ul
+                style="list-style: none; display: flex; flex-direction: column"
+              >
+                <li style="position: relative; margin-bottom: 10px">
+                  <i
+                    style="font-size: 11px"
+                    class="fas fa-chevron-right mr-2 text-white-50"
+                  ></i>
+                  <a style="color: rgba(255, 255, 255, 0.6)" href="#"
+                    >Our Team</a
+                  >
+                </li>
+                <li style="position: relative; margin-bottom: 10px">
+                  <i
+                    style="font-size: 11px"
+                    class="fas fa-chevron-right mr-2 text-white-50"
+                  ></i>
+                  <a style="color: rgba(255, 255, 255, 0.6)" href="#"
+                    >Contact Us</a
+                  >
+                </li>
+                <li style="position: relative; margin-bottom: 10px">
+                  <i
+                    style="font-size: 11px"
+                    class="fas fa-chevron-right mr-2 text-white-50"
+                  ></i>
+                  <a style="color: rgba(255, 255, 255, 0.6)" href="#"
+                    >About Us</a
+                  >
+                </li>
+                <li style="position: relative; margin-bottom: 10px">
+                  <i
+                    style="font-size: 11px"
+                    class="fas fa-chevron-right mr-2 text-white-50"
+                  ></i>
+                  <a style="color: rgba(255, 255, 255, 0.6)" href="#">Why Us</a>
+                </li>
+              </ul>
+            </div>
+            <div
+              style="width: 300px; height: 196px"
+              class="col-xl-3 col-lg-6 col-md-12 company"
+            >
+              <p class="boldtext header">Get In Touch</p>
+              <ul
+                style="list-style: none; display: flex; flex-direction: column"
+              >
+                <li style="position: relative; margin-bottom: 10px">
+                  <i
+                    style="
+                      font-size: 11px;
+                      width: 25px;
+                      height: 25px;
+                      display: inline-block;
+                      text-align: center;
+                      background: rgba(255, 255, 255, 0.1);
+                      line-height: 25px;
+                      border-radius: 8px;
+                      margin-bottom: 6px;
+                    "
+                    class="fas fa-home mr-2 text-white-50"
+                  ></i>
+                  <a style="color: rgba(255, 255, 255, 0.6)" href="#"
+                    >Baku,Nizami St.56</a
+                  >
+                </li>
+                <li style="position: relative; margin-bottom: 10px">
+                  <i
+                    style="
+                      font-size: 11px;
+                      width: 25px;
+                      height: 25px;
+                      display: inline-block;
+                      text-align: center;
+                      background: rgba(255, 255, 255, 0.1);
+                      line-height: 25px;
+                      border-radius: 8px;
+                      margin-bottom: 6px;
+                    "
+                    class="far fa-envelope mr-2 text-white-50"
+                  ></i>
+                  <a style="color: rgba(255, 255, 255, 0.6)" href="#"
+                    >ayxan689@gmail.com</a
+                  >
+                </li>
+                <li style="position: relative; margin-bottom: 10px">
+                  <i
+                    style="
+                      font-size: 11px;
+                      width: 25px;
+                      height: 25px;
+                      display: inline-block;
+                      text-align: center;
+                      background: rgba(255, 255, 255, 0.1);
+                      line-height: 25px;
+                      border-radius: 8px;
+                      margin-bottom: 6px;
+                    "
+                    class="fas fa-phone mr-2 text-white-50"
+                  ></i>
+                  <a style="color: rgba(255, 255, 255, 0.6)" href="#"
+                    >+994 55 294 01 65</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </footer>
+  </body>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+    crossorigin="anonymous"
+  ></script>
+
+  <!-- -----------------------------Jquery------------------ -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!-- -------------------------------Toastr------------ -->
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+    integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+    integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"
+    integrity="sha512-gY25nC63ddE0LcLPhxUJGFxa2GoIyA5FLym4UJqHDEMHjp8RET6Zn/SHo1sltt3WuVtqfyxECP38/daUc/WVEA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-countto/1.1.0/jquery.countTo.min.js"
+    integrity="sha512-ZbM86dAmjIe3nPA2k8j3G//NO/zBYNnZ8wi+yUKh8VH24CHr0aDhDHoEM4IvGl+Sz6ga7ONnGBDxS+BTVJ+K2g=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+  <script>
+    $(".cityselect").select2({});
+  </script>
+</html>
