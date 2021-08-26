@@ -15,7 +15,11 @@ namespace shitfo.Models
         public string Logo { get; set; }
         [NotMapped]
         public IFormFile LogoFile { get; set; }
-       
+        [StringLength(maximumLength: 150)]
+        public string ContactTitle { get; set; }
+        [StringLength(maximumLength: 2000)]
+        public string ContactMessage { get; set; }
+
         [StringLength(maximumLength: 150)]
         public string ContactImage { get; set; }
         [NotMapped]

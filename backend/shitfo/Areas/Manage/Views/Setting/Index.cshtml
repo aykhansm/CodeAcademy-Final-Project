@@ -1,0 +1,39 @@
+﻿@model Setting
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Manage/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+
+    <table class="table ">
+
+        <tr class="row table-bordered">
+
+            <th class="col-md-2">Contact Address</th>
+            <th class="col-md-2">Contact EmailAddress</th>
+            <th class="col-md-2">Contact Phone</th>
+            
+        </tr>
+        <tr style="margin-bottom:100px" class="row table-bordered">
+
+            <td class="col-md-2">@Model.ContactAddress</td>
+            <td class="col-md-2">@Model.ContactEmailAddress </td>
+            <td class="col-md-2">@Model.ContactPhone </td>
+            
+        </tr>
+
+       
+        <tr style="margin-bottom:100px" class="row ">
+
+
+            <a style="margin-bottom:10px;" class="btn btn-warning" asp-action="edit" asp-route-id="@Model.Id">Edit</a>
+
+        </tr>
+
+
+    </table>
+
+</div>
+
+

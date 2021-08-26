@@ -1,0 +1,79 @@
+﻿@model Setting
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Manage/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <form method="post" enctype="multipart/form-data">
+        <div class="row mb-10">
+
+            <div class="col-md-2 form-group">
+                <label asp-for="@Model.ContactAddress">ContactAddress</label>
+                <input type="text" asp-for="@Model.ContactAddress" class="form-control" id="ContactAddress" placeholder="ContactAddress">
+                <span asp-validation-for="@Model.ContactAddress" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-2 form-group">
+                <label asp-for="@Model.ContactEmailAddress">ContactEmailAddress</label>
+                <input asp-for="@Model.ContactEmailAddress" class="form-control" placeholder="SupportPhone" id="Subtitle" rows="3">
+                <span asp-validation-for="@Model.ContactEmailAddress" class="text-danger"></span>
+            </div>
+            <div class="col-md-2 form-group">
+                <label asp-for="@Model.ContactTitle">ContactTitle</label>
+                <input asp-for="@Model.ContactTitle" class="form-control" placeholder="ContactTitle" id="ContactTitle" rows="3">
+                <span asp-validation-for="@Model.ContactTitle" class="text-danger"></span>
+            </div>
+            <div class="col-md-2 form-group">
+                <label asp-for="@Model.ContactMessage">ContactMessage</label>
+                <textarea asp-for="@Model.ContactMessage" class="form-control" placeholder="ContactMessage" id="ContactMessage" rows="3"></textarea>
+                <span asp-validation-for="@Model.ContactMessage" class="text-danger"></span>
+            </div>
+            <div class="col-md-2 form-group">
+                <label asp-for="@Model.ContactPhone">ContactPhone</label>
+                <input asp-for="@Model.ContactPhone" placeholder="ContactPhone" class="form-control" id="ContactPhone" rows="3">
+                <span asp-validation-for="@Model.ContactPhone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.LogoFile">LogoFile</label>
+                <input asp-for="@Model.LogoFile" />
+                <span asp-validation-for="@Model.LogoFile" class="text-danger"></span>
+                @if (Model.Logo != null)
+                {
+                    <div class="img-box" style="position:relative;max-width:200px">
+                        <img class="d-block" src="~/uploads/@Model.Logo" style="max-width:200px" />
+                        <i class="fas fa-times remove-img-box" style="color:red;position:absolute;top:-7px;right:10px;cursor:pointer"></i>
+                        <input type="hidden" name="Logo" value="@Model.Logo" />
+                    </div>
+                }
+            </div>
+           
+
+
+        </div>
+
+        
+        
+
+      
+        
+        
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+</div>
+@section Scripts{
+
+    <script>
+        $(document).ready(function () {
+
+            $(document).on("click", ".remove-img-box", function (e) {
+                $(this).parents(".img-box").empty();
+            })
+        })
+    </script>
+
+}
+
+

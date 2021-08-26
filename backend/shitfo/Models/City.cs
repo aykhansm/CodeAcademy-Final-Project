@@ -10,7 +10,7 @@ namespace shitfo.Models
 {
     public class City:BaseEntity
     {
-        [Required]
+        
         [StringLength(maximumLength: 150)]
         public string Image { get; set; }
         [NotMapped]

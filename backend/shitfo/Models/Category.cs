@@ -10,8 +10,8 @@ namespace shitfo.Models
 {
     public class Category:BaseEntity
     {
-        [Required]
-        [StringLength(maximumLength: 150)]
+        
+        [StringLength(maximumLength: 500)]
         public string Image { get; set; }
         [NotMapped]
         public IFormFile ImageFile { get; set; }

@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using shitfo.Models;
+using shitfo.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +28,35 @@ namespace shitfo.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            HomeViewModel homeViewModel = new HomeViewModel() {
+                ContactImage = _context.Settings.First().ContactImage,
+                ContactTitle = _context.Settings.First().ContactTitle,
+                ContactMessage = _context.Settings.First().ContactMessage,
+                Categories = _context.Categories.Include(x => x.Properties).ToList(),
+                Cities = _context.Cities.Include(x=>x.Properties).OrderByDescending(x => x.Properties.Count()).ToList()
+            
+            };
+            return View(homeViewModel);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Subscribe(Subscription subscription)
+        {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "There is an error!");
+                return RedirectToAction("index");
+            }
+            if (_context.Subscriptions.Any(x => x.Email.ToLower() == subscription.Email.ToLower()))
+            {
+                ViewBag.SubscribingError = "Bele bir abune artiq var!";
+
+
+            }
+            subscription.CreatedAt = DateTime.UtcNow.AddHours(4);
+            _context.Subscriptions.Add(subscription);
+            _context.SaveChanges();
+            return RedirectToAction("index");
         }
     }
 }

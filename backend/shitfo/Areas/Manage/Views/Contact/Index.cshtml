@@ -1,0 +1,76 @@
+﻿@model List<Contact>
+@{
+
+    int selectedPage = (int)ViewBag.SelectedPage;
+    int totalPage = (int)ViewBag.TotalPage;
+
+    int i = (selectedPage - 1) * 5;
+}
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Manage/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+
+    <table class="table table-bordered">
+        <thead>
+            <tr class="row">
+                <th class="col-md-1">#</th>
+                <th class="col-md-2">Fullname</th>
+                <th class="col-md-2">Email</th>
+               
+                <th class="col-md-2"> Message</th>
+                <th class="col-md-1"></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                i++;
+                <tr class="row">
+                    <td class="col-md-1">@i</td>
+                    <td  class="col-md-2">@item.Fullname</td>
+                    <td class="col-md-2">@item.Email</td>
+                    
+                    <td style="position:relative" class="col-md-2">@(item.Message.Length>20?item.Message.Substring(0,20)+"...":item.Message)<a style="position:absolute;right:10px" asp-controller="contact" asp-action="detail" asp-route-id="@item.Id" class="btn btn-success">Details</a> </td>
+                    <td class="col-md-1">
+
+
+                        <a class="btn btn-danger delete-btn" asp-action="delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item @(selectedPage==1?"disabled":"")"><a class="page-link" asp-action="index" asp-route-page="@(selectedPage-1)">Previous</a></li>
+
+            @{
+                int startpage = selectedPage - 1;
+                int endPage = selectedPage + 1;
+
+                if (selectedPage == 1)
+                {
+                    startpage = 1;
+                    endPage = 3 > totalPage ? totalPage : 3;
+                }
+                else if (selectedPage == totalPage)
+                {
+                    startpage = (selectedPage - 2) < 1 ? 1 : selectedPage - 2;
+                    endPage = totalPage;
+                }
+
+            }
+            @for (int j = startpage; j <= endPage; j++)
+            {
+                <li class="page-item @(j==selectedPage?"active":"")"><a class="page-link" asp-action="index" asp-route-page="@j">@j</a></li>
+            }
+            <li class="page-item @(selectedPage==totalPage?"disabled":"") "><a class="page-link" asp-action="index" asp-route-page="@(selectedPage+1)">Next</a></li>
+        </ul>
+    </nav>
+</div>

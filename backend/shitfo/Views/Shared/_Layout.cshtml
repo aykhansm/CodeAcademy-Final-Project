@@ -1,6 +1,16 @@
-﻿<!DOCTYPE html>
-
-<html>
+﻿@using Microsoft.AspNetCore.Identity;
+@using Microsoft.EntityFrameworkCore;
+@using shitfo.Services
+@inject LayoutViewModelService service
+@inject UserManager<AppUser> user
+@{
+    AppUser userr = null;
+    if (User.Identity.IsAuthenticated)
+    {
+        userr = await user.Users.FirstOrDefaultAsync(x => x.UserName == User.Identity.Name && !x.IsAdmin);
+    }
+    ViewBag.Settings = service.GetSetting();
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +39,15 @@
           rel="stylesheet" />
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
-    <link rel="stylesheet" href="~/css/index.css" />
+    @*<link rel="stylesheet" href="~/css/editprofile.css" />
+        <link rel="stylesheet" href="~/css/login.css" />
+        <link rel="stylesheet" href="~/css/register.css" />
+        <link rel="stylesheet" href="~/css/my-properties.css" />
+        <link rel="stylesheet" href="~/css/post.css" />
+        <link rel="stylesheet" href="~/css/property-details.css" />
+        <link rel="stylesheet" href="~/css/property-list.css" />*@
+    @RenderSection("style", false)
+
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
           rel="stylesheet" />
@@ -38,8 +56,7 @@
 </head>
 <body>
     <header>
-        <section class="pageone">
-            <div class="
+        <div class="
             container
             navbar
             d-flex
@@ -48,136 +65,78 @@
             my-2
             align-items-center
           ">
-                <img class="img" src="~/assets/logo.png" alt="" />
-                <img class="imgresponsive" src="~/assets/favicon.png" alt="" />
-                <ul style="margin-bottom: 0 !important"
-                    class="normalnav d-flex flex-direction-row align-items-center gap-4">
-                    <li style="color: #556ee6 !important"><a href="">Home</a></li>
-                    <li><a href="">About Us</a></li>
-                    <li><a href="">Features</a></li>
-                    <li><a href="">Pages</a></li>
-                    <li><a href="">Contact Us</a></li>
-                    <li class="mt-5 pb-0 mt-lg-0">
-                        <span>
-                            <a style="
+            <img class="img" src="~/uploads/@ViewBag.Settings.Logo" alt="" />
+            <img class="imgresponsive" src="~/assets/favicon.png" alt="" />
+            <ul style="margin-bottom: 0 !important"
+                class="normalnav d-flex flex-direction-row align-items-center gap-4">
+                <li style="@(ViewContext.RouteData.Values["controller"].ToString() == "Home" ? " color: #556ee6 !important" : "")"><a asp-controller="home" asp-action="index">Home</a></li>
+
+                <li><a href="">Properties</a></li>
+               
+                <li><a style="@(ViewContext.RouteData.Values["controller"].ToString() == "Contact" ? " color: #556ee6 !important" : "")"  asp-controller="contact" asp-action="index">Contact Us</a></li>
+                <li class="mt-5 pb-0 mt-lg-0">
+                    <span>
+                        <a style="
                     background-color: #556ee6 !important;
                     border-radius: 7px !important;
                   "
-                               href=""
-                               class="
+                           href=""
+                           class="
                     btn btn-primary
                     ad-post
                     waves-effect waves-light
                     text-white
                   ">Post Your Property</a>
-                        </span>
-                    </li>
-                    <li>
-                        <a style="font-weight: 700" href="">Login</a> /<br /><a href="">Register</a>
-                    </li>
-                    <li><a style="font-size: 30px" class="far fa-user"></a></li>
-                </ul>
-                <div class="btn-group responsivenavbar">
-                    <i type="button"
-                       class="fas fa-align-right"
-                       data-bs-toggle="dropdown"
-                       aria-expanded="false">
-                    </i>
+                    </span>
+                </li>
+                <li>
+                    <a style="font-weight: 700" href="">Login</a> /<br /><a href="">Register</a>
+                </li>
+                <li><a style="font-size: 30px" class="far fa-user"></a></li>
+            </ul>
+            <div class="btn-group responsivenavbar">
+                <i type="button"
+                   class="fas fa-align-right"
+                   data-bs-toggle="dropdown"
+                   aria-expanded="false">
+                </i>
 
-                    <ul style="left: -117px !important" class="dropdown-menu">
-                        <li style="color: #556ee6 !important">
-                            <a class="dropdown-item" href="">Home</a>
-                        </li>
-                        <li><a class="dropdown-item" href="">About Us</a></li>
-                        <li><a class="dropdown-item" href="">Features</a></li>
-                        <li><a class="dropdown-item" href="">Pages</a></li>
-                        <li><a class="dropdown-item" href="">Contact Us</a></li>
-                        <li class="dropdown-item pb-0 mt-lg-0">
-                            <span>
-                                <a style="
+                <ul style="left: -117px !important" class="dropdown-menu">
+                    <li style="color: #556ee6 !important">
+                        <a class="dropdown-item" href="">Home</a>
+                    </li>
+                  
+                    <li><a class="dropdown-item" href="">Properties</a></li>
+                   
+                    <li><a class="dropdown-item" asp-controller="contact" asp-action="index">Contact Us</a></li>
+                    <li class="dropdown-item pb-0 mt-lg-0">
+                        <span>
+                            <a style="
                       background-color: #556ee6 !important;
                       border-radius: 7px !important;
                     "
-                                   href=""
-                                   class="
+                               href=""
+                               class="
                       btn btn-primary
                       ad-post
                       waves-effect waves-light
                       text-white
                     ">Post Your Property</a>
-                            </span>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" style="font-weight: 700" href="">Login</a>
-                            <a href="">Register</a>
-                        </li>
-                        <li>
-                            <a style="font-size: 30px"
-                               class="dropdown-item far fa-user"></a>
-                        </li>
-                    </ul>
-                </div>
+                        </span>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" style="font-weight: 700" href="">Login</a>
+                        <a href="">Register</a>
+                    </li>
+                    <li>
+                        <a style="font-size: 30px"
+                           class="dropdown-item far fa-user"></a>
+                    </li>
+                </ul>
             </div>
-            <div class="firstpage relative">
-                <div class="owl-carousel owl-reponsive inheader">
-                    <div><img src="~/assets/bir.jpg" alt="" /></div>
-                    <div><img src="~/assets/iki.jpg" alt="" /></div>
-                    <div><img src="~/assets/3.jpg" alt="" /></div>
-                </div>
-                <div class="container search">
-                    <div class="title">
-                        <p class="boldtext">
-                            Best Largest
-                            <span class="boldtext vital">Rental Website</span> in world
-                        </p>
-                        <p style="
-                  color: rgba(255, 255, 255, 0.8) !important;
-                  font-size: 20px;
-                "
-                           class="fs-18 mt-3 text-white-80">
-                            Houses and apartments for rent.
-                        </p>
-                    </div>
-                    <div class="searcharea">
-                        <form class="form no-gutters">
-                            <div class="city">
-                                <p class="boldtext">City</p>
-                                <select style="height: 45px !important; width: 285px !important"
-                                        class="js-example-basic-single"
-                                        name="state">
-                                    <option value="AL">Alabama</option>
+        </div>
 
-                                    <option value="WY">Wyoming</option>
-                                </select>
-                            </div>
-                            <div class="categories">
-                                <p class="boldtext">Category</p>
-                                <select style="height: 45px !important; width: 285px !important"
-                                        class="js-example-basic-single"
-                                        name="state">
-                                    <option value="AL">Houses</option>
 
-                                    <option value="WY">Apartments</option>
-                                </select>
-                            </div>
-                            <button type="submit"
-                                    class="
-                    btn btn-lg btn-block btn-primary
-                    waves-effect waves-light
-                    br-tl-md-0 br-bl-md-0
-                  ">
-                                Search Here
-                            </button>
-                        </form>
-                        <div class="totaluserinfo">
-                            <i class="fas fa-globe"></i>
-
-                            <p>Total Count of People using Shifto: <span>36</span></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
     </header>
     <div>
         @RenderBody()
@@ -206,7 +165,7 @@
                     </div>
                 </div>
                 <div class="col-lg-5 col-xl-5 col-md-12">
-                    <form style="flex-wrap: nowrap" class="input-group sub-input mt-1">
+                    <form asp-controller="home" asp-action="subscribe" method="post" style="flex-wrap: nowrap" class="input-group sub-input mt-1">
                         <input style="
                   display: block;
                   width: 100%;
@@ -227,10 +186,13 @@
 
                   height: 40px !important;
                 "
+                               type="email"
+                               value=""
+                               name="Email"
+                               id="mce-EMAIL"
+                               placeholder="Enter your e-mail address"
                                required
-                               type="text"
-                               class="form-control input-lg bg-light"
-                               placeholder="Enter your Email" />
+                               class="form-control email input-lg bg-light" />
                         <div class="input-group-append">
                             <button type="submit"
                                     class="btn btn-lg br-tr-3 br-br-3 waves-effect waves-light"
@@ -243,6 +205,7 @@
                                 Subscribe
                             </button>
                         </div>
+                        <span> @(ViewBag.SubscribingError!=null?ViewBag.SubscribingError:"")</span>
                     </form>
                 </div>
             </div>
@@ -351,7 +314,7 @@
                     border-radius: 8px;
                     margin-bottom: 6px;
                 " class="fas fa-home mr-2 text-white-50"></i>
-                                <a style="color: rgba(255, 255, 255, 0.6);" href="#">Baku,Nizami St.56</a>
+                                <a style="color: rgba(255, 255, 255, 0.6);" href="#">@ViewBag.Settings.ContactAddress</a>
                             </li>
                             <li style="position: relative; margin-bottom: 10px;">
                                 <i style="font-size: 11px;    width: 25px;
@@ -363,7 +326,7 @@
                     border-radius: 8px;
                     margin-bottom: 6px;
                 " class="far fa-envelope mr-2 text-white-50"></i>
-                                <a style="color: rgba(255, 255, 255, 0.6);" href="#">ayxan689@gmail.com</a>
+                                <a style="color: rgba(255, 255, 255, 0.6);" href="#">@ViewBag.Settings.ContactEmailAddress</a>
                             </li>
                             <li style="position: relative; margin-bottom: 10px;">
                                 <i style="font-size: 11px;    width: 25px;
@@ -375,7 +338,7 @@
                     border-radius: 8px;
                     margin-bottom: 6px;
                 " class="fas fa-phone mr-2 text-white-50"></i>
-                                <a style="color: rgba(255, 255, 255, 0.6);" href="#">+994 55 294 01 65</a>
+                                <a style="color: rgba(255, 255, 255, 0.6);" href="#">@ViewBag.Settings.ContactPhone</a>
                             </li>
 
 
@@ -408,165 +371,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-countto/1.1.0/jquery.countTo.min.js" integrity="sha512-ZbM86dAmjIe3nPA2k8j3G//NO/zBYNnZ8wi+yUKh8VH24CHr0aDhDHoEM4IvGl+Sz6ga7ONnGBDxS+BTVJ+K2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-</html>
-<script>
-  $(document).ready(function () {
-    if ($(".owl-carousel.inheader").length) {
-      $(".owl-carousel.inheader").owlCarousel({
-        items: 1,
-        autoplay: true,
-        autoplayTimeout: 10000,
-        lazyLoad: true,
-        dots: false,
-        mouseDrag: false,
-        rewind: true,
-      });
-    }
-    if ($(".owl-carousel.insecondpage").length) {
-      $(".owl-carousel.insecondpage").owlCarousel({
-        items: 4,
-        autoplay: true,
-        nav: true,
-        autoplayTimeout: 5000,
-        lazyLoad: true,
-        loop: true,
-        mouseDrag: false,
-        rewind: true,
-        dots: false,
-        responsiveClass: true,
-        responsive: {
-          0: {
-            items: 1,
-          },
-          600: {
-            items: 1,
-          },
-          800: {
-            items: 2,
-          },
-          1024: {
-            items: 2,
-          },
-          1200: {
-            items: 2,
-          },
-          1600: {
-            items: 3,
-          },
-          2000: {
-            items: 4,
-          },
-        },
-      });
-    }
-    if ($(".owl-carousel.inthirdpage").length) {
-      $(".owl-carousel.inthirdpage").owlCarousel({
-        items: 2,
-        autoplay: true,
-        nav: true,
-        autoplayTimeout: 5000,
-        lazyLoad: true,
-        loop: true,
-        mouseDrag: false,
-        rewind: true,
-        dots: false,
-        responsiveClass: true,
-        responsive: {
-          0: {
-            items: 1,
-          },
-          600: {
-            items: 1,
-          },
-          800: {
-            items: 1,
-          },
-          1024: {
-            items: 1,
-          },
-          1800: {
-            items: 2,
-          },
-          2000: {
-            items: 2,
-          },
-        },
-      });
-    }
-    if ($(".owl-carousel.infourthpage").length) {
-      $(".owl-carousel.infourthpage").owlCarousel({
-        items: 4,
-        autoplay: true,
-        nav: true,
-        autoplayTimeout: 5000,
-        lazyLoad: true,
-        loop: true,
-        mouseDrag: false,
-        rewind: true,
-        dots: false,
-        responsiveClass: true,
-        responsive: {
-          0: {
-            items: 1,
-          },
-          600: {
-            items: 1,
-          },
-          800: {
-            items: 2,
-          },
-          1400: {
-            items: 3,
-          },
-          1800: {
-            items: 4,
-          },
-          2000: {
-            items: 4,
-          },
-        },
-      });
-    }
 
-    if ($(".owl-carousel.inseventhpage").length) {
-      $(".owl-carousel.inseventhpage").owlCarousel({
-        items: 2,
-        autoplay: true,
-        nav: true,
-        autoplayTimeout: 5000,
-        lazyLoad: true,
-        loop: true,
-        mouseDrag: false,
-        rewind: true,
-        dots: false,
-        responsiveClass: true,
-        responsive: {
-          0: {
-            items: 1,
-          },
-          600: {
-            items: 1,
-          },
-          800: {
-            items: 1,
-          },
-          1400: {
-            items: 1,
-          },
-          1800: {
-            items: 2,
-          },
-          2000: {
-            items: 2,
-          },
-        },
-      });
-    }
-    $(".js-example-basic-single").select2({
+@RenderSection("js", false)
 
-    });
-    $('.timer').countTo();
-  });
-</script>
 
 </html>
+
+

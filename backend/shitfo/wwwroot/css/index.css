@@ -33,23 +33,7 @@
       -ms-user-select: none;
           user-select: none;
 }
-.pagesubscribe {
-    margin-top: 50px;
-    margin-bottom: 50px;
 
-    
-}
-.sub-newsletter i {
-    width: 3.5rem;
-    height: 3.5rem;
-    line-height: 3.5rem;
-    border-radius: 8px;
-    display: inline-block;
-    text-align: center;
-    font-size: 20px;
-    background-color: rgba(85, 110, 230, 0.1);
-    color: #556ee6 !important;
-}
 .navbar ul li a {
   text-decoration: none;
   color: unset;
@@ -95,7 +79,7 @@
           align-items: center;
 }
 
-.pageone .firstpage {
+.pageindex .firstpage {
   background-color: #4c4f60;
   position: relative !important;
   left: 0;
@@ -114,17 +98,17 @@
           justify-content: center;
 }
 
-.pageone .firstpage .owl-carousel .owl-dots {
+.pageindex .firstpage .owl-carousel .owl-dots {
   display: none;
 }
 
-.pageone .firstpage .owl-carousel div img {
+.pageindex .firstpage .owl-carousel div img {
   height: 900px !important;
   width: 75%;
   opacity: 0.35;
 }
 
-.pageone .firstpage .container.search {
+.pageindex .firstpage .container.search {
   margin-top: 200px;
   margin-bottom: 200px;
   position: absolute;
@@ -143,7 +127,7 @@
   z-index: 15;
 }
 
-.pageone .firstpage .container.search .form {
+.pageindex .firstpage .container.search .form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -157,7 +141,7 @@
           align-items: flex-end;
 }
 
-.pageone .firstpage .container.search .form button {
+.pageindex .firstpage .container.search .form button {
   height: 42px;
   margin-bottom: 0;
   background-color: #556ee6;
@@ -167,8 +151,8 @@
   width: 260px;
 }
 
-.pageone .firstpage .container.search .form .city,
-.pageone .firstpage .container.search .form .categories {
+.pageindex .firstpage .container.search .form .city,
+.pageindex .firstpage .container.search .form .categories {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -181,24 +165,24 @@
           align-items: baseline;
 }
 
-.pageone .firstpage .container.search .form .city option,
-.pageone .firstpage .container.search .form .categories option {
+.pageindex .firstpage .container.search .form .city option,
+.pageindex .firstpage .container.search .form .categories option {
   font-family: "Poppins", sans-serif;
 }
 
-.pageone .firstpage .container.search .form .city .boldtext,
-.pageone .firstpage .container.search .form .categories .boldtext {
+.pageindex .firstpage .container.search .form .city .boldtext,
+.pageindex .firstpage .container.search .form .categories .boldtext {
   font-size: 15px;
   font-weight: 700;
   margin-bottom: 0;
   color: white !important;
 }
 
-.pageone .firstpage .container.search .form .city .select2-selection.select2-selection--single {
+.pageindex .firstpage .container.search .form .city .select2-selection.select2-selection--single {
   border-radius: 10px 0 0 10px;
 }
 
-.pageone .firstpage .container.search .select2-selection.select2-selection--single {
+.pageindex .firstpage .container.search .select2-selection.select2-selection--single {
   height: 42px !important;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -208,11 +192,11 @@
           align-items: center;
 }
 
-.pageone .firstpage .container.search .select2-selection.select2-selection--single .select2-selection__arrow {
+.pageindex .firstpage .container.search .select2-selection.select2-selection--single .select2-selection__arrow {
   top: 8px !important;
 }
 
-.pageone .firstpage .container.search .searcharea {
+.pageindex .firstpage .container.search .searcharea {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -222,7 +206,7 @@
           flex-direction: column;
 }
 
-.pageone .firstpage .container.search .searcharea .totaluserinfo {
+.pageindex .firstpage .container.search .searcharea .totaluserinfo {
   margin-top: 15px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -237,11 +221,11 @@
   gap: 5px;
 }
 
-.pageone .firstpage .container.search .searcharea .totaluserinfo i {
+.pageindex .firstpage .container.search .searcharea .totaluserinfo i {
   color: #fff !important;
 }
 
-.pageone .firstpage .container.search .searcharea .totaluserinfo p {
+.pageindex .firstpage .container.search .searcharea .totaluserinfo p {
   color: rgba(255, 255, 255, 0.8) !important;
   font-family: "Poppins", sans-serif;
   font-size: 16px;
@@ -249,7 +233,7 @@
   margin-bottom: 0;
 }
 
-.pageone .firstpage .container.search .searcharea .totaluserinfo p span {
+.pageindex .firstpage .container.search .searcharea .totaluserinfo p span {
   font-size: 16px;
   font-weight: 700;
   color: white;
@@ -257,12 +241,12 @@
   margin-bottom: 0;
 }
 
-.pageone .firstpage .container.search .boldtext.vital {
+.pageindex .firstpage .container.search .boldtext.vital {
   color: #556ee6;
   font-weight: 500;
 }
 
-.pageone .firstpage .container.search .boldtext {
+.pageindex .firstpage .container.search .boldtext {
   font-size: 40px;
   color: white;
 }

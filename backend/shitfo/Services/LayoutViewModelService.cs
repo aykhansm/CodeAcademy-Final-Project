@@ -15,10 +15,10 @@ namespace shitfo.Services
             _context = context;
             
         }
-        public List<Setting> GetSettings()
+        public Setting GetSetting()
         {
-            return _context.Settings.ToList();
+            return _context.Settings.First();
         }
-        
+
     }
 }
