@@ -33,7 +33,8 @@ namespace shitfo.Controllers
                 ContactTitle = _context.Settings.First().ContactTitle,
                 ContactMessage = _context.Settings.First().ContactMessage,
                 Categories = _context.Categories.Include(x => x.Properties).ToList(),
-                Cities = _context.Cities.Include(x=>x.Properties).OrderByDescending(x => x.Properties.Count()).ToList()
+                Cities = _context.Cities.Include(x=>x.Properties).OrderByDescending(x => x.Properties.Count()).ToList(),
+                UserCount=_context.Users.Where(x=>!x.IsAdmin).Count()
             
             };
             return View(homeViewModel);

@@ -1,0 +1,279 @@
+﻿@using shitfo.ViewModels
+@model EditViewModel
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section style{
+    <link rel="stylesheet" href="~/css/editprofile.css" />
+}
+<section class="pagetwo">
+    <div class="firstpage container">
+        <p style="color: white; font-size: 30px" class="boldtext">
+            My Properties
+        </p>
+        <p style="
+            font-family: 'Roboto', sans-serif;
+            color: white;
+            font-size: 16px;
+          ">
+            Here you can edit your account
+        </p>
+    </div>
+</section>
+<section class="pagethree">
+    <div class="container firstpage">
+        <div class="row">
+            <div class="mydashboard col-xl-3 col-lg-12 col-md-12">
+                <div class="dashboardcard card overflow-hidden">
+                    <h3 class="card-title boldtext">My Dashboard</h3>
+
+                    <div class="card-body item-user p-5">
+                        <div class="img-absolute-top2 img-absolute-top3">
+                            <img class="background" src="@(Model.AppUser.Image == null?"~/assets/360.jpg":"~/uploads/"+Model.AppUser.Image)" alt="img" />
+                        </div>
+                        <div class="profile-pic text-center reative">
+                            <div class="profile-pic-img text-center">
+                                <span class="bg-success dots"
+                                      data-toggle="tooltip"
+                                      data-placement="top"
+                                      title=""
+                                      data-original-title="online"></span>
+                                <img style="border-radius: 7px; max-width: 165px"
+                                     src="~/@(Model.AppUser.Image == null?"assets/360.jpg":"uploads/"+Model.AppUser.Image)"
+                                     class="br-7 w-100"
+                                     alt="user" />
+                            </div>
+                            <a href="userprofile.html" class="text-dark">
+                                <h4 style="font-size: 15px; font-weight: 600"
+                                    class="mt-4 mb-0 font-weight-semibold2 fs-16">
+                                    @Model.AppUser.FullName
+                                    <span class=""
+                                          data-toggle="tooltip"
+                                          data-placement="top"
+                                          title=""
+                                          data-original-title="Verified Owner">
+                                        <i class="fe fe-check-circle text-success fs-13"></i>
+                                    </span>
+                                </h4>
+                            </a>
+                            <p style="font-size: 13px" class="mb-0 mt-1 text-muted">
+                                User
+                            </p>
+                        </div>
+                    </div>
+                    <aside class="app-sidebar doc-sidebar my-dash">
+                        <div class="app-sidebar__user clearfix is-expanded">
+                            <ul class="side-menu open">
+                                <li class="first">
+                                    <a class="side-menu__item" asp-action="edit">
+                                        <i class="side-menu__icon far fa-user"></i><span class="side-menu__label">Edit Profile</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="side-menu__item active" href="mydash.html">
+                                        <i class="side-menu__icon fas fa-list"></i><span class="side-menu__label">My Properties</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="side-menu__item" href="mydash.html">
+                                        <i class="side-menu__icon far fa-heart"></i><span class="side-menu__label">My Favourites</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="side-menu__item" href="mydash.html">
+                                        <i class="side-menu__icon fas fa-shopping-cart"></i><span class="side-menu__label">My Bookings</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="side-menu__item" href="mydash.html">
+                                        <i class="side-menu__icon fas fa-power-off"></i><span class="side-menu__label">Log out</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+            <div class="col-xl-9 col-lg-12 col-md-12">
+                <div class="dashboardcard card">
+                    <div style="
+                  padding: 25px;
+                  border-bottom: solid 1px gainsboro;
+                  margin-top: 0;
+                  font-size: 18px;
+                  font-weight: 600;
+                "
+                         class="card-title boldtext">
+                        Edit Profile
+                    </div>
+                    <div class="card-body">
+                        <form method="post" enctype="multipart/form-data" asp-action="edit" class="row">
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="@Model.AppUser.FullName" class="form-label fs-12">Full Name</label>
+                                    <input asp-for="@Model.AppUser.FullName" type="text"
+                                           class="form-control edit"
+                                           placeholder="Full Name" />
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="@Model.AppUser.UserName" class="form-label fs-12">Full Name</label>
+                                    <input asp-for="@Model.AppUser.UserName" type="text"
+                                           class="form-control edit"
+                                           placeholder="Full Name" />
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="@Model.AppUser.Email" class="form-label fs-12">Email address</label>
+                                    <input asp-for="@Model.AppUser.Email" type="email"
+                                           class="form-control edit"
+                                           placeholder="Email" />
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="@Model.AppUser.PhoneNumber" class="form-label fs-12">Phone Number</label>
+                                    <input asp-for="@Model.AppUser.PhoneNumber" class="form-control edit"
+                                           placeholder="Number"
+                                           type="text" />
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="@Model.AppUser.Website" class="form-label fs-12">Website</label>
+                                    <input asp-for="@Model.AppUser.Website" type="text"
+                                           class="form-control edit"
+                                           placeholder="www.demo.com" />
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label asp-for="@Model.AppUser.Address" class="form-label fs-12">Address</label>
+                                    <input asp-for="@Model.AppUser.Address" type="text"
+                                           class="form-control edit"
+                                           style="width: 300px; height: 40px"
+                                           placeholder="Home Address" />
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div style="display: flex; flex-direction: column"
+                                     class="form-group select2-radius-single">
+                                    <label class="form-label fs-12">City</label>
+                                    <select style="height: 60px !important; width: 285px !important"
+                                            class="cityselect"
+                                            name="cityId">
+                                        <option disabled>Select city</option>
+
+                                        @foreach (var item in Model.Cities)
+                                        {
+                                            if (Model.AppUser.CityId != item.Id)
+                                            {
+                                                <option value="@item.Id">@item.Name</option>
+                                            }
+
+                                            else
+                                            {
+                                                <option selected value="@item.Id">@item.Name</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label asp-for="@Model.AppUser.Description" class="form-label fs-12">Description</label>
+                                    <textarea asp-for="@Model.AppUser.Description" rows="5"
+                                              class="form-control"
+                                              placeholder="Enter About your description"
+                                              style="height: 75px"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="@Model.AppUser.CurrentPassword" class="form-label fs-12">Password</label>
+                                    <input asp-for="@Model.AppUser.CurrentPassword" class="form-control edit"
+                                           placeholder="Number"
+                                           type="password" />
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="@Model.AppUser.Password" class="form-label fs-12">New Password</label>
+                                    <input asp-for="@Model.AppUser.Password" type="password"
+                                           class="form-control edit"
+                                           placeholder="New Password" />
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="@Model.AppUser.ConfirmedPassword" class="form-label fs-12">Confirm Password</label>
+                                    <input asp-for="@Model.AppUser.ConfirmedPassword" type="password"
+                                           class="form-control edit"
+                                           placeholder="Confirm New Password" />
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group mb-0">
+                                    <label asp-for="@Model.AppUser.ImageFile" class="form-label">Upload Image</label>
+                                    <div class="input-group mb-0">
+                                        <input asp-for="@Model.AppUser.ImageFile" placeholder="Choose"
+                                               readonly=""
+                                               class="form-control"
+                                               type="file" />
+                                        <label class="input-group-btn">
+
+                                        </label>
+
+                                    </div>
+                                    @if (Model.AppUser.Image != null)
+                                    {
+                                        <div class="img-box" style="position:relative;max-width:200px;margin-top:30px">
+                                            <img class="d-block" src="~/uploads/@Model.AppUser.Image" style="max-width:200px" />
+                                            <i class="fas fa-times remove-img-box" style="color:red;position:absolute;top:-7px;right:10px;cursor:pointer"></i>
+                                            <input type="hidden" asp-for="@Model.AppUser.Image" value="@Model.AppUser.Image" />
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+
+                            <button style="
+                      background-color: #556ee6 !important;
+                      border-radius: 7px !important;
+                      width: 150px;
+                      margin-top: 50px;
+                    "
+                                    type="submit"
+                                    class="btn btn-primary waves-effect waves-light">
+                                Update Profile
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section Scripts{
+
+    <script>
+        $(document).ready(function () {
+
+            $(document).on("click", ".remove-img-box", function (e) {
+                $(this).parents(".img-box").empty();
+            })
+        })
+    </script>
+
+}
+@section js{
+
+    <script>
+        $(document).ready(function () {
+            $(".cityselect").select2({});
+
+        });
+    </script>
+}

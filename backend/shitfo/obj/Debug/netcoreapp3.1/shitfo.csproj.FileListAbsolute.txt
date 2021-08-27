@@ -317,8 +317,15 @@ C:\Users\V-COMP\Desktop\Final Project\backend\shitfo\obj\Debug\netcoreapp3.1\Raz
 C:\Users\V-COMP\Desktop\Final Project\backend\shitfo\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\City\Index.cshtml.g.cs
 C:\Users\V-COMP\Desktop\Final Project\backend\shitfo\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\City\Create.cshtml.g.cs
 C:\Users\V-COMP\Desktop\Final Project\backend\shitfo\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\City\Edit.cshtml.g.cs
-C:\Users\V-COMP\Desktop\Final Project\backend\shitfo\obj\Debug\netcoreapp3.1\shitfo.csprojAssemblyReference.cache
 C:\Users\V-COMP\Desktop\Final Project\backend\shitfo\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Tag\Index.cshtml.g.cs
 C:\Users\V-COMP\Desktop\Final Project\backend\shitfo\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Tag\Edit.cshtml.g.cs
 C:\Users\V-COMP\Desktop\Final Project\backend\shitfo\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Tag\Create.cshtml.g.cs
 C:\Users\V-COMP\Desktop\Final Project\backend\shitfo\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Account\Login.cshtml.g.cs
+C:\Users\V-COMP\Desktop\Final Project\backend\shitfo\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Account\Edit.cshtml.g.cs
+C:\Users\V-COMP\Desktop\Final Project\backend\shitfo\obj\Debug\netcoreapp3.1\Razor\Views\Account\Register.cshtml.g.cs
+C:\Users\V-COMP\Desktop\Final Project\backend\shitfo\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
+C:\Users\V-COMP\Desktop\Final Project\backend\shitfo\obj\Debug\netcoreapp3.1\Razor\Views\Account\Edit.cshtml.g.cs
+C:\Users\V-COMP\Desktop\Final Project\backend\shitfo\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\AppUser\Index.cshtml.g.cs
+C:\Users\V-COMP\Desktop\Final Project\backend\shitfo\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\AppUser\Create.cshtml.g.cs
+C:\Users\V-COMP\Desktop\Final Project\backend\shitfo\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\AppUser\Edit.cshtml.g.cs
+C:\Users\V-COMP\Desktop\Final Project\backend\shitfo\obj\Debug\netcoreapp3.1\shitfo.csprojAssemblyReference.cache

@@ -30,7 +30,7 @@
     <link href="~/manage/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="~/manage/css/the-datepicker.css" rel="stylesheet" />
     <script src="~/manage/js/the-datepicker.js"></script>
-
+    @RenderSection("style", false)
 </head>
 
 <body id="page-top">
@@ -66,6 +66,12 @@
                 </a>
             </li>
             <li class="nav-item ">
+                <a class="nav-link" asp-action="index" asp-controller="appuser">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Users</span>
+                </a>
+            </li>
+            <li class="nav-item ">
                 <a class="nav-link" asp-action="index" asp-controller="subscribtion">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Subscribers</span>
@@ -96,7 +102,7 @@
                 </a>
             </li>
 
-          
+
 
 
 
@@ -126,14 +132,10 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    
-
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        
-
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             @if (userr != null)
@@ -239,7 +241,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.16.6/sweetalert2.min.js" integrity="sha512-CrNI25BFwyQ47q3MiZbfATg0ZoG6zuNh2ANn/WjyqvN4ShWfwPeoCOi9pjmX4DoNioMQ5gPcphKKF+oVz3UjRw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="~/manage/js/main.js"></script>
-
+    @RenderSection("js", false)
     @RenderSection("Scripts", required: false)
 
 </body>

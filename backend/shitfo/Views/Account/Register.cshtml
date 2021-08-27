@@ -1,0 +1,172 @@
+﻿@using shitfo.ViewModels
+@model RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section style{
+    <link rel="stylesheet" href="~/css/register.css" />
+}
+
+<section class="pagetwo">
+    <div class="firstpage container">
+        <p style="color: white; font-size: 30px" class="boldtext">Register</p>
+        <p style="
+            font-family: 'Roboto', sans-serif;
+            color: white;
+            font-size: 16px;
+          ">
+            Here you can register your account in order to rent a place
+        </p>
+    </div>
+</section>
+<section class="pagethree">
+    <div class="container firstpage">
+        <div class="row">
+            <div class="formcard col-lg-5 col-xl-4 col-md-6 mx-auto">
+                <p style="margin-bottom: 25px; font-size: 22px; color: #495057"
+                   class="boldtext">
+                    Register
+                </p>
+                <form method="post" asp-action="register">
+                    <div class="name">
+                        <label asp-for="@Model.FullName" style="color: #495057; font-size: 14px">Full Name</label>
+                        <input asp-for="@Model.FullName" style="
+                    height: 30px;
+                    margin-top: 10px;
+                    padding: 5px 15px;
+
+                    border: solid 2px gainsboro;
+                    width: 90%;
+                    border-radius: 5px;
+                  "
+                               type="text" />
+                    </div>
+                    <div class="name">
+                        <label asp-for="@Model.Username" style="color: #495057; font-size: 14px">Username</label>
+                        <input asp-for="@Model.Username" style="
+                    height: 30px;
+                    margin-top: 10px;
+                    padding: 5px 15px;
+
+                    border: solid 2px gainsboro;
+                    width: 90%;
+                    border-radius: 5px;
+                  "
+                               type="text" />
+                    </div>
+                    <div class="email">
+                        <label asp-for="@Model.Email" style="color: #495057; font-size: 14px">Email</label>
+                        <input asp-for="@Model.Email" style="
+                    height: 30px;
+                    margin-top: 10px;
+                    padding: 5px 15px;
+
+                    border: solid 2px gainsboro;
+                    width: 90%;
+                    border-radius: 5px;
+                  " type="email" />
+                    </div>
+                    <div class="address">
+                        <label asp-for="@Model.Address" style="color: #495057; font-size: 14px">Address</label>
+                        <input asp-for="@Model.Address" style="
+                    height: 30px;
+                    margin-top: 10px;
+                    padding: 5px 15px;
+
+                    border: solid 2px gainsboro;
+                    width: 90%;
+                    border-radius: 5px;
+                  "
+                               type="text" />
+                    </div>
+                    <div class="password">
+                        <label asp-for="@Model.Password" style="color: #495057; font-size: 14px">Password</label>
+                        <input asp-for="@Model.Password" style="
+                    height: 30px;
+                    margin-top: 10px;
+                    padding: 5px 15px;
+
+                    border: solid 2px gainsboro;
+                    width: 90%;
+                    border-radius: 5px;
+                  "
+                               type="password" />
+                    </div>
+                    <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+                    <div class="submit">
+                        <button class="btn btn-primary btn-block waves-effect waves-light"
+                                type="submit"
+                                style="
+                    background-color: #428680;
+                    border-radius: 6px;
+                    width: 100%;
+                    margin-top: 10px;
+                  ">
+                            Register
+                        </button>
+                    </div>
+                    <p style="margin-top: 15px" class="text-dark mb-0">
+                        Already have an account?
+                        <a class="text-primary" asp-action="login">Sign in</a>
+                    </p>
+                    <hr style="width: 100%; margin-top: 30px" />
+                </form>
+                <div style="
+                display: flex;
+                flex-direction: column;
+                align-items: baseline;
+                margin-top: 30px;
+              "
+                     class="socialmedia">
+                    <p style="margin-bottom: 10px; font-size: 18px; color: #495057"
+                       class="boldtext">
+                        Social media
+                    </p>
+                    <ul style="list-style: none; display: flex; gap: 5px">
+                        <a href="#"
+                           class="
+                    social-icon-style-circle-lg
+                    text-primary
+                    bg-primary-transparent
+                  ">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#"
+                           class="
+                    social-icon-style-circle-lg
+                    text-primary
+                    bg-primary-transparent
+                  ">
+                            <i class="fab fa-google"></i>
+                        </a>
+                        <a href="#"
+                           class="
+                    social-icon-style-circle-lg
+                    text-primary
+                    bg-primary-transparent
+                  ">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#"
+                           class="
+                    social-icon-style-circle-lg
+                    text-primary
+                    bg-primary-transparent
+                  ">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#"
+                           class="
+                    social-icon-style-circle-lg
+                    text-primary
+                    bg-primary-transparent
+                  ">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

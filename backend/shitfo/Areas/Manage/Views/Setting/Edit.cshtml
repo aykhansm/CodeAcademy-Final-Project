@@ -47,7 +47,19 @@
                     </div>
                 }
             </div>
-           
+            <div class="form-group">
+                <label asp-for="@Model.ContactImageFile">LogoFile</label>
+                <input asp-for="@Model.ContactImageFile" />
+                <span asp-validation-for="@Model.ContactImageFile" class="text-danger"></span>
+                @if (Model.ContactImage != null)
+                {
+                    <div class="img-box" style="position:relative;max-width:200px">
+                        <img class="d-block" src="~/uploads/@Model.ContactImage" style="max-width:200px" />
+                        <i class="fas fa-times remove-img-box" style="color:red;position:absolute;top:-7px;right:10px;cursor:pointer"></i>
+                        <input type="hidden" name="ContactImage" value="@Model.ContactImage" />
+                    </div>
+                }
+            </div>
 
 
         </div>

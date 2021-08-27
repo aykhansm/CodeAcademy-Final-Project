@@ -1,0 +1,44 @@
+﻿@using shitfo.Areas.Manage.ViewModels
+@model EditViewModel
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Manage/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/css/style.css" />
+<!-- Register start -->
+<div class="register-area pt-150 pb-150">
+    <div style="margin-left:0px" class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 text-center">
+                <div style="border:solid 2px gainsboro;padding:30px" class="login">
+                    <div class="login-form-container">
+                        <div class="login-text">
+                            <h2 style="text-transform:uppercase">edit account</h2>
+                            <span>You can edit your account here.</span>
+                        </div>
+                        <div class="login-form">
+                            <form class="row" asp-controller="account" asp-action="edit" method="post">
+
+                                <input style="height:45px" class="col-12 my-2" asp-for="@Model.FullName" placeholder="Fullname">
+                                <span class="col-12" asp-for="@Model.FullName" class="text-danger"></span>
+                                <input style="height:45px" class="col-12 my-2" asp-for="@Model.UserName" placeholder="Username">
+                                <span class="col-12" asp-for="@Model.UserName" class="text-danger"></span>
+                                <input style="height:45px" class="col-12 my-2" asp-for="@Model.CurrentPassword" placeholder="Current Password">
+                                <span class="col-12" asp-for="@Model.CurrentPassword" class="text-danger"></span>
+                                <input style="height:45px" class="col-12 my-2" asp-for="@Model.Password" placeholder="New Password">
+                                <span class="col-12" asp-for="@Model.Password" class="text-danger"></span>
+                                <input style="height:45px" class="col-12 my-2" asp-for="@Model.ConfirmedPassword" placeholder="Confirm Password">
+                                <span class="col-12" asp-for="@Model.ConfirmedPassword" class="text-danger"></span>
+                                <div  class="button-box col-12">
+                                    <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+                                    <button type="submit" class="btn-primary btn">update</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Register end -->

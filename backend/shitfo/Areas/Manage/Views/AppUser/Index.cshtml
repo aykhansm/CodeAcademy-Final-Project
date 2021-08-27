@@ -1,0 +1,112 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using Microsoft.EntityFrameworkCore;
+@inject UserManager<AppUser> user
+@model List<AppUser>
+@{
+    AppUser userr = null;
+    if (User.Identity.IsAuthenticated)
+    {
+        userr = await user.Users.FirstOrDefaultAsync(x => x.UserName == User.Identity.Name && x.IsAdmin);
+    }
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Manage/Views/Shared/_Layout.cshtml";
+
+    int selectedPage = (int)ViewBag.SelectedPage;
+    int totalPage = (int)ViewBag.TotalPage;
+
+    int i = (selectedPage - 1) * 5;
+}
+
+
+
+<div class="container-fluid">
+    <div class="row d-flex justify-content-end mb-2">
+        <div class="col-md-1">
+            <a class="btn btn-primary" asp-action="create">Create</a>
+        </div>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr class="row">
+                <th class="col-md-1">#</th>
+                <th class="col-md-2">FullName</th>
+                <th class="col-md-1">UserName</th>
+                <th class="col-md-2">Email</th>
+                <th class="col-md-2">User Role</th>
+                <th class="col-md-2"></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                i++;
+            <tr class="row">
+                <td class="col-md-1">@i</td>
+                <td class="col-md-2">@item.FullName</td>
+                <td class="col-md-1">@item.UserName </td>
+                <td class="col-md-2">@item.Email</td>
+                <td class="col-md-2">
+                    @foreach (var itemm in await user.GetRolesAsync(item))
+                    {
+                        @itemm
+
+                    }
+                </td>
+                <td class="col-md-2">
+                    @foreach (var role in await user.GetRolesAsync(userr))
+                    {
+                        @foreach (var appuserrole in await user.GetRolesAsync(item))
+                        {
+
+                            if (role == "Superadmin" && appuserrole != "Superadmin")
+                            {
+                                <a class="btn btn-warning" asp-action="edit" asp-route-id="@item.Id">Edit</a>
+                                <a class="btn btn-danger delete-btn" asp-action="delete" asp-route-id="@item.Id">Delete</a>
+                            }
+                            if (role == "Admin" && appuserrole == "Member")
+                            {
+                                <a class="btn btn-warning" asp-action="edit" asp-route-id="@item.Id">Edit</a>
+                                <a class="btn btn-danger delete-btn" asp-action="delete" asp-route-id="@item.Id">Delete</a>
+                            }
+                        }
+
+                    }
+
+                </td>
+            </tr>
+            }
+
+        </tbody>
+
+    </table>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item @(selectedPage==1?"disabled":"")"><a class="page-link" asp-action="index" asp-route-page="@(selectedPage-1)">Previous</a></li>
+
+            @{
+                int startpage = selectedPage - 1;
+                int endPage = selectedPage + 1;
+
+                if (selectedPage == 1)
+                {
+                    startpage = 1;
+                    endPage = 3 > totalPage ? totalPage : 3;
+                }
+                else if (selectedPage == totalPage)
+                {
+                    startpage = (selectedPage - 2) < 1 ? 1 : selectedPage - 2;
+                    endPage = totalPage;
+                }
+
+            }
+            @for (int j = startpage; j <= endPage; j++)
+            {
+                <li class="page-item @(j==selectedPage?"active":"")"><a class="page-link" asp-action="index" asp-route-page="@j">@j</a></li>
+            }
+            <li class="page-item @(selectedPage==totalPage?"disabled":"") "><a class="page-link" asp-action="index" asp-route-page="@(selectedPage+1)">Next</a></li>
+        </ul>
+    </nav>
+</div>
+
+

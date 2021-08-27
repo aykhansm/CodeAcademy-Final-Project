@@ -35,20 +35,25 @@
                         <p class="boldtext">City</p>
                         <select style="height: 45px !important; width: 285px !important"
                                 class="js-example-basic-single"
-                                name="state">
-                            <option value="AL">Alabama</option>
+                                name="cityId" >
+                            <option selected disabled>Select city</option>
+                            
+                            @foreach (var item in Model.Cities)
+                            {
+                                <option value="@item.Id">@item.Name</option>
 
-                            <option value="WY">Wyoming</option>
+                            }
                         </select>
                     </div>
                     <div class="categories">
                         <p class="boldtext">Category</p>
                         <select style="height: 45px !important; width: 285px !important"
                                 class="js-example-basic-single"
-                                name="state">
+                                name="categoryId">
+                            <option selected disabled>Select category</option>
                             @foreach(var item in Model.Categories)
             {
-                            <option >@item.Name</option>
+                            <option  value="@item.Id">@item.Name</option>
 
             }
                             
@@ -68,7 +73,7 @@
                 <div class="totaluserinfo">
                     <i class="fas fa-globe"></i>
 
-                    <p>Total Count of People using Shifto: <span>36</span></p>
+                    <p>Total Count of People using Shifto: <span>@Model.UserCount</span></p>
                 </div>
             </div>
         </div>

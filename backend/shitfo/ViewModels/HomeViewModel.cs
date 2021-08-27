@@ -14,5 +14,6 @@ namespace shitfo.ViewModels
 
         public List<Category> Categories { get; set; }
         public List<City> Cities { get; set; }
+        public int UserCount { get; set; }
     }
 }
