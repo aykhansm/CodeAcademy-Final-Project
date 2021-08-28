@@ -3,10 +3,10 @@
 
     $(document).on("click", ".delete-btn", function (e) {
 
-        console.log("testing")
+        console.log("testing");
         e.preventDefault();
 
-        var url = $(this).attr("href")
+        var url = $(this).attr("href");
         
         Swal.fire({
             title: 'Are you sure?',
@@ -25,41 +25,40 @@
 
                         
                            
-                            Swal.fire(
-                                'Deleted!',
-                                'Your file has been deleted.',
-                                'success'
-                            )
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        )
 
-                            
+                        
                             //$(this).removeClass("btn-danger")
                             //$(this).addClass("btn-info")
                             //$(this).text("Restore")
                             //var restoreUrl = $(this).data("restore-url");
                             //$(this).attr("href", restoreUrl)
                             //$(this).removeClass("delete-btn")
-                            console.log("hikmet")
-                           window.location.reload()
-                            
-                        
-                    });
+                        console.log("hikmet");
 
+                        window.location.reload(true);
+
+                    });
                 
             }
             else {
-                console.log("hecne")
+                console.log("hecne");
             }
         })
     })
 
     $(document).on("click", ".pagination-button", function (e) {
 
-        e.preventDefault()
-        var url = $(this).attr("href")
+        e.preventDefault();
+        var url = $(this).attr("href");
         fetch(url)
             .then(response => response.json())
             .then(data => {
-                 console.log(data)
+                 console.log(data);
 
             });
 

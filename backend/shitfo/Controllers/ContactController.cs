@@ -50,7 +50,7 @@ namespace shitfo.Controllers
                 _context.Contacts.Add(contact);
                 _context.SaveChanges();
             }
-            return RedirectToAction("index");
+            return RedirectToAction("index","contact");
         }
     }
 }

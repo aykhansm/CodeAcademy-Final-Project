@@ -183,7 +183,7 @@ namespace shitfo.Controllers
                 }
 
                 string rootPath = _env.WebRootPath;
-                var filename = Guid.NewGuid().ToString() + user.AppUser.ImageFile.FileName;
+                var filename = Guid.NewGuid().ToString() + user.AppUser.ImageFile.ContentType.Substring(user.AppUser.ImageFile.ContentType.IndexOf("/") + 1);
                 var path = Path.Combine(rootPath, "uploads", filename);
 
                 using (FileStream stream = new FileStream(path, FileMode.Create))

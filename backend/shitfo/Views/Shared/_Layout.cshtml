@@ -74,25 +74,26 @@
                 <li><a href="">Properties</a></li>
 
                 <li><a style="@(ViewContext.RouteData.Values["controller"].ToString() == "Contact" ? " color: #556ee6 !important" : "")" asp-controller="contact" asp-action="index">Contact Us</a></li>
-                <li class="mt-5 pb-0 mt-lg-0">
-                    <span>
-                        <a style="
+
+                @{
+
+                    if (userr != null)
+                    {
+                        <li class="mt-5 pb-0 mt-lg-0">
+                            <span>
+                                <a style="
                     background-color: #556ee6 !important;
                     border-radius: 7px !important;
                   "
-                           href=""
-                           class="
+                                  asp-controller="property" asp-action="post"
+                                   class="
                     btn btn-primary
                     ad-post
                     waves-effect waves-light
                     text-white
                   ">Post Your Property</a>
-                    </span>
-                </li>
-                @{
-
-                    if (userr != null)
-                    {
+                            </span>
+                        </li>
                         <li><a asp-controller="account" asp-action="edit" style="font-size: 30px" class="far fa-user"></a></li>
                         <li>
                             <a style="font-weight: 400" asp-controller="account" asp-action="logout">Log out</a>

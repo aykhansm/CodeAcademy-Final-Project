@@ -375,8 +375,8 @@ namespace shitfo.Migrations
                     b.Property<string>("AppUserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<decimal>("Area")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("Area")
+                        .HasColumnType("int");
 
                     b.Property<int>("BathroomCount")
                         .HasColumnType("int");
@@ -393,8 +393,8 @@ namespace shitfo.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("DailyPrice")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("DailyPrice")
+                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -404,8 +404,8 @@ namespace shitfo.Migrations
                     b.Property<int>("FloorCount")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("MonthlyPrice")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("MonthlyPrice")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()

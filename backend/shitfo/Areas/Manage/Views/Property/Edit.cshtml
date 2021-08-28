@@ -1,0 +1,284 @@
+﻿@model Property
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Manage/Views/Shared/_Layout.cshtml";
+
+    List<City> cities = (List<City>)ViewBag.Cities;
+    List<Category> categories = (List<Category>)ViewBag.Categories;
+    List<Tag> tags = (List<Tag>)ViewBag.Tags;
+}
+@section style{
+    <link rel="stylesheet" href="~/css/post.css" />
+}
+
+<section class="pagefour">
+    <div class="container firstpage">
+        <div class="row">
+            <div class="formcard col-lg-8 col-md-12 mx-auto">
+                <p style="margin-bottom: 25px; font-size: 22px; color: #495057"
+                   class="boldtext">
+                    Edit Property
+                </p>
+
+                <form asp-action="edit" method="post" enctype="multipart/form-data">
+                    <div class="title">
+                        <label asp-for="@Model.Name" style="color: #495057; font-size: 14px">Property Title</label>
+                        <input required asp-for="@Model.Name" style="
+                    height: 30px;
+                    margin-top: 10px;
+                    padding: 5px 15px;
+                    background-color: white;
+                    border: solid 2px gainsboro;
+                    width: 90%;
+                    border-radius: 5px;
+                  "
+                               placeholder="Title"
+                               type="text" />
+                        <span asp-validation-for="@Model.Name" class="text-danger"></span>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column" class="city">
+                        <label asp-for="@Model.CategoryId" style="color: #495057; font-size: 14px">Category</label>
+
+                        <select style="
+                    height: 30px !important;
+                    margin-top: 10px;
+                    padding: 5px 15px;
+                    background-color: white;
+                    border: solid 2px gainsboro !important;
+                    width: 100%;
+                    border-radius: 5px;
+                  "
+                                class="js-example-basic-single category" asp-for="@Model.CategoryId" asp-items="@(new SelectList(categories,"Id","Name"))">
+                            <option selected disabled>Select category</option>
+                        </select>
+                    </div>
+                    <div style="display: flex; flex-direction: column" class="email">
+                        <label asp-for="@Model.CityId" style="color: #495057; font-size: 14px">Located City</label>
+                        <select style="
+                    height: 30px !important;
+                    margin-top: 10px;
+                    padding: 5px 15px;
+                    background-color: white;
+                    border: solid 2px gainsboro !important;
+                    width: 100%;
+                    border-radius: 5px;
+                  "
+                                class="js-example-basic-single category" asp-for="@Model.CityId" asp-items="@(new SelectList(cities,"Id","Name"))">
+                            <option selected disabled>Select city</option>
+                        </select>
+                    </div>
+                    <div style="display: flex; flex-direction: column;padding-left:0" class="email">
+                        <label  style="padding-left:0 !important" asp-for="@Model.RentType" class="custom-control custom-radio my-2">Rent Date Type
+                            <select asp-for="@Model.RentType" style="
+                    height: 30px !important;
+                    margin-top: 10px;
+                    padding: 5px 15px;
+                    background-color: white;
+                    border: solid 2px gainsboro !important;
+                    width: 100%;
+                    border-radius: 5px;
+                  "
+                                    class="js-example-basic-single category">
+                                <option selected disabled>Select date type</option>
+                                <option value="0">Monthly</option>
+                                <option value="1">Daily</option>
+                                <option value="2">Both</option>
+                            </select>
+                        </label>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 col-xs-12">
+                            <label asp-for="@Model.BedroomCount" style="color: #495057; font-size: 14px">Bedroom Count</label>
+
+                            <input required asp-for="@Model.BedroomCount" style="
+                      height: 30px;
+                      margin-top: 10px;
+                      padding: 5px 15px;
+                      background-color: white;
+                      border: solid 2px gainsboro;
+                      width: 90%;
+                      border-radius: 5px;
+                    "
+                                   type="number" />
+                            <span asp-validation-for="@Model.BedroomCount" class="text-danger"></span>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-xs-12">
+                            <label asp-for="@Model.BathroomCount" style="color: #495057; font-size: 14px">Bathroom Count</label>
+
+                            <input required asp-for="@Model.BathroomCount" style="
+                      height: 30px;
+                      margin-top: 10px;
+                      padding: 5px 15px;
+                      background-color: white;
+                      border: solid 2px gainsboro;
+                      width: 90%;
+                      border-radius: 5px;
+                    "
+                                   type="number" />
+                            <span asp-validation-for="@Model.BathroomCount" class="text-danger"></span>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-xs-12">
+                            <label asp-for="@Model.FloorCount" style="color: #495057; font-size: 14px">Floor Count</label>
+
+                            <input required asp-for="@Model.FloorCount" style="
+                      height: 30px;
+                      margin-top: 10px;
+                      padding: 5px 15px;
+                      background-color: white;
+                      border: solid 2px gainsboro;
+                      width: 90%;
+                      border-radius: 5px;
+                    "
+                                   type="number" />
+                            <span asp-validation-for="@Model.FloorCount" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 col-xs-12">
+                            <label asp-for="@Model.Area" style="color: #495057; font-size: 14px">Builtup Area(in metre^2)</label>
+
+                            <input required asp-for="@Model.Area" value="@Model.Area" style="
+                      height: 30px;
+                      margin-top: 10px;
+                      padding: 5px 15px;
+                      background-color: white;
+                      border: solid 2px gainsboro;
+                      width: 90%;
+                      border-radius: 5px;
+                    "
+                                   type="number" step=".01" />
+                            <span asp-validation-for="@Model.Area" class="text-danger"></span>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-xs-12">
+                            <label asp-for="@Model.MonthlyPrice" style="color: #495057; font-size: 14px">Monthly Rent</label>
+
+                            <input required asp-for="@Model.MonthlyPrice" value="@Model.MonthlyPrice" style="
+                      height: 30px;
+                      margin-top: 10px;
+                      padding: 5px 15px;
+                      background-color: white;
+                      border: solid 2px gainsboro;
+                      width: 90%;
+                      border-radius: 5px;
+                    "
+                                   type="number" step=".01" />
+                            <span asp-validation-for="@Model.MonthlyPrice" class="text-danger"></span>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-xs-12">
+                            <label asp-for="@Model.DailyPrice" style="color: #495057; font-size: 14px">Daily Rent</label>
+
+                            <input required asp-for="@Model.DailyPrice" style="
+                      height: 30px;
+                      margin-top: 10px;
+                      padding: 5px 15px;
+                      background-color: white;
+                      border: solid 2px gainsboro;
+                      width: 90%;
+                      border-radius: 5px;
+                    "
+                                   type="number" step=".01" />
+                            <span asp-validation-for="@Model.DailyPrice" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div style="display: flex; flex-direction: column" class="tag">
+                        <label asp-for="@Model.TagIds" style="color: #495057; font-size: 14px">Tags</label>
+                        <select multiple="multiple" class="js-example-basic-multiple" asp-for="@Model.TagIds">
+                            @foreach (var item in tags)
+                            {
+                                if (Model.PropertyTags.Any(x => x.TagId == item.Id))
+                                {
+                                    <option selected value="@item.Id">@item.Name</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.Id">@item.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="message">
+                        <label asp-for="@Model.Description" style="color: #495057; font-size: 14px">Description</label>
+                        <textarea asp-for="@Model.Description" style="
+                    height: 150px;
+                    margin-top: 10px;
+                    padding: 5px 15px;
+                    background-color: white;
+                    border: solid 2px gainsboro;
+                    width: 100%;
+                    border-radius: 5px;
+                  "
+                                  type="text"
+                                  placeholder="text here..."
+                                  name="description"></textarea>
+                        <span asp-validation-for="@Model.Description" class="text-danger"></span>
+                    </div>
+                    <div style="display: flex; flex-direction: column" class="upload">
+                        <label asp-for="@Model.Photos" style="color: #495057; font-size: 16px; font-weight: 600">Upload Images(The image you upload first will be poster)</label>
+                        <input asp-for="@Model.Photos" style="
+                    border: none !important;
+                    height: 30px;
+                    margin-top: 10px;
+                    padding: 5px 15px;
+                    background-color: white;
+
+                    width: 90%;
+                    border-radius: 5px;
+                  "
+                              
+                               type="file"
+                               id="files"
+                               multiple />
+                        <div class="row my-2">
+                            @foreach (var item in Model.PropertyImages)
+                            {
+                                <div class="img-box col-md-4" style="position:relative;max-width:100px">
+                                    <img class="d-block" src="~/uploads/@item.Name" style="max-width:100px" />
+                                    <i class="fas fa-times remove-img-box" style="color:red;position:absolute;top:-7px;right:10px;cursor:pointer"></i>
+                                    <input type="hidden" name="PhotoIds[]" value="@item.Id" />
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="submit">
+                        <button class="btn btn-primary btn-block waves-effect waves-light"
+                                type="submit"
+                                style="
+                    background-color: #18cf7a;
+                    border-radius: 6px;
+                    width: 35%;
+                    margin-top: 10px;
+                  ">
+                            Submit Now
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section js{
+    <script>
+        $(document).ready(function () {
+
+
+            $(".category").select2({});
+            $(".js-example-basic-multiple").select2();
+        });
+    </script>
+}
+@section Scripts{
+
+    <script>
+        $(document).ready(function () {
+
+            $(document).on("click", ".remove-img-box", function (e) {
+                $(this).parents(".img-box").empty();
+            })
+        })
+    </script>
+
+}

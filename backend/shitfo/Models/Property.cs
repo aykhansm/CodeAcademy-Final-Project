@@ -21,22 +21,25 @@ namespace shitfo.Models
         public List<PropertyTag> PropertyTags { get; set; }
         public List<UserFavorite> UserFavorites { get; set; }
         public List<Booking> Bookings { get; set; }
+       
         [Required]
         [StringLength(maximumLength:150)]
         public string Name { get; set; }
         [NotMapped]
         public List<IFormFile> Photos { get; set; }
         [NotMapped]
+        public List<int> TagIds { get; set; }
+        [NotMapped]
         public List<int> PhotoIds { get; set; }
         public List<PropertyImage> PropertyImages { get; set; }
         public RentType RentType { get; set; }
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal DailyPrice { get; set; }
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal MonthlyPrice { get; set; }
+       
+        public int DailyPrice { get; set; }
+       
+        public int MonthlyPrice { get; set; }
         public int ViewCount { get; set; }
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal Area { get; set; }
+        
+        public int Area { get; set; }
         [Required]
         public int BedroomCount { get; set; }
         [Required]
