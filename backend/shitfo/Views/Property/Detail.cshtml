@@ -1,0 +1,1707 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using shitfo.Enums
+@model Property
+@inject UserManager<AppUser> user
+@{
+
+
+    AppUser userr = null;
+    if (User.Identity.IsAuthenticated)
+    {
+        userr = user.Users.FirstOrDefault(x => x.UserName == User.Identity.Name && !x.IsAdmin);
+    }
+    ViewData["Title"] = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    List<City> cities = (List<City>)ViewBag.Cities;
+    List<Category> categories = (List<Category>)ViewBag.Categories;
+}
+@section style{
+    <link rel="stylesheet" href="~/css/property-details.css" />
+}
+<section class="pagetwo">
+    <div class="firstpage container">
+        <p style="color: white; font-size: 35px" class="">
+            <span style="color: white; font-size: 35px" class="boldtext">@ViewBag.PropertyCount </span>Total Properties
+        </p>
+        <div class="searcharea">
+            <form class="form no-gutters">
+                <div class="city">
+                    <p class="boldtext">Search input</p>
+                    <input style="
+                  background-color: white;
+                  margin-bottom: 0;
+                  width: 260px;
+                  height: 40px !important;
+                  border-radius: 10px 0 0 10px !important;
+                "
+                           type="text"
+                           placeholder="type..." />
+                </div>
+                <div class="city">
+                    <p class="boldtext">City</p>
+                    <select style="height: 45px !important; width: 285px !important"
+                            class="js-example-basic-single"
+                            name="cityId">
+                        <option selected disabled>Select city</option>
+
+                        @foreach (var item in cities)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+
+                        }
+                    </select>
+                </div>
+                <div class="categories">
+                    <p class="boldtext">Category</p>
+                    <select style="height: 45px !important; width: 285px !important"
+                            class="js-example-basic-single"
+                            name="categoryId">
+                        <option selected disabled>Select categories</option>
+
+                        @foreach (var item in categories)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+
+                        }
+                    </select>
+                </div>
+                <button type="submit"
+                        class="
+                btn btn-lg btn-block btn-primary
+                waves-effect waves-light
+                br-tl-md-0 br-bl-md-0
+              ">
+                    Search Here
+                </button>
+            </form>
+            <div class="totaluserinfo"></div>
+        </div>
+    </div>
+</section>
+
+<section class="pagefour">
+    <div class="container firstpage">
+        <div class="row gap-4">
+            <div style="display: flex; flex-direction: column"
+                 class="col-xl-7 col-lg-9 col-md-12">
+                <div class="formcard">
+                    <p style="margin-bottom: 25px; font-size: 22px; color: #495057"
+                       class="boldtext">
+                        @Model.Name
+                    </p>
+                    <ul class="d-flex">
+                        <li style="margin-right: 1.5rem !important" class="mr-5">
+                            <a style="color: unset" href="#" class="icons">
+                                <i style="margin-right: 0.25rem !important"
+                                   class="fas fa-home text-muted"></i>
+                                @Model.Category.Name
+                            </a>
+                        </li>
+                        <li style="margin-right: 1.5rem !important" class="mr-5">
+                            <a style="color: unset" href="#" class="icons">
+                                <i style="margin-right: 0.25rem !important"
+                                   class="fas fa-map-marker-alt text-muted"></i>
+                                @Model.City.Name ,Azerbaijan
+                            </a>
+                        </li>
+                        <li style="margin-right: 1.5rem !important" class="mr-5">
+                            <a style="color: unset" href="#" class="icons">
+                                <i style="margin-right: 0.25rem !important"
+                                   class="far fa-calendar text-muted"></i>
+                                @Model.CreatedAt.ToString("dd MMMM yyyy")
+                            </a>
+                        </li>
+                        <li style="margin-right: 1.5rem !important" class="mr-5">
+                            <a style="color: unset" href="#" class="icons">
+                                <i style="margin-right: 0.25rem !important"
+                                   class="fas fa-eye text-muted"></i>
+                                @Model.ViewCount
+                            </a>
+                        </li>
+                        <li class="">
+                            <a style="color: unset" href="#" class="icons">
+                                @{
+                                    ViewBag.Average = 0;
+                                    if (Model.Reviews.Count != 0)
+                                    {
+                                        ViewBag.Average = Model.Reviews.Sum(x => x.Rate) / Model.Reviews.Count;
+                                    }
+
+                                }
+                                @ViewBag.Average
+
+                                @for (int i = 0; i < ViewBag.Average; i++)
+                                {
+                                    <i class="fa fa-star text-warning"></i>
+
+                                }
+                            </a>
+                        </li>
+                    </ul>
+                    <div style="max-height: 400px !important"
+                         class="
+                  owl-carousel owl-carousel-icons2 owl-loaded owl-drag
+                  inthirdpage
+                ">
+                        @foreach (var item in Model.PropertyImages)
+                        {
+                            <div class="carditem">
+                                <a href="#"><img src="~/uploads/@item.Name" alt="" /></a>
+                            </div>
+                        }
+
+
+                    </div>
+                    <div style="
+                  border-top: 1px solid #eff2f7;
+                  flex: 1 1 auto;
+                  margin: 0;
+                  padding: 1.8rem 1.8rem;
+                  position: relative;
+
+                  width: 100% !important;
+                "
+                         class="p-4">
+                        <div class="item-card9-footer">
+                            <div class="item-card9-cost row w-100">
+                                <div class="col-lg-4 col-sm-6 my-2 border-right mx-auto">
+                                    <div style="text-align: left !important; align-items: center"
+                                         class="d-inline-flex text-left">
+                                        <i class="
+                            fas
+                            fa-arrows-alt
+                            mr-1
+                            icon-style-circle-lg
+                            ml-0
+                          "></i>
+                                        <div style="text-align: left" class="ml-3">
+                                            <h6 class="fs-13 font-weight-semibold">
+                                                Builtup Area
+                                            </h6>
+                                            <h5 class="mb-0 font-weight-bold">@Model.Area Sqmt</h5>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @{ if (Model.RentType == RentType.Daily)
+                                    {
+
+                                        <div class="col-lg-4 col-sm-6 my-2 border-right mx-auto">
+                                            <div style="align-items: center"
+                                                 class="d-inline-flex text-left">
+                                                <i class="
+                            fas
+                            fa-dollar-sign
+                            mr-1
+                            icon-style-circle-lg
+                            ml-0
+                          "></i>
+                                                <div style="text-align: left" class="ml-3">
+                                                    <h6 class="fs-13 font-weight-semibold">Daily Rent</h6>
+                                                    <h5 class="mb-0 font-weight-bold">$65</h5>
+                                                </div>
+                                            </div>
+                                        </div> }
+
+                                    else if (Model.RentType == RentType.Monthly)
+                                    {
+
+                                        <div class="col-lg-4 col-sm-6 my-2 mx-auto">
+                                            <div style="align-items: center"
+                                                 class="d-inline-flex text-left;">
+                                                <i class="
+                            fas
+                            fa-dollar-sign
+                            mr-1
+                            icon-style-circle-lg
+                            ml-0
+                          "></i>
+                                                <div style="text-align: left" class="ml-3">
+                                                    <h6 class="fs-13 font-weight-semibold">
+                                                        Monthly rent
+                                                    </h6>
+                                                    <h5 class="mb-0 font-weight-bold">$5642</h5>
+                                                </div>
+                                            </div>
+                                        </div> }
+
+                                    else
+                                    {
+
+                                        <div class="col-lg-4 col-sm-6 my-2 border-right mx-auto">
+                                            <div style="align-items: center"
+                                                 class="d-inline-flex text-left">
+                                                <i class="
+                            fas
+                            fa-dollar-sign
+                            mr-1
+                            icon-style-circle-lg
+                            ml-0
+                          "></i>
+                                                <div style="text-align: left" class="ml-3">
+                                                    <h6 class="fs-13 font-weight-semibold">Daily Rent</h6>
+                                                    <h5 class="mb-0 font-weight-bold">$65</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-4 col-sm-6 my-2 mx-auto">
+                                            <div style="align-items: center"
+                                                 class="d-inline-flex text-left;">
+                                                <i class="
+                            fas
+                            fa-dollar-sign
+                            mr-1
+                            icon-style-circle-lg
+                            ml-0
+                          "></i>
+                                                <div style="text-align: left" class="ml-3">
+                                                    <h6 class="fs-13 font-weight-semibold">
+                                                        Monthly rent
+                                                    </h6>
+                                                    <h5 class="mb-0 font-weight-bold">$5642</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+
+
+
+
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-4 overflow-hidden">
+                    <div class="details-tab">
+                        <div class="border-0">
+                            <div class="wideget-user-tab wideget-user-tab3">
+                                <div class="tab-menu-heading">
+                                    <div class="tabs-menu1">
+                                        <ul class="nav">
+                                            <li class="overview">
+                                                <p class="active" data-toggle="tab">
+                                                    <i style="margin-right: 0.125rem"
+                                                       class="far fa-user mr-1"></i>
+                                                    Overview
+                                                </p>
+                                            </li>
+
+                                            <li class="reviews">
+                                                <p data-toggle="tab" class="">
+                                                    <i style="margin-right: 0.125rem"
+                                                       class="far fa-star mr-1"></i>
+                                                    Reviews
+                                                </p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="secondcard">
+                                <div class="
+                        tab-content
+                        border border-bottom-0
+                        p-5
+                        bg-white
+                        br-tr-5
+                      ">
+                                    <div class="tab-pane active" id="tab-1">
+                                        <h3 style="
+                            font-weight: 600 !important;
+                            font-size: 1.2rem;
+                            font-family: 'Poppins', sans-serif;
+                          "
+                                            class="mb-3 font-weight-semibold2">
+                                            Overview
+                                        </h3>
+                                        <div class="mb-0">
+                                            <p>
+                                                @Model.Description
+                                            </p>
+                                        </div>
+                                        <h4 style="
+                            font-weight: 600 !important;
+                            font-size: 1.2rem;
+                            font-family: 'Poppins', sans-serif;
+                          "
+                                            class="card-title mt-6 mb-3 font-weight-semibold2">
+                                            Contact Info
+                                        </h4>
+                                        <div class="item-user mt-3">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <h6 style="font-size: 1rem"
+                                                        class="font-weight-normal">
+                                                        <span>
+                                                            <i class="far fa-map mr-3 mb-2 d-inline-block"></i>
+                                                        </span><a href="#" class="text-body">
+                                                            @Model.AppUser.Address
+                                                        </a>
+                                                    </h6>
+                                                    <h6 style="font-size: 1rem"
+                                                        class="font-weight-normal">
+                                                        <span>
+                                                            <i class="
+                                      far
+                                      fa-envelope
+                                      mr-3
+                                      mb-2
+                                      d-inline-block
+                                    "></i>
+                                                        </span><a href="#" class="text-body">
+                                                            @Model.AppUser.Email
+                                                        </a>
+                                                    </h6>
+                                                    <h6 class="boldtext"
+                                                        style="
+                                  font-family: 'Poppins', sans-serif;
+                                  font-size: 1rem;
+                                  margin-top: 20px;
+                                ">
+                                                        Bedroom count:
+                                                        <span style="
+                                    font-family: 'Poppins', sans-serif;
+                                    font-size: 1rem;
+                                    font-weight: normal;
+                                  ">@Model.BedroomCount</span>
+                            </h6>
+                            <h6 class="boldtext"
+                                style="
+                                  font-family: 'Poppins', sans-serif;
+                                  font-size: 1rem;
+                                ">
+                                Bathroom count:
+                                <span style="
+                                    font-family: 'Poppins', sans-serif;
+                                    font-size: 1rem;
+                                    font-weight: normal;
+                                  ">@Model.BathroomCount</span>
+                            </h6>
+                        </div>
+                        <div class="col-md-6">
+                            <h6 style="font-size: 1rem"
+                                class="font-weight-normal">
+                                <span>
+                                    <i class="
+                                      fas
+                                      fa-phone-alt
+                                      mr-3
+                                      mb-2
+                                      d-inline-block
+                                    "></i>
+                                </span><a href="#" class="text-body">
+                                    @Model.AppUser.PhoneNumber
+                                </a>
+                            </h6>
+                            <h6 style="font-size: 1rem"
+                                class="font-weight-normal">
+                                <span>
+                                    <i class="fas fa-link mr-3 d-inline-block"></i>
+                                </span><a href="#" class="text-body">@Model.AppUser.Website</a>
+                            </h6>
+                            <h6 class="boldtext"
+                                style="
+                                  font-family: 'Poppins', sans-serif;
+                                  font-size: 1rem;
+                                  margin-top: 20px;
+                                ">
+                                Floor count:
+                                <span style="
+                                    font-family: 'Poppins', sans-serif;
+                                    font-size: 1rem;
+                                    font-weight: normal;
+                                  ">@Model.FloorCount</span>
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="
+                        pt-4
+                        pb-4
+                        pl-5
+                        pr-5
+                        border border-bottom-0
+                        bg-white
+                      ">
+            <div class="list-id">
+                <div style="padding-left: 30px; padding-right: 30px"
+                     class="row">
+                    <div class="col">
+                        <a style="color: unset" class="mb-0">Rent ID : #@Model.Id</a>
+                    </div>
+                    <div class="col col-auto">
+                        Posted By
+                        <a style="color: unset"
+                           class="mb-0 font-weight-bold">@Model.AppUser.FullName</a>
+                        / @Model.CreatedAt.ToString("g")
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer bg-white border">
+            <form style="
+                          display: flex;
+                          flex-direction: column;
+                          align-items: baseline;
+                          gap: 20px;
+                          padding-top: 10px;
+                          padding-bottom: 10px;
+                        "
+                  class="icons">
+
+                <div style="display: flex; flex-direction: row; gap: 30px">
+
+                    @{
+
+                        if (Model.RentType == RentType.Monthly)
+                        {
+
+                            <div style="display: flex; flex-direction: column"
+                                 class="contentsmonthly">
+                                <div class="span5 col-md-6 datepicker-container">
+                                    <label for="">Monthly rent</label>
+                                    <input placeholder="monthly"
+                                           required
+                                           type="text"
+                                           class="form-control" />
+                                </div>
+                                <div style="display: flex; flex-direction: column">
+                                    <label for="">How many months do you want to rent?</label>
+                                    <input placeholder="month count"
+                                           required
+                                           type="number"
+                                           class="form-control" />
+                                </div>
+                            </div>
+                        }
+
+                        else if (Model.RentType == RentType.Daily)
+                        {
+
+
+                            <div style="display: flex; flex-direction: column"
+                                 class="contentsdaily">
+                                <div class="span5 col-md-6 datepicker-container">
+                                    <label for="">Daily rent</label>
+                                    <input placeholder="daily"
+                                           required
+                                           type="text"
+                                           class="form-control" />
+                                </div>
+                                <div style="display: flex; flex-direction: column">
+                                    <label for="">How many days do you want to rent?</label>
+                                    <input placeholder="day count"
+                                           required
+                                           type="number"
+                                           class="form-control" />
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+
+                            <label>How do you want to rent?</label>
+                            <ul style="border: 1px solid gainsboro"
+                                class="nav nav-pills">
+                                <li class="nav-item">
+                                    <a s
+                                       class="nav-link dailybutton"
+                                       aria-current="page">Daily</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link monthlybutton">Monthly</a>
+                                </li>
+                            </ul>
+                            <div style="display: flex; flex-direction: row; gap: 30px">
+                                <div style="display: none; flex-direction: column"
+                                     class="contentsmonthly">
+                                    <div class="span5 col-md-6 datepicker-container">
+                                        <label for="">Monthly rent</label>
+                                        <input placeholder="monthly"
+                                               required
+                                               type="text"
+                                               class="form-control" />
+                                    </div>
+                                    <div style="display: flex; flex-direction: column">
+                                        <label for="">How many months do you want to rent?</label>
+                                        <input placeholder="month count"
+                                               required
+                                               type="number"
+                                               class="form-control" />
+                                    </div>
+                                </div>
+                                <div style="display: none; flex-direction: column"
+                                     class="contentsdaily">
+                                    <div class="span5 col-md-6 datepicker-container">
+                                        <label for="">Daily rent</label>
+                                        <input placeholder="daily"
+                                               required
+                                               type="text"
+                                               class="form-control" />
+                                    </div>
+                                    <div style="display: flex; flex-direction: column">
+                                        <label for="">How many days do you want to rent?</label>
+                                        <input placeholder="day count"
+                                               required
+                                               type="number"
+                                               class="form-control" />
+                                    </div>
+                                </div>
+
+                            </div>
+                        }
+                    }
+
+
+                    <div style="display: flex; flex-direction: row">
+                        <button style="
+                                background-color: #556ee6;
+                                border-radius: 10px;
+                                width: 120px;
+                                padding: 0 !important;
+                                display: none;
+                              "
+                                href="#"
+                                type="submit"
+                                class="btn btn-primary px-5 submitbutton">
+                            Book Now
+                        </button>
+                        @{
+
+                            if (Model.UserFavorites.FirstOrDefault(x => x.PropertyId == Model.Id && x.AppUserId == userr.Id) != null)
+                            {
+                                <a asp-controller="property" asp-action="ToggleFavorite" asp-route-id="@Model.Id" asp-route-detailpage="1" style="        color: #556ee6;
+                                     background: #f8f8fb;
+                                     width: 2rem;
+                                     display: inline-block;
+                                     height: 2rem;
+                                     text-align: center;
+                                     border-radius: 100px;
+                                     line-height: 2.1rem;
+                                     border-radius: 8px;
+                                     z-index: 50
+    "
+                                   class="fas fa-heart wishlist"></a>
+
+                            }
+                            else
+                            {
+                                <a asp-controller="property" asp-action="ToggleFavorite" asp-route-id="@Model.Id" asp-route-detailpage="1" style="        color: gainsboro;
+                                       background: #f8f8fb;
+                                       width: 2rem;
+                                       display: inline-block;
+                                       height: 2rem;
+                                       text-align: center;
+                                       border-radius: 100px;
+                                       line-height: 2.1rem;
+                                       border-radius: 8px;
+                                       z-index: 50
+    "
+                                   class="fas fa-heart wishlist"></a>
+                            }
+                        }
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="
+                      tab-content
+                      border border-bottom-0
+                      p-5
+                      bg-white
+                      br-tr-5
+                      reviewcard
+                    "
+         style="display: none">
+        <div class="tab-pane" id="tab-3">
+            <h4 class="card-title mb-3 font-weight-semibold2">
+                Specifications
+            </h4>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="
+                                table
+                                row
+                                table-borderless
+                                w-100
+                                m-0
+                                text-nowrap
+                              ">
+                            <tbody class="col-lg-12 col-xl-6 p-0">
+                                <tr>
+                                    <td class="px-0">
+                                        <span class="font-weight-semibold">
+                                            House Type:
+                                        </span>
+                                        Residential
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-0">
+                                        <span class="font-weight-semibold">Bedrooms :</span>
+                                        3
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-0">
+                                        <span class="font-weight-semibold">BathRooms :</span>
+                                        2
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-0">
+                                        <span class="font-weight-semibold">Gated Secuirity :</span>
+                                        Yes
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tbody class="col-lg-12 col-xl-6 p-0">
+                                <tr>
+                                    <td class="px-0">
+                                        <span class="font-weight-semibold">Furnishing :</span>
+                                        Semifurnitured
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-0">
+                                        <span class="font-weight-semibold">Water Supply :</span>
+                                        Borewell
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-0">
+                                        <span class="font-weight-semibold">Facing:</span>
+                                        East
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-0">
+                                        <span class="font-weight-semibold">Non-veg allowed :</span>
+                                        Yes
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane active" id="tab-5">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="mb-5">
+                            <div class="d-flex rate">
+                                <div class="
+                                    badge badge-default
+                                    bg-light
+                                    mb-2
+                                    text-primary
+                                  ">
+                                    5 <i class="fa fa-star"></i>
+                                </div>
+                                <div style="
+                                    font-weight: 600 !important;
+                                    font-size: 16px;
+                                  "
+                                     class="ml-auto font-weight-semibold2 fs-16">
+                                    9232
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-5">
+                            <div class="d-flex rate">
+                                <div class="
+                                    badge badge-default
+                                    bg-light
+                                    mb-2
+                                    text-danger
+                                  ">
+                                    4 <i class="fa fa-star"></i>
+                                </div>
+                                <div style="
+                                    font-weight: 600 !important;
+                                    font-size: 16px;
+                                  "
+                                     class="ml-auto font-weight-semibold2 fs-16">
+                                    4758
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-5">
+                            <div class="d-flex rate">
+                                <div class="
+                                    badge badge-default
+                                    bg-light
+                                    mb-2
+                                    text-success
+                                  ">
+                                    3 <i class="fa fa-star"></i>
+                                </div>
+                                <div style="
+                                    font-weight: 600 !important;
+                                    font-size: 16px;
+                                  "
+                                     class="ml-auto font-weight-semibold2 fs-16">
+                                    2658
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-5">
+                            <div class="d-flex rate">
+                                <div class="
+                                    badge badge-default
+                                    bg-light
+                                    mb-2
+                                    text-info
+                                  ">
+                                    2 <i class="fa fa-star"></i>
+                                </div>
+                                <div style="
+                                    font-weight: 600 !important;
+                                    font-size: 16px;
+                                  "
+                                     class="ml-auto font-weight-semibold2 fs-16">
+                                    865
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-5">
+                            <div class="d-flex rate">
+                                <div class="
+                                    badge badge-default
+                                    bg-light
+                                    mb-2
+                                    text-warning
+                                  ">
+                                    1 <i class="fa fa-star"></i>
+                                </div>
+                                <div style="
+                                    font-weight: 600 !important;
+                                    font-size: 16px;
+                                  "
+                                     class="ml-auto font-weight-semibold2 fs-16">
+                                    278
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="card-body px-0 pb-0">
+                <h4 style="font-weight: 600 !important; font-size: 1.3rem"
+                    class="font-weight-semibold2">
+                    2 Reviews
+                </h4>
+                <ul class="timeline-property mt-5">
+                    <li style="
+                              border-radius: 7px;
+                              border: 1px solid #e8ebf3 !important;
+                            "
+                        class="d-flex p-4 bg-white br-7 mb-4 border">
+                        <img style="
+                                border-radius: 50%;
+                                height: 4rem;
+                                width: 4rem;
+                              "
+                             src="./assets/+++1.jpg"
+                             alt=""
+                             class="
+                                w-8
+                                h-8
+                                brround
+                                property-timeline-before
+                                bg-primary
+                              " />
+                        <div style="margin-left: 1.5rem !important"
+                             class="timeline-data ml-5">
+                            <div class="media-body">
+                                <h5 style="
+                                    font-weight: 600 !important;
+                                    font-size: 1.125rem;
+                                  "
+                                    class="mt-0 font-weight-semibold2">
+                                    Joanne Scott
+                                    <span class="fs-14 ml-0"
+                                          data-toggle="tooltip"
+                                          data-placement="top"
+                                          title=""
+                                          data-original-title="verified">
+                                        <i class="fa fa-check-circle-o text-success"></i>
+                                    </span>
+                                    <span class="fs-14 ml-2">
+                                        4.5
+                                        <i style="color: #ffa22b !important"
+                                           class="fa fa-star text-yellow"></i>
+                                    </span>
+                                </h5>
+                                <small style="color: #74788d !important"
+                                       class="text-muted">
+                                    <i class="far fa-calendar-alt"></i> Dec 21st
+                                    <i style="margin-left: 1rem"
+                                       class="ml-3 fas fa-clock"></i>
+                                    13.00
+                                    <i style="margin-left: 1rem"
+                                       class="ml-3 fas fa-map-marker-alt"></i>
+                                    Brezil
+                                </small>
+                                <p class="font-13 mb-2 mt-2">
+                                    Lorem ipsum dolor sit amet, quis Neque porro
+                                    quisquam est, nostrud exercitation ullamco
+                                    laboris commodo consequat.
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                    <li style="
+                              border-radius: 7px;
+                              border: 1px solid #e8ebf3 !important;
+                            "
+                        class="d-flex p-4 bg-white br-7 mb-4 border">
+                        <img style="
+                                border-radius: 50%;
+                                height: 4rem;
+                                width: 4rem;
+                              "
+                             src="./assets/+++1.jpg"
+                             alt=""
+                             class="
+                                w-8
+                                h-8
+                                brround
+                                property-timeline-before
+                                bg-primary
+                              " />
+                        <div style="margin-left: 1.5rem !important"
+                             class="timeline-data ml-5">
+                            <div class="media-body">
+                                <h5 style="
+                                    font-weight: 600 !important;
+                                    font-size: 1.125rem;
+                                  "
+                                    class="mt-0 font-weight-semibold2">
+                                    Joanne Scott
+                                    <span class="fs-14 ml-0"
+                                          data-toggle="tooltip"
+                                          data-placement="top"
+                                          title=""
+                                          data-original-title="verified">
+                                        <i class="fa fa-check-circle-o text-success"></i>
+                                    </span>
+                                    <span class="fs-14 ml-2">
+                                        4.5
+                                        <i style="color: #ffa22b !important"
+                                           class="fa fa-star text-yellow"></i>
+                                    </span>
+                                </h5>
+                                <small style="color: #74788d !important"
+                                       class="text-muted">
+                                    <i class="far fa-calendar-alt"></i> Dec 21st
+                                    <i style="margin-left: 1rem"
+                                       class="ml-3 fas fa-clock"></i>
+                                    13.00
+                                    <i style="margin-left: 1rem"
+                                       class="ml-3 fas fa-map-marker-alt"></i>
+                                    Brezil
+                                </small>
+                                <p class="font-13 mb-2 mt-2">
+                                    Lorem ipsum dolor sit amet, quis Neque porro
+                                    quisquam est, nostrud exercitation ullamco
+                                    laboris commodo consequat.
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<div style="
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                width: 800px;
+              "
+     class="my-5">
+    <p style="font-size: 18px" class="boldtext">
+        Other posts of this user
+    </p>
+    <div class="owl-carousel infourthpage">
+        <div style="
+                    position: relative;
+                    display: -ms-flexbox;
+                    display: flex;
+                    -ms-flex-direction: column;
+                    flex-direction: column;
+                    min-width: 0;
+                    border-radius: 4px;
+                    word-wrap: break-word;
+                    background-color: #fff;
+                    background-clip: border-box;
+                    border: 1px solid #eff2f7;
+                    border-radius: 8px;
+                    box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
+                  "
+             class="mb-0 mx-2 col-lg-11 col-md-8 col-sm-7 col-xs-5 col-3">
+            <div class="item-card2-img m-0 br-bl-0 br-br-0">
+                <a style="border-radius: 4px; position: relative"
+                   href="property-details.html">
+                    <img style="border-radius: 4px"
+                         src="./assets/b1.jpg"
+                         alt="img"
+                         class="cover-image" />
+                    <a style="
+                          position: absolute;
+                          background-color: rgba(48, 52, 70, 0.5);
+                          width: 2rem;
+                          display: inline-block;
+                          height: 2rem;
+                          text-align: center;
+                          border-radius: 100px;
+                          line-height: 2.1rem;
+                          border-radius: 8px;
+                          color: #fff;
+                          top: 10px;
+                          right: 10px;
+                        "
+                       class="fas fa-heart"></a>
+                </a>
+            </div>
+            <div class="item-card2-icons top-spacing">
+                <a href="#"
+                   class="item-card2-icons-r bg-purple-dark-transparent-5"
+                   data-toggle="modal"
+                   data-target="#gallery">
+                    <i class="fe fe-image"></i>
+                </a>
+                <a href="#"
+                   class="item-card2-icons-r bg-purple-dark-transparent-5"
+                   data-toggle="tooltip"
+                   data-placement="top"
+                   title=""
+                   data-original-title="Add to wishlist">
+                    <i class="fe fe-heart"></i>
+                </a>
+                <a href="#"
+                   class="item-card2-icons-r bg-purple-dark-transparent-5"
+                   data-toggle="tooltip"
+                   data-placement="top"
+                   title=""
+                   data-original-title="Compare">
+                    <i class="fe fe-repeat"></i>
+                </a>
+            </div>
+            <div style="padding: 1rem 2rem !important" class="card-body">
+                <div class="item-card2">
+                    <div class="item-card2-text">
+                        <p style="
+                            font-weight: 700 !important;
+                            font-family: 'Poppins', sans-serif;
+                            font-size: 20px;
+                            margin-bottom: 0;
+                          "
+                           class="price">
+                            $6985
+                            <span style="
+                              font-weight: 400;
+                              font-size: 12px;
+                              font-family: 'Poppins', sans-serif;
+                            "
+                                  class="">Per Month</span>
+                        </p>
+                        <a href="property-details.html" class="text-dark">
+                            <h4 style="
+                              font-size: 1.28rem;
+                              margin: 0.52rem 0 0.912rem 0;
+                              font-weight: 600;
+                            "
+                                class="fs-16 font-weight-semibold2">
+                                3BHK Deluxe Flat
+                            </h4>
+                        </a>
+                        <p class="text-muted mb-0">
+                            Lorem ipsum dolor consectetur adipiscing eiusmod
+                        </p>
+                        <div class="row">
+                            <div style="padding-left: 0 !important"
+                                 class="col border-right mt-4">
+                                <small class="text-muted">Furnishing</small>
+                                <h6 class="mb-0 fs-13 font-weight-semibold mt-1">
+                                    Semifurnitued
+                                </h6>
+                            </div>
+                            <div class="col border-right mt-4">
+                                <small class="text-muted">Build</small>
+                                <h6 class="mb-0 fs-13 font-weight-semibold mt-1">
+                                    9865 sqpt
+                                </h6>
+                            </div>
+                            <div class="col mt-4">
+                                <small class="text-muted">Distance </small>
+                                <h6 class="mb-0 fs-13 font-weight-semibold mt-1">
+                                    3800mtrs
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="
+                    position: relative;
+                    display: -ms-flexbox;
+                    display: flex;
+                    -ms-flex-direction: column;
+                    flex-direction: column;
+                    min-width: 0;
+                    border-radius: 4px;
+                    word-wrap: break-word;
+                    background-color: #fff;
+                    background-clip: border-box;
+                    border: 1px solid #eff2f7;
+                    border-radius: 8px;
+                    box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
+                  "
+             class="mb-0 mx-2 col-lg-11 col-md-8 col-sm-7 col-xs-5 col-3">
+            <div class="item-card2-img m-0 br-bl-0 br-br-0">
+                <a style="border-radius: 4px; position: relative"
+                   href="property-details.html">
+                    <img style="border-radius: 4px"
+                         src="./assets/b2.jpg"
+                         alt="img"
+                         class="cover-image" />
+                    <a style="
+                          position: absolute;
+                          background-color: rgba(48, 52, 70, 0.5);
+                          width: 2rem;
+                          display: inline-block;
+                          height: 2rem;
+                          text-align: center;
+                          border-radius: 100px;
+                          line-height: 2.1rem;
+                          border-radius: 8px;
+                          color: #fff;
+                          top: 10px;
+                          right: 10px;
+                        "
+                       class="fas fa-heart"></a>
+                </a>
+            </div>
+            <div class="item-card2-icons top-spacing">
+                <a href="#"
+                   class="item-card2-icons-r bg-purple-dark-transparent-5"
+                   data-toggle="modal"
+                   data-target="#gallery">
+                    <i class="fe fe-image"></i>
+                </a>
+                <a href="#"
+                   class="item-card2-icons-r bg-purple-dark-transparent-5"
+                   data-toggle="tooltip"
+                   data-placement="top"
+                   title=""
+                   data-original-title="Add to wishlist">
+                    <i class="fe fe-heart"></i>
+                </a>
+                <a href="#"
+                   class="item-card2-icons-r bg-purple-dark-transparent-5"
+                   data-toggle="tooltip"
+                   data-placement="top"
+                   title=""
+                   data-original-title="Compare">
+                    <i class="fe fe-repeat"></i>
+                </a>
+            </div>
+            <div style="padding: 1rem 2rem !important" class="card-body">
+                <div class="item-card2">
+                    <div class="item-card2-text">
+                        <p style="
+                            font-weight: 700 !important;
+                            font-family: 'Poppins', sans-serif;
+                            font-size: 20px;
+                            margin-bottom: 0;
+                          "
+                           class="price">
+                            $6985
+                            <span style="
+                              font-weight: 400;
+                              font-size: 12px;
+                              font-family: 'Poppins', sans-serif;
+                            "
+                                  class="">Per Month</span>
+                        </p>
+                        <a href="property-details.html" class="text-dark">
+                            <h4 style="
+                              font-size: 1.28rem;
+                              margin: 0.52rem 0 0.912rem 0;
+                              font-weight: 600;
+                            "
+                                class="fs-16 font-weight-semibold2">
+                                3BHK Deluxe Flat
+                            </h4>
+                        </a>
+                        <p class="text-muted mb-0">
+                            Lorem ipsum dolor consectetur adipiscing eiusmod
+                        </p>
+                        <div class="row">
+                            <div style="padding-left: 0 !important"
+                                 class="col border-right mt-4">
+                                <small class="text-muted">Furnishing</small>
+                                <h6 class="mb-0 fs-13 font-weight-semibold mt-1">
+                                    Semifurnitued
+                                </h6>
+                            </div>
+                            <div class="col border-right mt-4">
+                                <small class="text-muted">Build</small>
+                                <h6 class="mb-0 fs-13 font-weight-semibold mt-1">
+                                    9865 sqpt
+                                </h6>
+                            </div>
+                            <div class="col mt-4">
+                                <small class="text-muted">Distance </small>
+                                <h6 class="mb-0 fs-13 font-weight-semibold mt-1">
+                                    3800mtrs
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="
+                    position: relative;
+                    display: -ms-flexbox;
+                    display: flex;
+                    -ms-flex-direction: column;
+                    flex-direction: column;
+                    min-width: 0;
+                    border-radius: 4px;
+                    word-wrap: break-word;
+                    background-color: #fff;
+                    background-clip: border-box;
+                    border: 1px solid #eff2f7;
+                    border-radius: 8px;
+                    box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
+                  "
+             class="mb-0 mx-2 col-lg-11 col-md-8 col-sm-7 col-xs-5 col-3">
+            <div class="item-card2-img m-0 br-bl-0 br-br-0">
+                <a style="border-radius: 4px; position: relative"
+                   href="property-details.html">
+                    <img style="border-radius: 4px"
+                         src="./assets/b3.jpg"
+                         alt="img"
+                         class="cover-image" />
+                    <a style="
+                          position: absolute;
+                          background-color: rgba(48, 52, 70, 0.5);
+                          width: 2rem;
+                          display: inline-block;
+                          height: 2rem;
+                          text-align: center;
+                          border-radius: 100px;
+                          line-height: 2.1rem;
+                          border-radius: 8px;
+                          color: #fff;
+                          top: 10px;
+                          right: 10px;
+                        "
+                       class="fas fa-heart"></a>
+                </a>
+            </div>
+            <div class="item-card2-icons top-spacing">
+                <a href="#"
+                   class="item-card2-icons-r bg-purple-dark-transparent-5"
+                   data-toggle="modal"
+                   data-target="#gallery">
+                    <i class="fe fe-image"></i>
+                </a>
+                <a href="#"
+                   class="item-card2-icons-r bg-purple-dark-transparent-5"
+                   data-toggle="tooltip"
+                   data-placement="top"
+                   title=""
+                   data-original-title="Add to wishlist">
+                    <i class="fe fe-heart"></i>
+                </a>
+                <a href="#"
+                   class="item-card2-icons-r bg-purple-dark-transparent-5"
+                   data-toggle="tooltip"
+                   data-placement="top"
+                   title=""
+                   data-original-title="Compare">
+                    <i class="fe fe-repeat"></i>
+                </a>
+            </div>
+            <div style="padding: 1rem 2rem !important" class="card-body">
+                <div class="item-card2">
+                    <div class="item-card2-text">
+                        <p style="
+                            font-weight: 700 !important;
+                            font-family: 'Poppins', sans-serif;
+                            font-size: 20px;
+                            margin-bottom: 0;
+                          "
+                           class="price">
+                            $6985
+                            <span style="
+                              font-weight: 400;
+                              font-size: 12px;
+                              font-family: 'Poppins', sans-serif;
+                            "
+                                  class="">Per Month</span>
+                        </p>
+                        <a href="property-details.html" class="text-dark">
+                            <h4 style="
+                              font-size: 1.28rem;
+                              margin: 0.52rem 0 0.912rem 0;
+                              font-weight: 600;
+                            "
+                                class="fs-16 font-weight-semibold2">
+                                3BHK Deluxe Flat
+                            </h4>
+                        </a>
+                        <p class="text-muted mb-0">
+                            Lorem ipsum dolor consectetur adipiscing eiusmod
+                        </p>
+                        <div class="row">
+                            <div style="padding-left: 0 !important"
+                                 class="col border-right mt-4">
+                                <small class="text-muted">Furnishing</small>
+                                <h6 class="mb-0 fs-13 font-weight-semibold mt-1">
+                                    Semifurnitued
+                                </h6>
+                            </div>
+                            <div class="col border-right mt-4">
+                                <small class="text-muted">Build</small>
+                                <h6 class="mb-0 fs-13 font-weight-semibold mt-1">
+                                    9865 sqpt
+                                </h6>
+                            </div>
+                            <div class="col mt-4">
+                                <small class="text-muted">Distance </small>
+                                <h6 class="mb-0 fs-13 font-weight-semibold mt-1">
+                                    3800mtrs
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="
+                position: relative;
+                display: -ms-flexbox;
+                display: flex;
+                -ms-flex-direction: column;
+                flex-direction: column;
+                min-width: 0;
+                border-radius: 4px;
+                word-wrap: break-word;
+                background-color: #fff;
+                background-clip: border-box;
+                border: 1px solid #eff2f7;
+                border-radius: 8px;
+                box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
+              "
+     class="mb-lg-0 mt-5">
+    <div style="
+                  background: 0 0;
+                  padding: 0.5rem 1.5rem;
+                  display: -ms-flexbox;
+                  display: flex;
+                  min-height: 3.5rem;
+                  -ms-flex-align: center;
+                  align-items: center;
+                  padding: 1.5rem 1.5rem;
+                  margin-bottom: 0;
+                  border-bottom: 1px solid #eff2f7;
+                "
+         class="card-header">
+        <h3 style="margin-top: 0; font-size: 20px"
+            class="card-title boldtext">
+            Leave a reply
+        </h3>
+    </div>
+    <form action="">
+        <div style="padding-bottom: 0" class="card-body">
+            <div style="flex-direction: column"
+                 class="d-flex flex-direction-column">
+                <p style="font-size: 17px"
+                   class="mx-1 mb-0 fs-14 font-weight-semibold">
+                    Rate
+                </p>
+                <ul style="
+                        list-style: none;
+                        display: flex;
+                        gap: 5px;
+                        align-items: center;
+                        margin-bottom: 0 !important;
+                      ">
+                    <option style="color: #e5e9f2; font-size: 14px"
+                            class="fas fa-star"
+                            value="1"></option>
+                    <option style="color: #e5e9f2; font-size: 14px"
+                            class="fas fa-star"
+                            value="2"></option>
+                    <option style="color: #e5e9f2; font-size: 14px"
+                            class="fas fa-star"
+                            value="3"></option>
+                    <option style="color: #e5e9f2; font-size: 14px"
+                            class="fas fa-star"
+                            value="4"></option>
+                    <option style="color: #e5e9f2; font-size: 14px"
+                            class="fas fa-star"
+                            value="5"></option>
+                </ul>
+            </div>
+        </div>
+        <div style="padding-top: 0" class="card-body">
+            <h4 style="font-size: 20px"
+                class="font-weight-semibold2 boldtext">
+                Review
+            </h4>
+            <div>
+                <div class="form-group">
+                    <textarea style="
+                          display: block;
+                          width: 100%;
+                          opacity: 1;
+                          padding: 0.375rem 0.75rem;
+                          font-size: 0.9375rem;
+                          line-height: 1.6;
+                          color: #495057;
+                          height: 39px;
+                          background-color: #fff;
+                          background-clip: padding-box;
+                          border: 1px solid #e8ebf3;
+                          border-radius: 8px;
+                          transition: border-color 0.15s ease-in-out,
+                            box-shadow 0.15s ease-in-out;
+                          height: auto;
+                          margin-bottom: 10px;
+                        "
+                              class=""
+                              name="example-textarea-input"
+                              rows="6"
+                              placeholder="Comment"></textarea>
+                </div>
+                <button style="background-color: #556ee6; border-radius: 8px"
+                        type="submit"
+                        href="#"
+                        class="btn btn-primary waves-effect waves-light">
+                    Send Review
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+</div>
+<div class="col-xl-4 col-lg-8 col-md-12">
+    <div style="
+                position: relative;
+                display: -ms-flexbox;
+                display: flex;
+                -ms-flex-direction: column;
+                flex-direction: column;
+                min-width: 0;
+                border-radius: 4px;
+                word-wrap: break-word;
+                background-color: #fff;
+                background-clip: border-box;
+                border: 1px solid #eff2f7;
+                border-radius: 8px;
+                box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
+                margin-bottom: 1.5rem;
+                width: 100%;
+              "
+         class="">
+        <div style="
+                  background: 0 0;
+                  padding: 0.5rem 1.5rem;
+                  display: -ms-flexbox;
+                  display: flex;
+                  min-height: 3.5rem;
+                  -ms-flex-align: center;
+                  align-items: center;
+
+                  margin-bottom: 0;
+                  border-bottom: 1px solid #eff2f7;
+                "
+             class="card-header">
+            <h3 style="
+                    font-family: 'Poppins', sans-serif;
+                    font-size: 1.125rem;
+                    line-height: 1.2;
+                    font-weight: 500;
+                  "
+                class="card-title">
+                Posted By
+            </h3>
+        </div>
+        <div class="card-body item-user">
+            <div style="text-align: center" class="profile-pic mb-0">
+                <img style="border-radius: 50%"
+                     src="./assets/+++1.jpg"
+                     class="brround"
+                     alt="user" />
+                <div class="">
+                    <a href="#" class="text-dark">
+                        <h4 style="
+                          font-size: 20px !important;
+                          font-weight: 600 !important;
+                        "
+                            class="mt-3 mb-5 font-weight-semibold2 fs-18">
+                            Robert McLean
+                        </h4>
+                    </a>
+
+                    <span class="text-muted">Member Since November 2008</span>
+                    <div>
+                        <a style="
+                          margin-top: 15px !important;
+                          background-color: #556ee6;
+                          border-radius: 10px;
+                        "
+                           href="#"
+                           class="btn btn-primary waves-effect waves-light mt-5">See All Properties</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr style="color: gainsboro" />
+        <div style="padding: 30px" class="card-body item-user">
+            <h4 style="
+                    margin: 0 !important;
+                    font-weight: 600 !important;
+                    font-size: 20px !important;
+                  "
+                class="mb-4 fs-18 font-weight-semibold2">
+                Contact Info
+            </h4>
+            <div>
+                <h6 style="
+                      margin-bottom: 0.3em;
+                      font-family: 'Poppins', sans-serif;
+                      font-size: 1rem;
+                    ">
+                    <span class="font-weight-semibold">
+                        <i style="
+                          width: 30px;
+                          height: 30px;
+                          border-radius: 50%;
+                          background: #f2f3f8;
+                          text-align: center;
+                          line-height: 30px;
+                          font-size: 12px;
+                          margin-right: 7px;
+                        "
+                           class="fas fa-map-marker-alt mr-2 mb-2 d-inline-block"></i>
+                    </span><a href="#" class="text-body">
+                        7981 Aspen Ave. Hammonton, USA
+                    </a>
+                </h6>
+                <h6 style="
+                      margin-bottom: 0.3em;
+                      font-family: 'Poppins', sans-serif;
+                      font-size: 1rem;
+                    ">
+                    <span class="font-weight-semibold">
+                        <i style="
+                          width: 30px;
+                          height: 30px;
+                          border-radius: 50%;
+                          background: #f2f3f8;
+                          text-align: center;
+                          line-height: 30px;
+                          font-size: 12px;
+                          margin-right: 7px;
+                        "
+                           class="far fa-envelope mr-2 mb-2 d-inline-block"></i>
+                    </span><a href="#" class="text-body"> robert123@gmail.com</a>
+                </h6>
+                <h6 style="
+                      margin-bottom: 0.3em;
+                      font-family: 'Poppins', sans-serif;
+                      font-size: 1rem;
+                    ">
+                    <span class="font-weight-semibold">
+                        <i style="
+                          width: 30px;
+                          height: 30px;
+                          border-radius: 50%;
+                          background: #f2f3f8;
+                          text-align: center;
+                          line-height: 30px;
+                          font-size: 12px;
+                          margin-right: 7px;
+                        "
+                           class="fas fa-phone-alt mr-2 mb-2 d-inline-block"></i>
+                    </span><a href="#" class="text-body"> 0-235-657-24587</a>
+                </h6>
+                <h6 style="
+                      margin-bottom: 0.3em;
+                      font-family: 'Poppins', sans-serif;
+                      font-size: 1rem;
+                    ">
+                    <span class="font-weight-semibold">
+                        <i style="
+                          width: 30px;
+                          height: 30px;
+                          border-radius: 50%;
+                          background: #f2f3f8;
+                          text-align: center;
+                          line-height: 30px;
+                          font-size: 12px;
+                          margin-right: 7px;
+                        "
+                           class="fas fa-link mr-2 d-inline-block"></i>
+                    </span><a href="#" class="text-body">http://spruko.com/</a>
+                </h6>
+            </div>
+        </div>
+    </div>
+    <div style="
+                position: relative;
+                display: -ms-flexbox;
+                display: flex;
+                -ms-flex-direction: column;
+                flex-direction: column;
+                min-width: 0;
+                border-radius: 4px;
+                word-wrap: break-word;
+                background-color: #fff;
+                background-clip: border-box;
+                border: 1px solid #eff2f7;
+                border-radius: 8px;
+                box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
+                margin-bottom: 1.5rem;
+                width: 100%;
+              ">
+        <div style="
+                  background: 0 0;
+                  padding: 0.5rem 1.5rem;
+                  display: -ms-flexbox;
+                  display: flex;
+                  min-height: 3rem;
+                  -ms-flex-align: center;
+                  align-items: center;
+
+                  margin-bottom: 0;
+                  border-bottom: 1px solid #eff2f7;
+                ">
+            <h3 style="
+                    font-size: 1.125rem;
+                    line-height: 1.2;
+                    font-weight: 500;
+                    font-family: 'Poppins', sans-serif;
+                  ">
+                Keywords
+            </h3>
+        </div>
+        <div class="card-body product-filter-desc">
+            <div class="product-tags clearfix">
+                <ul class="tags list-unstyled mb-0">
+                    <li><a href="#">RealEstate</a></li>
+                    <li><a href="#">Homes</a></li>
+                    <li><a href="#">3BHK Flatss</a></li>
+                    <li><a href="#">2BHK Homes</a></li>
+                    <li><a href="#">Luxury Rooms</a></li>
+                    <li><a href="#">Apartments</a></li>
+                    <li><a href="#">3BHK Flatss</a></li>
+                    <li><a href="#">Homes</a></li>
+                    <li><a href="#">Luxury House For Sale</a></li>
+                    <li><a href="#">Apartments</a></li>
+                    <li><a href="#" class="mb-0">Luxury Rooms</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</section>
+@section js{
+    <script>
+        $(document).ready(function () {
+            $(".category").select2({});
+            $(".js-example-basic-multiple").select2();
+            $(".js-example-basic-single").select2({});
+            $(".reviews").on("click", () => {
+                $(".reviews p").css("background-color", "white");
+                $(".overview p").css("background-color", "#ddddea");
+                $(".overview").removeClass("active");
+                $(".secondcard").hide();
+                $(".reviewcard").show();
+            });
+            $(".overview").on("click", () => {
+                $(this).addClass("active");
+                $(".reviews p").css("background-color", "#ddddea");
+                $(".overview p").css("background-color", "white");
+                $(".secondcard").show();
+                $(".reviewcard").hide();
+            });
+
+            $(".dailybutton").on("click", () => {
+                $(".dailybutton").addClass("active");
+                $(".monthlybutton").removeClass("active");
+
+                $(".contentsmonthly").hide();
+                $(".contentsdaily").show();
+                $(".submitbutton").show();
+            });
+            $(".monthlybutton").on("click", () => {
+                $(".dailybutton").removeClass("active");
+                $(".monthlybutton").addClass("active");
+
+                $(".contentsmonthly").show();
+                $(".contentsdaily").hide();
+                $(".submitbutton").show();
+            });
+            $(".datepicker-container input").datepicker({});
+            if ($(".owl-carousel.inthirdpage").length) {
+                $(".owl-carousel.inthirdpage").owlCarousel({
+                    items: 1,
+                    autoplay: true,
+                    nav: true,
+                    autoplayTimeout: 5000,
+                    lazyLoad: true,
+                    loop: true,
+                    mouseDrag: true,
+                    rewind: true,
+                    dots: false,
+                    responsiveClass: true,
+                });
+            }
+            if ($(".owl-carousel.infourthpage").length) {
+                $(".owl-carousel.infourthpage").owlCarousel({
+                    items: 1,
+                    autoplay: true,
+                    nav: false,
+                    autoplayTimeout: 5000,
+                    lazyLoad: true,
+                    loop: true,
+                    mouseDrag: true,
+                    rewind: true,
+                    dots: false,
+                });
+            }
+        });
+    </script>
+}

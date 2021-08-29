@@ -22,6 +22,7 @@ namespace shitfo.Models
         public List<UserFavorite> UserFavorites { get; set; }
         public List<Booking> Bookings { get; set; }
        
+        public bool IsFeatured { get; set; }
         [Required]
         [StringLength(maximumLength:150)]
         public string Name { get; set; }

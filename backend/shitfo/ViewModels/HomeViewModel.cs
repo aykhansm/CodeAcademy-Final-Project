@@ -11,7 +11,9 @@ namespace shitfo.ViewModels
         public string ContactTitle { get; set; }
         public string ContactMessage { get; set; }
         public string ContactImage { get; set; }
-
+        public List<Property> LatestProperties { get; set; }
+        public List<Property> MostRentedProperties { get; set; }
+        public List<Property> FeaturedProperties { get; set; }
         public List<Category> Categories { get; set; }
         public List<City> Cities { get; set; }
         public int UserCount { get; set; }

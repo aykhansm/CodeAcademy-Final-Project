@@ -123,6 +123,7 @@ namespace shitfo.Controllers
 
 
             property.AppUserId = existUser.Id;
+            property.IsFeatured = false;
             property.CreatedAt = DateTime.UtcNow.AddHours(4);
             _context.Properties.Add(property);
             _context.SaveChanges();
@@ -148,6 +149,20 @@ namespace shitfo.Controllers
                 return View(existProperty);
             else
                 return RedirectToAction("index","home");
+        }
+
+        public IActionResult Detail(int id)
+        {
+
+            var existProperty = _context.Properties.Include(x=>x.AppUser).Include(x=>x.Bookings).Include(x=>x.Category).Include(x=>x.City).Include(x=>x.PropertyImages).Include(x=>x.PropertyTags).ThenInclude(x=>x.Tag).Include(x=>x.Reviews).Include(x=>x.UserFavorites).FirstOrDefault(x => x.Id == id);
+            if (existProperty == null)
+                return RedirectToAction("index", "home");
+            ViewBag.PropertyCount = _context.Properties.Count();
+            ViewBag.Cities = _context.Cities.ToList();
+            ViewBag.Categories = _context.Categories.ToList();
+            existProperty.ViewCount++;
+            _context.SaveChanges();
+            return View(existProperty);
         }
         [Authorize(Roles = "Member")]
         [HttpPost]
@@ -295,5 +310,42 @@ namespace shitfo.Controllers
             _context.SaveChanges();
             return RedirectToAction("index","home");
         }
+
+        [Authorize(Roles = "Member")]
+        public  async Task<IActionResult> ToggleFavorite(int id,int? detailpage=0)
+        {
+            var existProperty = _context.Properties.Include(x => x.AppUser).Include(x => x.Bookings).Include(x => x.Category).Include(x => x.City).Include(x => x.PropertyImages).Include(x => x.PropertyTags).ThenInclude(x => x.Tag).Include(x => x.Reviews).Include(x => x.UserFavorites).FirstOrDefault(x => x.Id == id);
+            var existUser =await _userManager.FindByNameAsync(User.Identity.Name);
+
+            if (existProperty == null)
+            {
+                return RedirectToAction("index", "home");
+            }
+
+            var existUserFavorite = _context.UserFavorites.FirstOrDefault(x => x.AppUserId == existUser.Id && x.PropertyId == existProperty.Id);
+
+            if (existUserFavorite != null)
+            {
+                _context.UserFavorites.Remove(existUserFavorite);
+            }
+            else
+            {
+                UserFavorite userFavorite = new UserFavorite()
+                {
+
+                    AppUserId = existUser.Id,
+                    PropertyId = existProperty.Id,
+                    CreatedAt = DateTime.UtcNow.AddHours(4)
+                };
+                _context.UserFavorites.Add(userFavorite);
+            }
+            
+            _context.SaveChanges();
+            if (detailpage == 0)
+                return RedirectToAction("index", "home");
+            else 
+                return RedirectToAction("detail", "property", existProperty);
+        }
+       
     }
 }
