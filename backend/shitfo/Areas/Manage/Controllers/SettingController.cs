@@ -68,7 +68,7 @@ namespace shitfo.Areas.Manage.Controllers
                 }
 
                 string rootPath = _env.WebRootPath;
-                var filename = Guid.NewGuid().ToString() + setting.LogoFile.ContentType.Substring(setting.LogoFile.ContentType.IndexOf("/") + 1);
+                var filename = Guid.NewGuid().ToString() + "." + setting.LogoFile.ContentType.Substring(setting.LogoFile.ContentType.IndexOf("/") + 1);
                 var path = Path.Combine(rootPath, "uploads", filename);
 
                 using (FileStream stream = new FileStream(path, FileMode.Create))
@@ -107,7 +107,7 @@ namespace shitfo.Areas.Manage.Controllers
                 }
 
                 string rootPath = _env.WebRootPath;
-                var filename = Guid.NewGuid().ToString() + setting.LogoFile.ContentType.Substring(setting.LogoFile.ContentType.IndexOf("/") + 1);
+                var filename = Guid.NewGuid().ToString() + "." + setting.LogoFile.ContentType.Substring(setting.LogoFile.ContentType.IndexOf("/") + 1);
                 var path = Path.Combine(rootPath, "uploads", filename);
 
                 using (FileStream stream = new FileStream(path, FileMode.Create))

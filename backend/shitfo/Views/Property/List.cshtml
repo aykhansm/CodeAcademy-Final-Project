@@ -1,0 +1,494 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using shitfo.Enums
+@using shitfo.ViewModels
+@model List<Property>
+@inject UserManager<AppUser> user
+@{
+
+
+    AppUser userr = null;
+    if (User.Identity.IsAuthenticated)
+    {
+        userr = user.Users.FirstOrDefault(x => x.UserName == User.Identity.Name && !x.IsAdmin);
+    }
+    ViewData["Title"] = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int selectedPage = (int)ViewBag.SelectedPage;
+    int totalPage = (int)ViewBag.TotalPage;
+
+    int i = (selectedPage - 1) * 5;
+    List<City> cities = (List<City>)ViewBag.Cities;
+    List<Category> categories = (List<Category>)ViewBag.Categories;
+    List<Property> otherproperties = (List<Property>)ViewBag.OtherProperties;
+}
+@section style{
+    <link rel="stylesheet" href="~/css/property-list.css" />
+}
+<section class="pagetwo">
+    <div class="firstpage container">
+        <p style="color: white; font-size: 35px" class="">
+            <span style="color: white; font-size: 35px" class="boldtext">@ViewBag.PropertyCount </span>Total Properties
+        </p>
+        <div class="searcharea">
+            <form asp-controller="property" asp-action="list" method="post" class="form no-gutters">
+                <div class="city">
+                    <p class="boldtext">Search input</p>
+                    <input style="
+                  background-color: white;
+                  margin-bottom: 0;
+                  width: 260px;
+                  height: 40px !important;
+                  border-radius: 10px 0 0 10px !important;
+                "name="searchstr"
+                           type="text"
+                           placeholder="type..." />
+                </div>
+                <div class="city">
+                    <p class="boldtext">City</p>
+                    <select style="height: 45px !important; width: 285px !important"
+                            class="js-example-basic-single"
+                            name="cityId">
+                        <option selected disabled>Select city</option>
+
+                        @foreach (var item in cities)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+
+                        }
+                    </select>
+                </div>
+                <div class="categories">
+                    <p class="boldtext">Category</p>
+                    <select style="height: 45px !important; width: 285px !important"
+                            class="js-example-basic-single"
+                            name="categoryId">
+                        <option selected disabled>Select categories</option>
+
+                        @foreach (var item in categories)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+
+                        }
+                    </select>
+                </div>
+                <button type="submit"
+                        class="
+                btn btn-lg btn-block btn-primary
+                waves-effect waves-light
+                br-tl-md-0 br-bl-md-0
+              ">
+                    Search Here
+                </button>
+            </form>
+            <div class="totaluserinfo"></div>
+        </div>
+    </div>
+</section>
+<section class="pagefour">
+    <div class="container firstpage">
+        <div style="flex-wrap: nowrap" class="row propertylist gap-4">
+            <div style="display: flex; flex-direction: column"
+                 class="col-xl-9 col-lg-8 col-md-12">
+                <div class="formcard">
+                    <ul class="initialfilter" style="list-style: none">
+                        <a class="active" href="#">All</a>
+                        <a href="#">Famous</a>
+                        <a href="#">Latest</a>
+                        <a href="#">Rating</a>
+                    </ul>
+                </div>
+                <div class="propertylistcolumn">
+
+                    @foreach (var item in Model)
+                    {
+                        <div class="listcard overflow-hidden">
+                            <div class="">
+                                <div class="d-xl-flex">
+                                    <div style="position: relative; margin-right: 20px"
+                                         class="item-card9-img br-7 overflow-hidden">
+                                        <div class="item-card9-imgs">
+                                            <a style="
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            bottom: 0;
+                            width: 100%;
+                            height: 100%;
+                            z-index: 98;
+                          "
+                                               asp-action="detail" asp-controller="property" asp-route-id="@item.Id">
+                                                
+                                            </a>
+                                            <img style="
+                            max-height: 197px;
+                            width: 315px;
+                            border-radius: 8px;
+                          "
+                                                 src="/uploads/@item.PropertyImages.FirstOrDefault(x => x.IsPoster).Name"
+                                                 alt="img"
+                                                 class="cover-image" />
+                                        </div>
+                                        <div class="item-card2-icons top-spacing">
+                                            @{
+                                                if (userr != null)
+                                                {
+                                                    if (item.UserFavorites.FirstOrDefault(x => x.PropertyId == item.Id && x.AppUserId == userr.Id) != null)
+                                                    {
+                                                        <a asp-controller="property" asp-action="ToggleFavorite" asp-route-id="@item.Id" asp-route-detailpage="2" style="        color: #556ee6;
+        width: 2rem;
+        display: inline-block;
+        height: 2rem;
+        text-align: center;
+        border-radius: 100px;
+        line-height: 2.1rem;
+        border-radius: 8px;
+
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 100;
+        background-color: rgba(48, 52, 70, 0.8);
+        z-index: 99
+    "
+                                                           class="fas fa-heart wishlist"></a>
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <a asp-controller="property" asp-action="ToggleFavorite" asp-route-id="@item.Id" asp-route-detailpage="2" style="        color: gainsboro;
+        width: 2rem;
+        display: inline-block;
+        height: 2rem;
+        text-align: center;
+        border-radius: 100px;
+        line-height: 2.1rem;
+        border-radius: 8px;
+
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 100;
+        background-color: rgba(48, 52, 70, 0.8);
+        z-index: 99
+    "
+                                                           class="fas fa-heart wishlist"></a>
+                                                    }
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="card-body p-0 ml-xl-5 mt-xl-0 mt-5">
+                                        <div class="item-card9">
+                                            <div class="d-sm-flex"></div>
+                                            <div class="rating">
+                                                @{
+                                                    ViewBag.Average = 0;
+                                                    if (item.Reviews.Count != 0)
+                                                    {
+                                                        ViewBag.Average = item.Reviews.Sum(x => x.Rate) / item.Reviews.Count;
+                                                    }
+
+                                                }
+                                                @ViewBag.Average
+
+                                                @for (int j = 0; j < ViewBag.Average; j++)
+                                                {
+                                                    <i class="fa fa-star text-warning"></i>
+
+                                                }
+                                                (@item.Reviews.Count)
+                                            </div>
+                                            <a href="property-details.html" class="text-dark">
+                                                <h4 style="font-size: 1.2rem; margin-top: 10px"
+                                                    class="boldtext font-weight-semibold2 mt-1">
+                                                    @item.Name
+                                                </h4>
+                                            </a>
+                                            <p class="mb-0 leading-tight mt-2 text-muted">
+                                                @(item.Description.Length > 99 ? item.Description.Substring(0, 100) : item.Description)
+                                            </p>
+                                        </div>
+
+                                        <div style="justify-content: left"
+                                             class="item-card9-cost m-4 row w-100">
+                                            <div class="col-xl-3 col-sm-6 my-2">
+                                                <div class="d-flex">
+                                                    <div class="ml-3">
+                                                        <h6 style="
+                                  font-size: 13px !important;
+
+                                  font-size: 0.875rem;
+
+                                  margin-bottom: 0.3em;
+                                  font-weight: 500;
+                                  line-height: 1.1;
+                                  font-family: 'Poppins', sans-serif;
+                                "
+                                                            class="fs-13">
+                                                            Builtup Area
+                                                        </h6>
+                                                        <h5 style="font-size: 1rem; margin-top: 0"
+                                                            class="boldtext mb-0 font-weight-semibold2">
+                                                            @item.Area Sqmt
+                                                        </h5>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            @{
+
+                                                if (item.RentType == RentType.Daily)
+                                                {
+                                                    <div class="col-xl-3 col-sm-6 my-2">
+                                                        <div class="d-flex">
+                                                            <div class="ml-3">
+                                                                <h6 style="
+                                  font-size: 13px !important;
+
+                                  font-size: 0.875rem;
+
+                                  margin-bottom: 0.3em;
+                                  font-weight: 500;
+                                  line-height: 1.1;
+                                  font-family: 'Poppins', sans-serif;
+                                "
+                                                                    class="fs-13">
+                                                                    Daily Rent
+                                                                </h6>
+                                                                <h5 style="font-size: 1rem; margin-top: 0"
+                                                                    class="boldtext mb-0 font-weight-semibold2">
+                                                                    @item.DailyPrice AZN
+                                                                </h5>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                }
+
+                                                else if (item.RentType == RentType.Monthly)
+                                                {
+
+                                                    <div class="col-xl-3 col-sm-6 my-2">
+                                                        <div class="d-flex">
+                                                            <div class="ml-3">
+                                                                <h6 style="
+                                  font-size: 13px !important;
+
+                                  font-size: 0.875rem;
+
+                                  margin-bottom: 0.3em;
+                                  font-weight: 500;
+                                  line-height: 1.1;
+                                  font-family: 'Poppins', sans-serif;
+                                "
+                                                                    class="fs-13">
+                                                                    Monthly Rent
+                                                                </h6>
+                                                                <h5 style="font-size: 1rem; margin-top: 0"
+                                                                    class="boldtext mb-0 font-weight-semibold2">
+                                                                    @item.MonthlyPrice AZN
+                                                                </h5>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="col-xl-3 col-sm-6 my-2">
+                                                        <div class="d-flex">
+                                                            <div class="ml-3">
+                                                                <h6 style="
+                                  font-size: 13px !important;
+
+                                  font-size: 0.875rem;
+
+                                  margin-bottom: 0.3em;
+                                  font-weight: 500;
+                                  line-height: 1.1;
+                                  font-family: 'Poppins', sans-serif;
+                                "
+                                                                    class="fs-13">
+                                                                    Daily Rent
+                                                                </h6>
+                                                                <h5 style="font-size: 1rem; margin-top: 0"
+                                                                    class="boldtext mb-0 font-weight-semibold2">
+                                                                    @item.DailyPrice AZN
+                                                                </h5>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-3 col-sm-6 my-2">
+                                                        <div class="d-flex">
+                                                            <div class="ml-3">
+                                                                <h6 style="
+                                  font-size: 13px !important;
+
+                                  font-size: 0.875rem;
+
+                                  margin-bottom: 0.3em;
+                                  font-weight: 500;
+                                  line-height: 1.1;
+                                  font-family: 'Poppins', sans-serif;
+                                "
+                                                                    class="fs-13">
+                                                                    Monthly Rent
+                                                                </h6>
+                                                                <h5 style="font-size: 1rem; margin-top: 0"
+                                                                    class="boldtext mb-0 font-weight-semibold2">
+                                                                    @item.MonthlyPrice AZN
+                                                                </h5>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+                </div>
+
+                
+                    <ul class="pagination">
+                        <li class="page-item @(selectedPage==1?"disabled":"")"><a class="page-link" asp-action="index" asp-route-page="@(selectedPage-1)">Previous</a></li>
+
+                        @{
+                            int startpage = selectedPage - 1;
+                            int endPage = selectedPage + 1;
+
+                            if (selectedPage == 1)
+                            {
+                                startpage = 1;
+                                endPage = 3 > totalPage ? totalPage : 3;
+                            }
+                            else if (selectedPage == totalPage)
+                            {
+                                startpage = (selectedPage - 2) < 1 ? 1 : selectedPage - 2;
+                                endPage = totalPage;
+                            }
+
+                        }
+                        @for (int j = startpage; j <= endPage; j++)
+                        {
+                            <li class="page-item @(j==selectedPage?"active":"")"><a class="page-link" asp-action="index" asp-route-page="@j">@j</a></li>
+                        }
+                        <li class="page-item @(selectedPage==totalPage?"disabled":"") "><a class="page-link" asp-action="index" asp-route-page="@(selectedPage+1)">Next</a></li>
+                    </ul>
+                
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-12">
+                <div class="cardsearch">
+                    <div class="card-body">
+                        <form method="post" asp-controller="property" asp-action="list" class="input-group">
+                            <input type="text"
+                                   class="form-control br-tl-3 br-bl-3"
+                                   name="searchstr"
+                                   placeholder="Search" />
+                            <div class="input-group-append">
+                                <button type="submit"
+                                        class="btn br-tr-3 br-br-3 waves-effect waves-light">
+                                    Search
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div style="
+                position: relative;
+                display: -ms-flexbox;
+                display: flex;
+                -ms-flex-direction: column;
+                flex-direction: column;
+                min-width: 0;
+                border-radius: 4px;
+                word-wrap: break-word;
+                background-color: #fff;
+                background-clip: border-box;
+                border: 1px solid #eff2f7;
+                border-radius: 8px;
+                box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
+                margin-bottom: 1.5rem;
+                width: 100%;
+              "
+                     class="">
+                    <img src="~/assets/rent-advertising-banner-inscriptions-for-260nw-69296669.jpg"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section js{
+    <script>
+        $(document).ready(function () {
+            $(".category").select2({});
+            $(".js-example-basic-multiple").select2();
+            $(".js-example-basic-single").select2({});
+            $(".reviews").on("click", () => {
+                $(".reviews p").css("background-color", "white");
+                $(".overview p").css("background-color", "#ddddea");
+                $(".overview").removeClass("active");
+                $(".secondcard").hide();
+                $(".reviewcard").show();
+            });
+            $(".overview").on("click", () => {
+                $(this).addClass("active");
+                $(".reviews p").css("background-color", "#ddddea");
+                $(".overview p").css("background-color", "white");
+                $(".secondcard").show();
+                $(".reviewcard").hide();
+            });
+
+            $(".dailybutton").on("click", () => {
+                $(".dailybutton").addClass("active");
+                $(".monthlybutton").removeClass("active");
+
+                $(".contentsmonthly").hide();
+                $(".contentsdaily").show();
+                $(".submitbutton").show();
+            });
+            $(".monthlybutton").on("click", () => {
+                $(".dailybutton").removeClass("active");
+                $(".monthlybutton").addClass("active");
+
+                $(".contentsmonthly").show();
+                $(".contentsdaily").hide();
+                $(".submitbutton").show();
+            });
+            $(".datepicker-container input").datepicker({});
+            if ($(".owl-carousel.inthirdpage").length) {
+                $(".owl-carousel.inthirdpage").owlCarousel({
+                    items: 1,
+                    autoplay: true,
+                    nav: true,
+                    autoplayTimeout: 5000,
+                    lazyLoad: true,
+                    loop: true,
+                    mouseDrag: true,
+                    rewind: true,
+                    dots: false,
+                    responsiveClass: true,
+                });
+            }
+            if ($(".owl-carousel.infourthpage").length) {
+                $(".owl-carousel.infourthpage").owlCarousel({
+                    items: 1,
+                    autoplay: true,
+                    nav: false,
+                    autoplayTimeout: 5000,
+                    lazyLoad: true,
+                    loop: true,
+                    mouseDrag: true,
+                    rewind: true,
+                    dots: false,
+                });
+            }
+        });
+    </script>
+}

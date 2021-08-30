@@ -38,7 +38,7 @@
                 </p>
             </div>
             <div class="searcharea">
-                <form method="post" class="form no-gutters">
+                <form asp-controller="property" asp-action="list" method="post" class="form no-gutters">
                     <div class="city">
                         <p class="boldtext">City</p>
                         <select style="height: 45px !important; width: 285px !important"
@@ -107,7 +107,7 @@
             {
 
                 <div class="carditem mx-auto">
-                    <a href="#"><img src="~/uploads/@item.Image" alt="" /></a>
+                    <a asp-controller="property" asp-action="list" asp-route-categoryId="@item.Id"><img src="~/uploads/@item.Image" alt="" /></a>
                     <div class="title">
                         <p style="margin-bottom: 0" class="available">
                             <span>@item.Properties.Count</span> Rents available
@@ -146,10 +146,10 @@
                   "
                                class="boldtext">@item.Name</a>
                             @{
-
-                                if (item.UserFavorites.FirstOrDefault(x => x.PropertyId == item.Id && x.AppUserId == userr.Id) != null)
-                                {
-                                    <a asp-controller="property" asp-action="ToggleFavorite" asp-route-id="@item.Id" style="        color: #556ee6;
+                if (userr != null) { 
+                                    if (item.UserFavorites.FirstOrDefault(x => x.PropertyId == item.Id && x.AppUserId == userr.Id) != null && userr != null)
+                                    {
+                                        <a asp-controller="property" asp-action="ToggleFavorite" asp-route-id="@item.Id" style="        color: #556ee6;
                                      background: #f8f8fb;
                                      width: 2rem;
                                      display: inline-block;
@@ -160,12 +160,12 @@
                                      border-radius: 8px;
                                      z-index: 50
     "
-                                       class="fas fa-heart wishlist"></a>
+                                           class="fas fa-heart wishlist"></a>
 
-                                }
-                                else
-                                {
-                                    <a asp-controller="property" asp-action="ToggleFavorite" asp-route-id="@item.Id" style="        color: gainsboro;
+                                    }
+                                    else
+                                    {
+                                        <a asp-controller="property" asp-action="ToggleFavorite" asp-route-id="@item.Id" style="        color: gainsboro;
                                        background: #f8f8fb;
                                        width: 2rem;
                                        display: inline-block;
@@ -176,10 +176,10 @@
                                        border-radius: 8px;
                                        z-index: 50
     "
-                                       class="fas fa-heart wishlist"></a>
+                                           class="fas fa-heart wishlist"></a>
+                                    }
                                 }
                             }
-
                         </div>
                         <div>
                             <i class="fas fa-map-marker-alt text-danger"></i> @item.City.Name,
@@ -246,16 +246,17 @@
             @foreach (var item in Model.MostRentedProperties)
             {
                 <div class="card mx-auto"
-                     style="width: 18rem; box-shadow: none">
+                     style="width: 18rem; height:450px; box-shadow: none">
                     <div style="margin-bottom: 10px" class="image">
                         <a asp-controller="property" asp-action="detail" asp-route-id="@item.Id" class="card-img">
-                            <img class="" src="~/uploads/@item.PropertyImages.FirstOrDefault(x=>x.IsPoster==true).Name" alt="Card image cap" />
+                            <img style="max-height:250px" class="" src="~/uploads/@item.PropertyImages.FirstOrDefault(x=>x.IsPoster==true).Name" alt="Card image cap" />
                         </a>
                         @{
-
-                            if (item.UserFavorites.FirstOrDefault(x => x.PropertyId == item.Id && x.AppUserId == userr.Id) != null)
+                            if (userr != null)
                             {
-                                <a asp-controller="property" asp-action="ToggleFavorite" asp-route-id="@item.Id" style="        color: #556ee6;
+                                if (userr != null && item.UserFavorites.FirstOrDefault(x => x.PropertyId == item.Id && x.AppUserId == userr.Id) != null)
+                                {
+                                    <a asp-controller="property" asp-action="ToggleFavorite" asp-route-id="@item.Id" style="        color: #556ee6;
         background: #f8f8fb;
         width: 2rem;
         display: inline-block;
@@ -269,12 +270,12 @@
         top: 10px;
         z-index: 50
     "
-                                   class="fas fa-heart wishlist"></a>
+                                       class="fas fa-heart wishlist"></a>
 
-                            }
-                            else
-                            {
-                                <a asp-controller="property" asp-action="ToggleFavorite" asp-route-id="@item.Id" style="        color: gainsboro;
+                                }
+                                else
+                                {
+                                    <a asp-controller="property" asp-action="ToggleFavorite" asp-route-id="@item.Id" style="        color: gainsboro;
         background: #f8f8fb;
         width: 2rem;
         display: inline-block;
@@ -288,10 +289,10 @@
         top: 10px;
         z-index: 50
     "
-                                   class="fas fa-heart wishlist"></a>
+                                       class="fas fa-heart wishlist"></a>
+                                }
                             }
                         }
-                     
                     </div>
 
                     <div class="card-body">
@@ -522,8 +523,8 @@
                 <div class="counter-icon">
                     <i class="fas fa-user-friends"></i>
                 </div>
-                <h5>Total Agents</h5>
-                <h2 class="timer" data-from="0" data-to="893"
+                <h5>Total Categories</h5>
+                <h2 class="timer" data-from="0" data-to="@ViewBag.TotalCategories"
                     data-speed="1000" data-refresh-interval="10"></h2>
             </div>
             <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center counter">
@@ -531,7 +532,7 @@
                     <i class="fas fa-home"></i>
                 </div>
                 <h5>Total Rented Properties</h5>
-                <h2 class="timer" data-from="0" data-to="1765"
+                <h2 class="timer" data-from="0" data-to="@ViewBag.TotalBookings"
                     data-speed="1000" data-refresh-interval="10"></h2>
             </div>
             <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center counter">
@@ -539,7 +540,7 @@
                     <i class="fas fa-map-marker-alt"></i>
                 </div>
                 <h5>Total Places</h5>
-                <h2 class="timer" data-from="0" data-to="8467"
+                <h2 class="timer" data-from="0" data-to="@ViewBag.TotalCities"
                     data-speed="1000" data-refresh-interval="10"></h2>
             </div>
             <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center counter">
@@ -547,7 +548,7 @@
                     <i class="far fa-smile"></i>
                 </div>
                 <h5>Happy Customers</h5>
-                <h2 class="timer" data-from="0" data-to="7253"
+                <h2 class="timer" data-from="0" data-to="@ViewBag.TotalUsersCount"
                     data-speed="1000" data-refresh-interval="10"></h2>
             </div>
         </div>
@@ -564,23 +565,32 @@
             owl-carousel owl-carousel-icons2 owl-loaded owl-drag
             inseventhpage
           ">
-            <div class="testimonialcard p-4 mx-auto card">
-                <p style="margin-top: 5px">
-                    Close to everything clean great amenities.Thanks for this site,now
-                    i can find a suitable place easier.
-                </p>
-                <p style="font-weight: 600; font-size: 18px; margin-bottom: 5px"
-                   class="boldtext">
-                    aykhansm
-                </p>
-                <ul style="list-style: none; display: flex; gap: 1px">
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star off"></i>
-                </ul>
-                <img style="
+
+
+            @foreach (var item in Model.Reviews)
+            {
+                <div class="testimonialcard p-4 mx-auto card">
+                    <p style="margin-top: 5px">
+                        @item.Message
+                    </p>
+                    <p style="font-weight: 600; font-size: 18px; margin-bottom: 5px"
+                       class="boldtext">
+                        @item.AppUser.UserName
+                    </p>
+                    <ul style="list-style: none; display: flex; gap: 1px">
+                        @for (int i = 1; i <= item.Rate; i++)
+                        {
+                            <i class="fas fa-star on"></i>
+                        }
+                        @for (int i = 1; i <= 5-item.Rate; i++)
+                        {
+                             <i class="fas fa-star off"></i>
+                        }
+
+                        
+                        
+                    </ul>
+                    <img style="
                 width: 70px;
                 height: 70px;
                 border-radius: 50%;
@@ -588,63 +598,12 @@
                 bottom: -100px;
                 left: 0;
               "
-                     src="~/assets/-12.jpg"
-                     alt="" />
-            </div>
-            <div class="testimonialcard p-4 mx-auto card">
-                <p style="margin-top: 5px">
-                    Close to everything clean great amenities.Thanks for this site,now
-                    i can find a suitable place easier.
-                </p>
-                <p style="font-weight: 600; font-size: 18px; margin-bottom: 5px"
-                   class="boldtext">
-                    aykhansm
-                </p>
-                <ul style="list-style: none; display: flex; gap: 1px">
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star off"></i>
-                </ul>
-                <img style="
-                width: 70px;
-                height: 70px;
-                border-radius: 50%;
-                position: absolute;
-                bottom: -100px;
-                left: 0;
-              "
-                     src="~/assets/-12.jpg"
-                     alt="" />
-            </div>
-            <div class="testimonialcard p-4 mx-auto card">
-                <p style="margin-top: 5px">
-                    Close to everything clean great amenities.Thanks for this site,now
-                    i can find a suitable place easier.
-                </p>
-                <p style="font-weight: 600; font-size: 18px; margin-bottom: 5px"
-                   class="boldtext">
-                    aykhansm
-                </p>
-                <ul style="list-style: none; display: flex; gap: 1px">
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star on"></i>
-                    <i class="fas fa-star off"></i>
-                </ul>
-                <img style="
-                width: 70px;
-                height: 70px;
-                border-radius: 50%;
-                position: absolute;
-                bottom: -100px;
-                left: 0;
-              "
-                     src="~/assets/-12.jpg"
-                     alt="" />
-            </div>
+                        src="~/@(item.AppUser.Image!=null?"uploads/"+item.AppUser.Image:"assets/360.jpg")"
+                         alt="" />
+                </div>
+            }
+
+
         </div>
     </div>
 </section>
@@ -659,7 +618,7 @@
             @foreach (var item in Model.Cities)
             {
                 <div style="position: relative; width: 276px; height: 184px; border-radius: 8px;" class="col-sm-12 col-lg-3 col-md-4">
-                    <a style="display: block; border-radius: 8px;background-color: #3f3e3e !important;width: 276px !important; height: 184px !important;" href="#">
+                    <a style="display: block; border-radius: 8px;background-color: #3f3e3e !important;width: 276px !important; height: 184px !important;" asp-controller="property" asp-action="list" asp-route-cityId="@item.Id">
                         <img style="width: 276px; height: 184px; border-radius: 8px; opacity: 0.45;" src="~/uploads/@item.Image" alt="">
                         <p style="position: absolute;top: 55px;
            left: 40%;

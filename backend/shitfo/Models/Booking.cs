@@ -15,11 +15,13 @@ namespace shitfo.Models
         public string AppUserId { get; set; }
         public AppUser AppUser { get; set; }
         public BookingStatus Status { get; set; }
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal Amount { get; set; }
+        
+        public int Amount { get; set; }
         [Required]
         public DateTime BookingStart { get; set; }
         [Required]
+        public int BookingDuration { get; set; }
+        
         public DateTime BookingEnd { get; set; }
     }
 }

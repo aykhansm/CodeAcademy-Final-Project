@@ -1,0 +1,318 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using Microsoft.EntityFrameworkCore;
+@using Microsoft.AspNetCore.Mvc;
+@using shitfo.Enums;
+@model List<UserFavorite>
+@inject UserManager<AppUser> user
+@{
+
+
+    AppUser userr = null;
+    if (User.Identity.IsAuthenticated)
+    {
+        userr = user.Users.Include(x => x.Bookings).ThenInclude(x => x.AppUser).FirstOrDefault(x => x.UserName == User.Identity.Name && !x.IsAdmin);
+    }
+    ViewData["Title"] = "MyFavorites";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section style{
+    <link rel="stylesheet" href="~/css/my-properties.css" />
+}
+<section class="pagetwo">
+    <div class="firstpage container">
+        <p style="color: white; font-size: 30px" class="boldtext">
+            My Favorites
+        </p>
+        <p style="
+            font-family: 'Roboto', sans-serif;
+            color: white;
+            font-size: 16px;
+          ">
+            Here you can see all your favorite properties
+        </p>
+    </div>
+</section>
+<section class="pagethree">
+    <div class="container firstpage">
+        <div class="row">
+            <div class="mydashboard col-xl-3 col-lg-12 col-md-12">
+                <div class="dashboardcard card overflow-hidden">
+                    <h3 class="card-title boldtext">My Dashboard</h3>
+
+                    <div class="card-body item-user p-5">
+                        <div class="img-absolute-top2 img-absolute-top3">
+                            <img class="background" src="@(userr.Image == null?"~/assets/360.jpg":"~/uploads/"+userr.Image)" alt="img" />
+                        </div>
+                        <div class="profile-pic text-center reative">
+                            <div class="profile-pic-img text-center">
+                                <span class="bg-success dots"
+                                      data-toggle="tooltip"
+                                      data-placement="top"
+                                      title=""
+                                      data-original-title="online"></span>
+                                <img style="border-radius: 7px; max-width: 165px"
+                                     src="~/@(userr.Image == null?"assets/360.jpg":"uploads/"+userr.Image)"
+                                     class="br-7 w-100"
+                                     alt="user" />
+                            </div>
+                            <a class="text-dark">
+                                <h4 style="font-size: 15px; font-weight: 600"
+                                    class="mt-4 mb-0 font-weight-semibold2 fs-16">
+                                    @userr.FullName
+                                    <span class=""
+                                          data-toggle="tooltip"
+                                          data-placement="top"
+                                          title=""
+                                          data-original-title="Verified Owner">
+                                        <i class="fe fe-check-circle text-success fs-13"></i>
+                                    </span>
+                                </h4>
+                            </a>
+                            <p style="font-size: 13px" class="mb-0 mt-1 text-muted">
+                                User
+                            </p>
+                        </div>
+                    </div>
+                    <aside class="app-sidebar doc-sidebar my-dash">
+                        <div class="app-sidebar__user clearfix is-expanded">
+                            <ul class="side-menu open">
+                                <li class="first">
+                                    <a class="side-menu__item" asp-controller="account" asp-action="edit" asp-route-id="@userr.Id">
+                                        <i class="side-menu__icon far fa-user"></i><span class="side-menu__label">Edit Profile</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="side-menu__item active" asp-controller="account" asp-action="myproperties">
+                                        <i class="side-menu__icon fas fa-list"></i><span class="side-menu__label">My Properties</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="side-menu__item" asp-controller="account" asp-action="myfavorites">
+                                        <i class="side-menu__icon far fa-heart"></i><span class="side-menu__label">My Favourites</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="side-menu__item"asp-controller="account" asp-action="mybookings">
+                                        <i class="side-menu__icon fas fa-shopping-cart"></i><span class="side-menu__label">My Bookings</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="side-menu__item" asp-controller="account" asp-action="bookingstome">
+                                        <i class="side-menu__icon fas fa-shopping-cart"></i><span class="side-menu__label">Bookings to Me</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="side-menu__item" asp-controller="account" asp-action="logout">
+                                        <i class="side-menu__icon fas fa-power-off"></i><span class="side-menu__label">Log out</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+            <div class="col-xl-9 col-lg-12 col-md-12">
+                <div class="dashboardcard card">
+                    <div style="
+                  padding: 25px;
+                  border-bottom: solid 1px gainsboro;
+                  margin-top: 0;
+                  font-size: 18px;
+                  font-weight: 600;
+                "
+                         class="card-title boldtext">
+                        My Favorites
+                    </div>
+                    <div class="card-body">
+                        <div class="ads-tabs">
+                            <div class="tab-content">
+                                <div class="tab-pane table-responsive userprof-tab active"
+                                     id="tab1">
+                                    <div id="DataTables_Table_0_wrapper"
+                                         class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <table class="
+                                data-table-example
+                                table table-bordered table-hover
+                                mb-0
+                                text-nowrap
+                                dataTable
+                                no-footer
+                              "
+                                                       id="DataTables_Table_0"
+                                                       role="grid"
+                                                       aria-describedby="DataTables_Table_0_info">
+                                                    <thead>
+                                                        <tr role="row">
+                                                            <th class="sorting"
+                                                                tabindex="0"
+                                                                aria-controls="DataTables_Table_0"
+                                                                rowspan="1"
+                                                                colspan="1"
+                                                                style="width: 219.15px"
+                                                                aria-label="Item: activate to sort column ascending">
+                                                                Item
+                                                            </th>
+                                                            <th class="sorting"
+                                                                tabindex="0"
+                                                                aria-controls="DataTables_Table_0"
+                                                                rowspan="1"
+                                                                colspan="1"
+                                                                style="width: 70.7667px"
+                                                                aria-label="Category: activate to sort column ascending">
+                                                                Category
+                                                            </th>
+                                                            <th class="sorting"
+                                                                tabindex="0"
+                                                                aria-controls="DataTables_Table_0"
+                                                                rowspan="1"
+                                                                colspan="1"
+                                                                style="width: 39.1px"
+                                                                aria-label="Price: activate to sort column ascending">
+                                                                Price
+                                                            </th>
+
+                                                            <th class="sorting"
+                                                                tabindex="0"
+                                                                aria-controls="DataTables_Table_0"
+                                                                rowspan="1"
+                                                                colspan="1"
+                                                                style="width: 119.867px"
+                                                                aria-label="Action: activate to sort column ascending">
+                                                                Action
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach (var item in Model)
+                                                        {
+                                                            <tr role="row">
+                                                                <td>
+                                                                    <div style="display: flex; padding: 10px"
+                                                                         class="media mt-0 mb-0">
+                                                                        <div class="card-aside-img">
+                                                                            <a asp-action="detail" asp-controller="property" asp-route-id="@item.Property.Id"></a>
+                                                                            <img style="
+                                            width: 80px;
+                                            height: 80px;
+                                            margin-right: 10px;
+                                          "
+                                                                                 src="~/uploads/@item.Property.PropertyImages.FirstOrDefault(x => x.IsPoster).Name"
+                                                                                 alt="img" />
+                                                                        </div>
+                                                                        <div class="media-body">
+                                                                            <div class="card-item-desc ml-4 p-0 mt-2">
+                                                                                <a asp-action="detail" asp-controller="property" asp-route-id="@item.Property.Id" class="text-dark">
+                                                                                    <h4 style="font-size: 15px"
+                                                                                        class="
+                                                boldtext
+                                                font-weight-semibold2
+                                              ">
+                                                                                        @item.Property.Name
+                                                                                    </h4>
+                                                                                </a>
+                                                                                <a href="#" class="fs-13 text-muted">
+                                                                                    <i class="far fa-clock mr-1"></i>
+                                                                                    @item.CreatedAt.ToString("d") , @item.CreatedAt.ToString("HH:mm")
+                                                                                </a><br />
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>@item.Property.Category.Name</td>
+                                                                <td class="font-weight-semibold fs-16">
+                                                                    @{ if (item.Property.RentType == RentType.Monthly)
+                                                                        {
+
+                                                                            <p>Monthly: @item.Property.MonthlyPrice AZN</p>
+                                                                        }
+                                                                        else if (item.Property.RentType == RentType.Daily)
+                                                                        {
+
+                                                                            <p>Daily: @item.Property.DailyPrice AZN</p>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <p>Monthly: @item.Property.MonthlyPrice AZN</p>
+                                                                            <p>Daily: @item.Property.DailyPrice AZN</p>
+                                                                        }
+                                                                    }
+                                                                </td>
+
+                                                                <td>
+                                                                    
+                                                                    <a asp-controller="property" asp-action="detail" asp-route-id="@item.Property.Id"
+                                                                       class=""
+                                                                       data-toggle="tooltip"
+                                                                       data-original-title="Details"
+                                                                       style="
+                                        color: #3d4e67;
+                                        background-color: #f9faff;
+
+                                        padding: 0.25rem 0.5rem;
+                                        font-size: 0.875rem;
+                                        line-height: 1.33333333;
+                                        border-radius: 3px;
+                                        border: 1px solid #e8ebf3;
+                                      ">
+                                                                        <i class="far fa-eye fs-16"></i>
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                        }
+
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-5">
+                                                <div class="dataTables_info"
+                                                     id="DataTables_Table_0_info"
+                                                     role="status"
+                                                     aria-live="polite">
+                                                    Showing 1 to 10 of 20 entries
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-7">
+                                                <div class="dataTables_paginate paging_simple_numbers"
+                                                     id="DataTables_Table_0_paginate">
+                                                    <ul class="pagination d-flex justify-content-end">
+                                                        <li class="
+                                    paginate_button
+                                    page-item
+                                    previous
+                                    disabled
+                                  ">
+                                                            <a class="page-link">
+                                                                <i style="font-size: 17px"
+                                                                   class="fas fa-chevron-left"></i>
+                                                            </a>
+                                                        </li>
+                                                        <li class="paginate_button page-item ">
+                                                            <a class="page-link">1</a>
+                                                        </li>
+
+                                                        <li class="paginate_button page-item disabled">
+                                                            <a class="page-link">
+                                                                <i style="font-size: 17px"
+                                                                   class="fas fa-chevron-right"></i>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

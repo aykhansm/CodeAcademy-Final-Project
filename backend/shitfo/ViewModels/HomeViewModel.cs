@@ -16,6 +16,8 @@ namespace shitfo.ViewModels
         public List<Property> FeaturedProperties { get; set; }
         public List<Category> Categories { get; set; }
         public List<City> Cities { get; set; }
+        public List<Review> Reviews { get; set; }
         public int UserCount { get; set; }
+
     }
 }

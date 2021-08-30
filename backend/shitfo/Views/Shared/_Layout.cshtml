@@ -65,13 +65,13 @@
             my-2
             align-items-center
           ">
-            <img class="img" src="~/uploads/@ViewBag.Settings.Logo" alt="" />
+            <a asp-controller="home" asp-action="index"><img class="img" src="~/uploads/@ViewBag.Settings.Logo" alt="" /></a>
             <img class="imgresponsive" src="~/assets/favicon.png" alt="" />
             <ul style="margin-bottom: 0 !important"
                 class="normalnav d-flex flex-direction-row align-items-center gap-4">
                 <li style="@(ViewContext.RouteData.Values["controller"].ToString() == "Home" ? " color: #556ee6 !important" : "")"><a asp-controller="home" asp-action="index">Home</a></li>
 
-                <li><a href="">Properties</a></li>
+                <li style="@(ViewContext.RouteData.Values["controller"].ToString() == "Property" ? " color: #556ee6 !important" : "")"><a asp-controller="property" asp-action="list"> Properties</a></li>
 
                 <li><a style="@(ViewContext.RouteData.Values["controller"].ToString() == "Contact" ? " color: #556ee6 !important" : "")" asp-controller="contact" asp-action="index">Contact Us</a></li>
 
@@ -373,6 +373,7 @@
 <!-- -----------------------------Jquery------------------ -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+<script src="~/js/dist/starrr.js"></script>
 <!-- -------------------------------Toastr------------ -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
         integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="

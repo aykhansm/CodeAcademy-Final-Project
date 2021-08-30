@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using shitfo.Models;
+using shitfo.Enums;
 using shitfo.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -65,7 +66,7 @@ namespace shitfo.Controllers
                 return View(loginViewModel);
             }
 
-            var result = await _signInManager.PasswordSignInAsync(existUser, loginViewModel.Password,loginViewModel.IsPersistent,true);
+            var result = await _signInManager.PasswordSignInAsync(existUser, loginViewModel.Password, loginViewModel.IsPersistent, true);
             if (!result.Succeeded)
             {
                 ModelState.AddModelError("", "Email or Password is incorrect");
@@ -102,10 +103,10 @@ namespace shitfo.Controllers
             {
                 FullName = registerView.FullName,
                 UserName = registerView.Username,
-                Address=registerView.Address,
-                Email=registerView.Email,
-                CreatedAt=DateTime.UtcNow.AddHours(4),
-                CityId=1
+                Address = registerView.Address,
+                Email = registerView.Email,
+                CreatedAt = DateTime.UtcNow.AddHours(4),
+                CityId = 1
 
             };
             var result = await _userManager.CreateAsync(user, registerView.Password);
@@ -124,22 +125,22 @@ namespace shitfo.Controllers
             await _signInManager.SignInAsync(user, true);
 
             return RedirectToAction("index", "home");
-            
+
         }
         [Authorize(Roles = "Member")]
         public IActionResult Edit()
         {
             AppUser user = _userManager.Users.FirstOrDefault(x => x.UserName == User.Identity.Name);
-            EditViewModel editView = new EditViewModel() { 
-            AppUser=user,
-            Cities=_context.Cities.ToList()
+            EditViewModel editView = new EditViewModel() {
+                AppUser = user,
+                Cities = _context.Cities.ToList()
             };
             return View(editView);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Member")]
-        public async Task<IActionResult> Edit(EditViewModel user,int cityId)
+        public async Task<IActionResult> Edit(EditViewModel user, int cityId)
         {
             AppUser userr = await _userManager.FindByNameAsync(User.Identity.Name);
 
@@ -157,10 +158,10 @@ namespace shitfo.Controllers
             {
                 return View();
             }
-            
-                userr.UserName = user.AppUser.UserName;
-           
-                userr.FullName = user.AppUser.FullName;
+
+            userr.UserName = user.AppUser.UserName;
+
+            userr.FullName = user.AppUser.FullName;
             userr.Address = user.AppUser.Address;
             userr.CityId = cityId;
             userr.Description = user.AppUser.Description;
@@ -183,7 +184,7 @@ namespace shitfo.Controllers
                 }
 
                 string rootPath = _env.WebRootPath;
-                var filename = Guid.NewGuid().ToString() + user.AppUser.ImageFile.ContentType.Substring(user.AppUser.ImageFile.ContentType.IndexOf("/") + 1);
+                var filename = Guid.NewGuid().ToString() + "." + user.AppUser.ImageFile.ContentType.Substring(user.AppUser.ImageFile.ContentType.IndexOf("/") + 1);
                 var path = Path.Combine(rootPath, "uploads", filename);
 
                 using (FileStream stream = new FileStream(path, FileMode.Create))
@@ -236,7 +237,92 @@ namespace shitfo.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("index","home");
+            return RedirectToAction("index", "home");
         }
-    }
+
+        [Authorize(Roles = "Member")]
+        public async Task<IActionResult> MyProperties()
+        {
+
+            var existUser = await _userManager.FindByNameAsync(User.Identity.Name);
+            if (existUser != null) {
+                List<Property> properties = _context.Properties.Where(x => x.AppUserId == existUser.Id).Include(x => x.AppUser).Include(x => x.Bookings).Include(x => x.Category).Include(x => x.City).Include(x => x.PropertyImages).Include(x => x.PropertyTags).ThenInclude(x => x.Tag).Include(x => x.Reviews).Include(x => x.UserFavorites).ToList();
+                return View(properties);
+            }
+            return RedirectToAction("index", "home");
+        }
+        [Authorize(Roles = "Member")]
+        public async Task<IActionResult> MyFavorites()
+        {
+
+            var existUser = await _userManager.FindByNameAsync(User.Identity.Name);
+
+            var MyUserFavourites = _context.UserFavorites.Where(x => x.AppUserId == existUser.Id).Include(x => x.Property).ThenInclude(x => x.PropertyImages).Include(x => x.Property).ThenInclude(x => x.Category).ToList();
+
+            if (existUser != null)
+            {
+                List<UserFavorite> userFavorites = MyUserFavourites;
+                return View(MyUserFavourites);
+            }
+            return RedirectToAction("index", "home");
+        }
+        [Authorize(Roles = "Member")]
+        public async Task<IActionResult> MyBookings()
+        {
+
+            var existUser = await _userManager.FindByNameAsync(User.Identity.Name);
+
+            var MyBookings = _context.Bookings.Where(x => x.AppUserId == existUser.Id && x.Property.AppUserId != existUser.Id).Include(x => x.Property).ThenInclude(x => x.PropertyImages).Include(x => x.Property).ThenInclude(x => x.Category).ToList();
+
+            if (existUser != null)
+            {
+                List<Booking> mybookings = MyBookings;
+                return View(mybookings);
+            }
+            return RedirectToAction("index", "home");
+        }
+        [Authorize(Roles = "Member")]
+        public async Task<IActionResult> BookingsToMe(int? renttypeId)
+        {
+
+            var existUser = await _userManager.FindByNameAsync(User.Identity.Name);
+
+            var BookingsToMe = _context.Bookings.Where(x => x.AppUserId != existUser.Id && x.Property.AppUserId == existUser.Id).Include(x => x.AppUser).Include(x => x.Property).ThenInclude(x => x.PropertyImages).Include(x => x.Property).ThenInclude(x => x.Category).ToList();
+
+            if (existUser != null)
+            {
+                List<Booking> mybookings = BookingsToMe;
+                return View(mybookings);
+            }
+            return RedirectToAction("index", "home");
+        }
+        [Authorize(Roles = "Member")]
+        public async Task<IActionResult> StatusChange(int? renttypeId,int? bookingId)
+        {
+            var existUser = await _userManager.FindByNameAsync(User.Identity.Name);
+            var BookingsToMe = _context.Bookings.Where(x => x.AppUserId != existUser.Id && x.Property.AppUserId == existUser.Id).Include(x => x.AppUser).Include(x => x.Property).ThenInclude(x => x.PropertyImages).Include(x => x.Property).ThenInclude(x => x.Category).ToList();
+            var existBooking = _context.Bookings.FirstOrDefault(x => x.Id == bookingId);
+            if (existUser != null) { 
+            if(existBooking!=null && renttypeId != null)
+            {
+                if (renttypeId == 0)
+                    existBooking.Status = BookingStatus.Pending;            
+                else if (renttypeId == 1)
+                    existBooking.Status = BookingStatus.Accepted;
+                
+                else
+                    existBooking.Status = BookingStatus.Rejected;
+                
+            }
+           
+                
+                List<Booking> mybookings = BookingsToMe;
+                _context.SaveChanges();
+                return RedirectToAction("bookingstome", "account",mybookings);
+            }
+
+            return RedirectToAction("index", "home");
+            
+        }
+    } 
 }
