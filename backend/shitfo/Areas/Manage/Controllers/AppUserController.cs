@@ -210,7 +210,7 @@ namespace shitfo.Areas.Manage.Controllers
             await _userManager.UpdateAsync(userr);
 
             
-            return RedirectToAction("index", "dashboard");
+            return RedirectToAction("index");
         }
         [Authorize(Roles = "Superadmin,Admin")]
         public IActionResult Delete(string id)

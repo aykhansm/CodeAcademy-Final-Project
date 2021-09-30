@@ -338,3 +338,4 @@ C:\Users\V-COMP\Desktop\Final Project\backend\shitfo\obj\Debug\netcoreapp3.1\Raz
 C:\Users\V-COMP\Desktop\Final Project\backend\shitfo\obj\Debug\netcoreapp3.1\Razor\Views\Account\MyFavorites.cshtml.g.cs
 C:\Users\V-COMP\Desktop\Final Project\backend\shitfo\obj\Debug\netcoreapp3.1\Razor\Views\Account\MyBookings.cshtml.g.cs
 C:\Users\V-COMP\Desktop\Final Project\backend\shitfo\obj\Debug\netcoreapp3.1\Razor\Views\Account\BookingsToMe.cshtml.g.cs
+C:\Users\V-COMP\Desktop\Final Project\backend\shitfo\obj\Debug\netcoreapp3.1\shitfo.csprojAssemblyReference.cache

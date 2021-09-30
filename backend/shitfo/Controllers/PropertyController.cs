@@ -152,27 +152,7 @@ namespace shitfo.Controllers
                 return RedirectToAction("index", "home");
         }
 
-        public IActionResult Detail(int id)
-        {
-
-            var existProperty = _context.Properties.Include(x => x.AppUser).Include(x => x.Bookings).Include(x => x.Category).Include(x => x.City).Include(x => x.PropertyImages).Include(x => x.PropertyTags).ThenInclude(x => x.Tag).Include(x => x.Reviews).Include(x => x.UserFavorites).FirstOrDefault(x => x.Id == id);
-            if (existProperty == null)
-                return RedirectToAction("index", "home");
-            ViewBag.PropertyCount = _context.Properties.Count();
-            ViewBag.Cities = _context.Cities.ToList();
-            ViewBag.Categories = _context.Categories.ToList();
-            ViewBag.OtherProperties = _context.Properties.Include(x => x.AppUser).Include(x => x.Bookings).Include(x => x.Category).Include(x => x.City).Include(x => x.PropertyImages).Include(x => x.PropertyTags).ThenInclude(x => x.Tag).Include(x => x.Reviews).Include(x => x.UserFavorites).Where(x => x.AppUserId == existProperty.AppUserId && x.Id != existProperty.Id).Take(8).ToList();
-            existProperty.ViewCount++;
-            _context.SaveChanges();
-
-            PropertyDetailViewModel propertyDetail = new PropertyDetailViewModel()
-            {
-
-                Property = existProperty
-
-            };
-            return View(propertyDetail);
-        }
+       
         [Authorize(Roles = "Member")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -311,6 +291,28 @@ namespace shitfo.Controllers
 
             return RedirectToAction("index", "home");
         }
+        public IActionResult Detail(int id)
+        {
+
+            var existProperty = _context.Properties.Include(x => x.AppUser).Include(x => x.Bookings).Include(x => x.Category).Include(x => x.City).Include(x => x.PropertyImages).Include(x => x.PropertyTags).ThenInclude(x => x.Tag).Include(x => x.Reviews).ThenInclude(x => x.AppUser).Include(x => x.UserFavorites).FirstOrDefault(x => x.Id == id);
+            if (existProperty == null)
+                return RedirectToAction("index", "home");
+            ViewBag.PropertyCount = _context.Properties.Count();
+            ViewBag.Cities = _context.Cities.ToList();
+            ViewBag.Categories = _context.Categories.ToList();
+            ViewBag.OtherProperties = _context.Properties.Include(x => x.AppUser).Include(x => x.Bookings).Include(x => x.Category).Include(x => x.City).Include(x => x.PropertyImages).Include(x => x.PropertyTags).ThenInclude(x => x.Tag).Include(x => x.Reviews).ThenInclude(x => x.AppUser).Include(x => x.UserFavorites).Where(x => x.AppUserId == existProperty.AppUserId && x.Id != existProperty.Id).Take(8).ToList();
+            existProperty.ViewCount++;
+            _context.SaveChanges();
+
+            PropertyDetailViewModel propertyDetail = new PropertyDetailViewModel()
+            {
+
+                Property = existProperty
+
+            };
+            return View(propertyDetail);
+        }
+
         [Authorize(Roles = "Member")]
         public IActionResult Delete(int id)
         {
@@ -353,9 +355,9 @@ namespace shitfo.Controllers
             if (detailpage == 0)
                 return RedirectToAction("index", "home");
             else if (detailpage == 2)
-                return RedirectToAction("list", "property", existProperty);
+                return RedirectToAction("list", "property");
             else
-                return RedirectToAction("detail", "property", existProperty);
+                return RedirectToAction("list", "property");
         }
 
         [Authorize(Roles = "Member")]
@@ -437,7 +439,11 @@ namespace shitfo.Controllers
             ViewBag.Categories = _context.Categories.ToList();
             ViewBag.SelectedPage = page;
             ViewBag.TotalPage = Math.Ceiling(_context.Properties.Count() / 8m);
-
+            if (appuserId != null)
+            {
+                List<Property> propertiesbycity = _context.Properties.Where(x => x.AppUserId == appuserId).Include(x => x.AppUser).Include(x => x.Bookings).Include(x => x.Category).Include(x => x.City).Include(x => x.PropertyImages).Include(x => x.PropertyTags).ThenInclude(x => x.Tag).Include(x => x.Reviews).Include(x => x.UserFavorites).Skip((page - 1) * 8).Take(8).ToList();
+                return View(propertiesbycity);
+            }
             if (cityId != null && searchstr==null && categoryId==null)
             {
                 List<Property> propertiesbycity = _context.Properties.Where(x=>x.CityId==cityId).Include(x => x.AppUser).Include(x => x.Bookings).Include(x => x.Category).Include(x => x.City).Include(x => x.PropertyImages).Include(x => x.PropertyTags).ThenInclude(x => x.Tag).Include(x => x.Reviews).Include(x => x.UserFavorites).Skip((page - 1) * 8).Take(8).ToList();

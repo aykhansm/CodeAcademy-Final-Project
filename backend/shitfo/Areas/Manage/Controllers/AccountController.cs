@@ -111,7 +111,7 @@ namespace shitfo.Areas.Manage.Controllers
             await _userManager.UpdateAsync(loginedUser);
 
             await _signInManager.SignInAsync(loginedUser, true);
-            return RedirectToAction("index", "dashboard");
+            return RedirectToAction("edit");
         }
         [Authorize(Roles = "Superadmin,Admin")]
         public async Task<IActionResult> Logout()

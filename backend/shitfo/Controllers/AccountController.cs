@@ -59,6 +59,10 @@ namespace shitfo.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel loginViewModel)
         {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("login");
+            }
             var existUser = await _userManager.Users.FirstOrDefaultAsync(x => x.Email.ToLower() == loginViewModel.Email.ToLower() && !x.IsAdmin);
             if (existUser == null)
             {
@@ -142,6 +146,10 @@ namespace shitfo.Controllers
         [Authorize(Roles = "Member")]
         public async Task<IActionResult> Edit(EditViewModel user, int cityId)
         {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("edit");
+            }
             AppUser userr = await _userManager.FindByNameAsync(User.Identity.Name);
 
             if (_userManager.Users.Any(x => x.UserName == user.AppUser.UserName && x.Id != userr.Id))

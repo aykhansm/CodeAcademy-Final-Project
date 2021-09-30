@@ -246,7 +246,7 @@
             @foreach (var item in Model.MostRentedProperties)
             {
                 <div class="card mx-auto"
-                     style="width: 18rem; height:450px; box-shadow: none">
+                     style="width: 18rem;  box-shadow: none">
                     <div style="margin-bottom: 10px" class="image">
                         <a asp-controller="property" asp-action="detail" asp-route-id="@item.Id" class="card-img">
                             <img style="max-height:250px" class="" src="~/uploads/@item.PropertyImages.FirstOrDefault(x=>x.IsPoster==true).Name" alt="Card image cap" />
@@ -362,7 +362,8 @@
                   align-items-center
                 ">
                             <img style="width: 35px; height: 35px; border-radius: 50%"
-                                 src="~/@(item.AppUser.Image!=null?"uploads/"+item.AppUser.Image:"assets/360.jpg")"
+                                 
+                                  src="~/@(item.AppUser.Image == null?"assets/360.jpg":"uploads/"+item.AppUser.Image)"
                                  alt="" />
                             <p class=""
                                style="
@@ -598,7 +599,7 @@
                 bottom: -100px;
                 left: 0;
               "
-                        src="~/@(item.AppUser.Image!=null?"uploads/"+item.AppUser.Image:"assets/360.jpg")"
+                        src="~/@(item.AppUser.Image == null?"assets/360.jpg":"uploads/"+item.AppUser.Image)"
                          alt="" />
                 </div>
             }

@@ -103,8 +103,11 @@
                     {
                         <div class="listcard overflow-hidden">
                             <div class="">
-                                <div class="d-xl-flex">
-                                    <div style="position: relative; margin-right: 20px"
+                                <div style="" class="d-xl-flex">
+                                    <div style="        position: relative;
+        margin-right: 20px;
+        width: 420px;
+"
                                          class="item-card9-img br-7 overflow-hidden">
                                         <div class="item-card9-imgs">
                                             <a style="
@@ -119,14 +122,16 @@
                                                asp-action="detail" asp-controller="property" asp-route-id="@item.Id">
                                                 
                                             </a>
-                                            <img style="
+                                            <a asp-controller="property" asp-action="detail" asp-route-id="@item.Id">
+                                                <img style="
                             max-height: 197px;
                             width: 315px;
                             border-radius: 8px;
                           "
-                                                 src="/uploads/@item.PropertyImages.FirstOrDefault(x => x.IsPoster).Name"
-                                                 alt="img"
-                                                 class="cover-image" />
+                                                     src="/uploads/@item.PropertyImages.FirstOrDefault(x => x.IsPoster).Name"
+                                                     alt="img"
+                                                     class="cover-image" />
+                                            </a>
                                         </div>
                                         <div class="item-card2-icons top-spacing">
                                             @{
@@ -198,7 +203,7 @@
                                                 }
                                                 (@item.Reviews.Count)
                                             </div>
-                                            <a href="property-details.html" class="text-dark">
+                                            <a asp-controller="property" asp-action="detail" asp-route-id="@item.Id" class="text-dark">
                                                 <h4 style="font-size: 1.2rem; margin-top: 10px"
                                                     class="boldtext font-weight-semibold2 mt-1">
                                                     @item.Name
